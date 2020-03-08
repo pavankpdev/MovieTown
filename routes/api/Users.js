@@ -2,16 +2,21 @@ const router = require("express").Router();
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
 
-const { userModel, validateUserRegister } = require("../../Model/User.Model");
+const { userModel } = require("../../Model/User.Model");
+const {
+  validateUserRegister,
+  validateUserLogin
+} = require("../../validation/validation");
 const { BCRYPT_SALT } = require("../../config/keys");
 
 // @Route   POST /users/register
 // @des     REGISTER user registration
 // @access  PUBLIC
 router.post("/register", async (req, res) => {
-  //validate before submiting to database
+  //validating inputs before submiting to database
   const { error } = validateUserRegister(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+
+  if (error) return res.status(400).json({ error: error.details[0].message });
 
   try {
     // check whether the user exisits or not
@@ -24,8 +29,9 @@ router.post("/register", async (req, res) => {
     );
 
     // hashing the password
-    newUser.password = await bcrypt.genSalt(BCRYPT_SALT, newUser.password);
-
+    const salt = await bcrypt.genSalt(BCRYPT_SALT);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
+ 
     // save to database
     newUser = await newUser.save();
     res.json(newUser);
@@ -38,15 +44,22 @@ router.post("/register", async (req, res) => {
 // @des     LOGIN user login
 // @access  PUBLIC
 router.post("/login", async (req, res) => {
+  //validating inputs before submiting to database
+  const { error } = validateUserLogin(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
+
   try {
     // check whether the user exisits or not
     const user = await userModel.findOne({ email: req.body.email });
-    if (!user) return res.status(400).json({ error: "Entered email does'nt exists." });
+    console.log("user", user);
+    if (!user)
+      return res
+        .status(400)
+        .json({ error: "User with this email doesn't exists." });
 
     // compare the password with the encrypted password
     const verifyUser = await bcrypt.compare(req.body.password, user.password);
-    if (!verifyUser)
-      res.status(400).json({ error: "invalid password" });
+    if (!verifyUser) return res.status(400).json({ error: "invalid password" });
 
     res.json(user);
   } catch (error) {

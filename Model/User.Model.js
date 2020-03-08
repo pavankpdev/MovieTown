@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Joi = require("@hapi/joi");
 const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
@@ -13,7 +12,7 @@ const userSchema = new mongoose.Schema({
     minlength: 6
   },
   phno: {
-    type: Number,
+    type: String,
     unique: true,
     required: true,
     minlength: 10
@@ -27,25 +26,4 @@ const userSchema = new mongoose.Schema({
 
 const userModel = mongoose.model("users", userSchema);
 
-const validateUser = user => {
-  const schema = Joi.object({
-    fullname: Joi.string()
-      .required()
-      .min(3),
-    email: Joi.string()
-      .required()
-      .min(6)
-      .email(),
-    phno: Joi.number()
-      .required()
-      .min(10),
-    password: Joi.string()
-      .required()
-      .min(5)
-  });
-
-  return schema.validate(user);
-};
-
 exports.userModel = userModel;
-exports.validateUserRegister = validateUser;
