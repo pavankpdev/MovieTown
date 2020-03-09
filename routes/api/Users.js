@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const { userModel } = require("../../Model/User.Model");
 const {
   validateUserRegister,
   validateUserLogin
 } = require("../../validation/validation");
-const { BCRYPT_SALT } = require("../../config/keys");
+const { BCRYPT_SALT, JWT_PRIVATE_KEY } = require("../../config/keys");
 
 // @Route   POST /users/register
 // @des     REGISTER user registration
@@ -31,7 +32,7 @@ router.post("/register", async (req, res) => {
     // hashing the password
     const salt = await bcrypt.genSalt(BCRYPT_SALT);
     newUser.password = await bcrypt.hash(newUser.password, salt);
- 
+
     // save to database
     newUser = await newUser.save();
     res.json(newUser);
@@ -51,7 +52,6 @@ router.post("/login", async (req, res) => {
   try {
     // check whether the user exisits or not
     const user = await userModel.findOne({ email: req.body.email });
-    console.log("user", user);
     if (!user)
       return res
         .status(400)
@@ -61,7 +61,12 @@ router.post("/login", async (req, res) => {
     const verifyUser = await bcrypt.compare(req.body.password, user.password);
     if (!verifyUser) return res.status(400).json({ error: "invalid password" });
 
-    res.json(user);
+    // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
+    const payload = _.pick(user, ["_id", "name", "email"]);
+    const Token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 });
+
+    // when succesful return user information with jwt token 
+    res.json({ ...user._doc, token: "Bearer " + Token });
   } catch (error) {
     res.json({ error: error.message });
   }
