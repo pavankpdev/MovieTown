@@ -11,17 +11,22 @@ const {
 } = require("../../config/keys");
 
 const API_QUERY = `api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}&page=1&region=${TMDB_REGION}`;
-let nowPlayingMoviesData = {};
-let upcomingMoviesData = {};
+let nowPlayingMoviesDataStore = {};
+let upcomingMoviesDataStore = {};
 
 // @Route   GET /
 // @des     EXTERNAL_API_CALL gets movies information as a json format
 // @access  PUBLIC
-router.get("/", async (req, res) => {
-  // function to load data to variable which was returned from promise
-  const loadDAtaToVariable = (nowPlayingMovies, upComingMovies) => {
-    nowPlayingMoviesData = { ...nowPlayingMovies };
-    upcomingMoviesData = { ...upComingMovies };
+router.get("/", (req, res) => {
+  // function to load data to variable which is returned from promise
+  const loadNowPlayingMoviesData = async nowPlayingMovies => {
+    // spread the data to the variable
+    nowPlayingMoviesDataStore = await { ...nowPlayingMovies };
+  };
+
+  const loadUpcomingMoviesData = async upComingMovies => {
+    // spread the data to the variable
+    upcomingMoviesDataStore = await { ...upComingMovies };
   };
 
   // function to fetch all NOW_PLAYING movies from TMDB API
@@ -29,7 +34,7 @@ router.get("/", async (req, res) => {
     fetch(`${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_NOW_PLAYING_URI}${API_QUERY}`)
       .then(response => response.json())
       .then(json => {
-        loadDAtaToVariable(json);
+        loadNowPlayingMoviesData(json);
         res.json(json);
       })
       .catch(err => {
@@ -45,14 +50,17 @@ router.get("/", async (req, res) => {
       `${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_UPCOMING_MOVIES_URI}${API_QUERY}`
     )
       .then(response => response.json())
-      .then(json => res.json(json))
+      .then(json => {
+        loadUpcomingMoviesData(json);
+        res.json(json);
+      })
       .catch(err => {
         if (err.name === "AbortError") {
           res.json({ error: err.name });
         }
       });
   };
-  nowPlayingMovies();
+  upComingMovies();
 });
 
 module.exports = router;
