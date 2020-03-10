@@ -20,12 +20,10 @@ let upcomingMoviesDataStore = {};
 router.get("/", (req, res) => {
   // function to load data to variable which is returned from promise
   const loadNowPlayingMoviesData = async nowPlayingMovies => {
-    // spread the data to the variable
     nowPlayingMoviesDataStore = await { ...nowPlayingMovies };
   };
 
   const loadUpcomingMoviesData = async upComingMovies => {
-    // spread the data to the variable
     upcomingMoviesDataStore = await { ...upComingMovies };
   };
 
