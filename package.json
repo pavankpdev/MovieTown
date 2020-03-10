@@ -26,7 +26,6 @@
     "mongoose": "^5.9.3",
     "mongoose-type-phone": "^1.0.1",
     "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.2",
-    "request": "^2.88.2"
+    "nodemon": "^2.0.2"
   }
 }
