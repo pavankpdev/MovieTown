@@ -18,6 +18,7 @@
   "homepage": "https://github.com/pavankpdev/MovieTown#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.0",
     "express": "^4.17.1",

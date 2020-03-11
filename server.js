@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
+const movies = require("./routes/api/Movies");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/", home);
 app.use("/users", user);
+app.use("/movies", movies);
 
 // DB connection
 mongoose

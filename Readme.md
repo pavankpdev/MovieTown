@@ -22,7 +22,7 @@
 
 ### copy paste the below commands in command line
 
-<b><i>(NOTE: this won't work if you have not installed git in your machine)</i></b>
+<b><i>(NOTE: this won't work if you have not installed git and node in your machine)</i></b>
 
 <code>git clone <--project-url--></code><br>
 <code>cd MovieTown</code><br>

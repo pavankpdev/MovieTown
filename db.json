@@ -63,32 +63,8 @@
       ]
     },
     {
-      "theater_name": "INOX - Garuda Mall",
-      "theater_id": "3IN003",
-      "location": "Garuda Mall, 4th Floor, Near Hotel 16 Square, Magrath Road, Central, Bangalore",
-      "ratings": "8.0",
-      "total_votes": "765",
-      "type": "INOX",
-      "comments": "",
-      "seats": "100",
-      "facilities": [
-        "Dolby",
-        "Wheelchair",
-        "Recliner Seats",
-        "Food and Beverages"
-      ],
-      "movies": [
-        {
-          "title": "",
-          "time": ["10.00", "13.00", "16.00"],
-          "price": "320",
-          "occupiedSeats": []
-        }
-      ]
-    },
-    {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "4IN004",
       "location": "",
       "ratings": "",
       "total_votes": "",
@@ -107,7 +83,7 @@
     },
     {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "5PV005",
       "location": "",
       "ratings": "",
       "total_votes": "",
@@ -126,7 +102,7 @@
     },
     {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "6PV006",
       "location": "",
       "ratings": "",
       "total_votes": "",
@@ -145,7 +121,7 @@
     },
     {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "7IM007",
       "location": "",
       "ratings": "",
       "total_votes": "",
@@ -164,7 +140,7 @@
     },
     {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "8IM008",
       "location": "",
       "ratings": "",
       "total_votes": "",
@@ -183,7 +159,26 @@
     },
     {
       "theater_name": "",
-      "theater_id": "",
+      "theater_id": "9DX009",
+      "location": "",
+      "ratings": "",
+      "total_votes": "",
+      "type": "",
+      "comments": "",
+      "seats": "",
+      "facilities": [],
+      "movies": [
+        {
+          "title": "",
+          "time": ["10.00", "13.00", "16.00"],
+          "price": "",
+          "occupiedSeats": []
+        }
+      ]
+    },
+    {
+      "theater_name": "",
+      "theater_id": "10DX0010",
       "location": "",
       "ratings": "",
       "total_votes": "",
