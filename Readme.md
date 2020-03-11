@@ -14,15 +14,18 @@
 
 ### How to get this project in your machine
 
+
+
+<li>Click on Fork button on the right side top and wait for few minutes.</li>
+<li>Then a new repository will be created associated with your account</li>
+<li>Click on clone button to the right side which is in color green, and copy the url</li><br>
+
 ### copy paste the below commands in command line
 
 <b><i>(NOTE: this won't work if you have not installed git in your machine)</i></b>
 
-<li>Click on Fork button on the right side top and wait for few minutes.</li>
-<li>Then a new repository will be created associated with your account</li>
-<li>Click on clone button to the right side which is in color green, and copy the url</li>
-<h3>After all those above methods copy paste the below code in command line</h3>
-<code>git clone <project-url></code><br>
+<code>git clone <--project-url--></code><br>
+<code>cd MovieTown</code><br>
 <code>npm install</code><br>
 <code>node server.js</code> ---> this will start the backend server
 
