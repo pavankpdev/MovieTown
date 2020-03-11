@@ -10,5 +10,6 @@ module.exports = {
   TMDB_UPCOMING_MOVIES_URI: "upcoming?",
   TMDB_FETCH_MOVIES_BASE_URI: "https://api.themoviedb.org/3/movie/",
   TMDB_BASE_URL: "http://image.tmdb.org/t/p/",
-  TMDB_POSTER_WIDTH: "w200"
+  TMDB_POSTER_WIDTH: "w200",
+  THEATER_API_BASE_URL: "http://localhost:4000/api/theaterDB/"
 };
