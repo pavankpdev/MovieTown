@@ -27,9 +27,9 @@
 <code>git clone <--project-url--></code><br>
 <code>cd MovieTown</code><br>
 <code>npm install</code><br>
-<code>npm run server</code> ---> this will start the backend server on port 3000<br>
-<code>npm run theater_api</code> ---> this will start the Theater Api on port 4000 (NOTE: execute the command in new cmd window/new terinal)<br>
-<code>npm run localStorage_api</code> ---> this will start the local Storage Api on port 5000 (NOTE: execute the command in new cmd window/new terinal)<br>
+<code>npm run server</code> ---> this will start the backend server<br>
+<code>npm run theater_api</code> ---> this will start the Theater Api <b>(NOTE: execute the command in new cmd window/new terinal)</b><br>
+<code>npm run localStorage_api</code> ---> this will start the local Storage Api <b>(NOTE: execute the command in new cmd window/new terinal)</b><br>
 
 ### Instructions to pull request will be updated soon.
 
