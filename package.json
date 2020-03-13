@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon server.js",
+    "theater_api": "nodemon Theater.api.js",
+    "localStorage_api": "nodemon localStorageSimulate.api.js"
   },
   "repository": {
     "type": "git",

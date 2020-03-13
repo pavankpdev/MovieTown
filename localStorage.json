@@ -1,0 +1,35 @@
+{
+  "movieInfo": {
+    "adult": false,
+    "backdrop_path": "/eevEsVNmDJNpDOayTO8ZXY2oHMC.jpg",
+    "belongs_to_collection": null,
+    "budget": 0,
+    "genres": [],
+    "homepage": "",
+    "id": 681225,
+    "imdb_id": "tt9448946",
+    "original_language": "hi",
+    "original_title": "Babloo Bachelor",
+    "overview": "Babloo bachelor is a comedy genre film, in which Sharman Joshi is playing the protagonist. The story of the film is based on UP, where a well to do family had always dreamt of their son's wedding with great pomp and show.",
+    "popularity": 4.743,
+    "poster_path": "/dzzfeJdyGfnQtT5PuyLPv56cYsV.jpg",
+    "production_companies": [],
+    "production_countries": [],
+    "release_date": "2020-03-20",
+    "revenue": 0,
+    "runtime": 130,
+    "spoken_languages": [
+      {
+        "iso_639_1": "hi",
+        "name": "हिन्दी"
+      }
+    ],
+    "status": "In Production",
+    "tagline": "",
+    "title": "Babloo Bachelor",
+    "video": false,
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  "theaterInfo": {}
+}
