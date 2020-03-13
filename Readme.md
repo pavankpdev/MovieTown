@@ -31,6 +31,6 @@
 
 ### Instructions to pull request will be updated soon.
 
-### Any issues or nug report please open a discussion in issue panel
+### Any issues or bug report please open a discussion in issue panel
 
 ### Note this code is purely backend and frontend is not yet implemented, please dont modify the code that you're not familiar with.
