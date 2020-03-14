@@ -15,5 +15,6 @@ module.exports = {
   LOCALSTORAGE_API_BASE_URL_FOR_MOVIE:
     "http://localhost:5000/api/localStorage/movieInfo",
   LOCALSTORAGE_API_BASE_URL_FOR_THEATER:
-    "http://localhost:5000/api/localStorage/theaterInfo"
+    "http://localhost:5000/api/localStorage/theaterInfo",
+  LOCALSTORAGE_API_BASE_URL: "http://localhost:5000/api/localStorage/"
 };

@@ -1,4 +1,5 @@
 const axios = require("axios");
+const _ = require("lodash");
 const router = require("express").Router();
 
 const {
@@ -43,24 +44,5 @@ router.get("/:movie_id", async (req, res) => {
   }
 });
 
-// @Route   GET /movies/booktickets/<movie_id>
-// @des     gets the details of all the theater from Theater APi and also selected movie detail from localstorage
-// @access  PUBLIC
-router.get("/booktickets/:movie_id", async (req, res) => {
-  const movieId = encodeURI(req.params.movie_id);
-
-  // GET request to fetch selected movie details from localstorage Api with axios
-  const movie = await axios.get(`${LOCALSTORAGE_API_BASE_URL_FOR_MOVIE}`);
-  // verifying data existence
-  if (!movie.data) return res.status(401).json({ error: "invalid movie" });
-
-  // GET request to fetch all theater from Theater APi details with axios
-  const theaters = await axios.get(`${THEATER_API_BASE_URL}`);
-
-  // verifying data existence
-  if (!theaters.data) return res.status(401).json({ error: "invalid movie" });
-
-  return res.json({ movieInfo: movie.data, theatersInfo: theaters.data });
-});
 
 module.exports = router;

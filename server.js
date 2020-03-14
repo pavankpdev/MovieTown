@@ -5,7 +5,7 @@ const passport = require("passport");
 const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
 const movies = require("./routes/api/Movies");
-const seats = require("./routes/api/Seats");
+const seats = require("./routes/api/bookTickets");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -27,11 +27,16 @@ app.use(express.json());
 app.use("/", home);
 app.use("/users", user);
 app.use("/movies", movies);
-app.use("/seats", seats);
+app.use("/movies/booktickets", seats);
 app.use(passport.initialize());
 
-// Configs
+// Passport Config
 require("./config/passport")(passport);
+
+//The 404 Route
+app.get("*", function(req, res) {
+  res.status(404).send("404 Error! Invalid Route");
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
