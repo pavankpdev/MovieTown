@@ -26,10 +26,8 @@
 
 <code>git clone <--project-url--></code><br>
 <code>cd MovieTown</code><br>
-<code>npm install</code><br>
-<code>npm run server</code> ---> this will start the backend server<br>
-<code>npm run theater_api</code> ---> this will start the Theater Api <b>(NOTE: execute the command in new cmd window/new terinal)</b><br>
-<code>npm run localStorage_api</code> ---> this will start the local Storage Api <b>(NOTE: execute the command in new cmd window/new terinal)</b><br>
+<code>npm run movietown_setup</code><br> --> run this script only if you're setting up the project for the first time else jump to next instruction.<br>
+<code>npm run movietown_start</code> ---> this script will start both the backend and Front-end<br>
 
 ### Instructions to pull request will be updated soon.
 
