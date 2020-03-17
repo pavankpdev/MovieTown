@@ -10,8 +10,9 @@
     "server": "nodemon server.js",
     "theater_api": "nodemon Theater.api.js",
     "localStorage_api": "nodemon localStorageSimulate.api.js",
-    "movietown_setup": "concurrently\"npm run client_install\" \"npm run server_install\"",
-    "movietown_start": "concurrently \"npm run client\" \"npm run server\" \"npm run theater_api\" \"npm run localStorage_api\""
+    "movietown_setup": "concurrently \"npm run client_install\" \"npm run server_install\"",
+    "movietown_start_server": "concurrently  \"npm run server\" \"npm run theater_api\" \"npm run localStorage_api\"",
+    "movietown_start_client": "npm run client "
   },
   "repository": {
     "type": "git",
