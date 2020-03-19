@@ -6,9 +6,11 @@ import "./css/index.css";
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Route component={HomePage} path="/" exact />
-      </BrowserRouter>
+      <div className="lg:mx-6 xl:mx-6">
+        <BrowserRouter>
+          <Route component={HomePage} path="/" exact />
+        </BrowserRouter>
+      </div>
     );
   }
 }

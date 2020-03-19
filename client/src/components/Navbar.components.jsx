@@ -24,7 +24,7 @@ class Navbar extends Component {
           {/* Hamburger menu for smaller screen */}
           <div className="text-logoColor sm:block md:block lg:hidden xl:hidden">
             <button
-              className="hover:text-headingColor focus:outline-none"
+              className="hover:text-headingColor focus:outline-none focus:text-logoColor"
               onClick={this.toggleMenu}
             >
               <i className="fa fa-bars fa-2x " aria-hidden="true"></i>

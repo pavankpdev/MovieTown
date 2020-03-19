@@ -14,8 +14,6 @@
 
 ### How to get this project in your machine
 
-
-
 <li>Click on Fork button on the right side top and wait for few minutes.</li>
 <li>Then a new repository will be created associated with your account</li>
 <li>Click on clone button to the right side which is in color green, and copy the url</li><br>
@@ -26,8 +24,9 @@
 
 <code>git clone <--project-url--></code><br>
 <code>cd MovieTown</code><br>
-<code>npm run movietown_setup</code><br> --> run this script only if you're setting up the project for the first time else jump to next instruction.<br>
-<code>npm run movietown_start</code> ---> this script will start both the backend and Front-end<br>
+<code>npm run install_movietown</code><br> --> run this script only if you're setting up the project for the first time else jump to next instruction.<br>
+<code>npm run server</code> ---> this script will start the backend<br>
+<code>npm run client</code> ---> this script will start the frontend
 
 ### Instructions to pull request will be updated soon.
 

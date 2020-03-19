@@ -28,7 +28,13 @@ module.exports = {
         logoColor: "#5a67d8",
         headingColor: "#001934",
         textColor: "#303030"
-      })
+      }),
+      spacing: {
+        pc: "502px"
+      },
+      borderRadius: {
+        extendedcorner: "30px"
+      }
     }
   },
   variants: {

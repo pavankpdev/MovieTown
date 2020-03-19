@@ -23,6 +23,7 @@ router.get("/:movie_id", async (req, res) => {
 
   // GET request to fetch all theater from Theater APi details with axios
   const theaters = await axios.get(`${THEATER_API_BASE_URL}`, {
+    params: {},
     headers: {
       "secret-key":
         "$2b$10$Aq89FSFbnAvcgWoQtRllUuUp8uAEttKmO29tXKFWLBE5JjApL2ea2"
