@@ -22,7 +22,12 @@ router.get("/:movie_id", async (req, res) => {
   if (!movie.data) return res.status(401).json({ error: "invalid movie" });
 
   // GET request to fetch all theater from Theater APi details with axios
-  const theaters = await axios.get(`${THEATER_API_BASE_URL}`);
+  const theaters = await axios.get(`${THEATER_API_BASE_URL}`, {
+    headers: {
+      "secret-key":
+        "$2b$10$Aq89FSFbnAvcgWoQtRllUuUp8uAEttKmO29tXKFWLBE5JjApL2ea2"
+    }
+  });
 
   // verifying data existence
   if (!theaters.data) return res.status(401).json({ error: "invalid movie" });
@@ -50,7 +55,7 @@ router.get(
         `${LOCALSTORAGE_API_BASE_URL_FOR_THEATER}`
       );
 
-      // verifying data existence and returning the response to client in JSON 
+      // verifying data existence and returning the response to client in JSON
       if (movieInfo.data && theaterInfo.data)
         return res.json({
           movie: _.pick(movieInfo.data, [

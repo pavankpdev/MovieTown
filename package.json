@@ -8,10 +8,9 @@
     "server_install": "npm install",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "theater_api": "nodemon Theater.api.js",
     "localStorage_api": "nodemon localStorageSimulate.api.js",
     "movietown_setup": "concurrently \"npm run client_install\" \"npm run server_install\"",
-    "movietown_start_server": "concurrently  \"npm run server\" \"npm run theater_api\" \"npm run localStorage_api\"",
+    "movietown_start_server": "concurrently  \"npm run server\" \"npm run localStorage_api\"",
     "movietown_start_client": "npm run client "
   },
   "repository": {
@@ -30,6 +29,7 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.1.0",
     "config": "^3.3.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "json-server": "^0.16.1",
     "jsonwebtoken": "^8.5.1",

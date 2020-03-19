@@ -1,10 +1,11 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 const router = require("express").Router();
 
 const {
   TMDB_FETCH_MOVIES_BASE_URI,
   TMDB_UPCOMING_MOVIES_URI,
   TMDB_NOW_PLAYING_URI,
+  TMDB_POPULAR_MOVIES_URI,
   TMDB_API_KEY,
   TMDB_REGION,
   TMDB_LANGUAGE
@@ -17,48 +18,37 @@ let upcomingMoviesDataStore = {};
 // @Route   GET /
 // @des     EXTERNAL_API_CALL gets movies information as a json format
 // @access  PUBLIC
-router.get("/", (req, res) => {
-  // function to load data to variable which is returned from promise
-  const loadNowPlayingMoviesData = async nowPlayingMovies => {
-    nowPlayingMoviesDataStore = await { ...nowPlayingMovies };
-  };
+router.get("/", async (req, res) => {
+  try {
+    // GET request to fetch all the nowPlaying movie details from TMDB Api with axios
+    const nowplayingmovies = await axios.get(
+      `${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_NOW_PLAYING_URI}${API_QUERY}`
+    );
 
-  const loadUpcomingMoviesData = async upComingMovies => {
-    upcomingMoviesDataStore = await { ...upComingMovies };
-  };
-
-  // function to fetch all NOW_PLAYING movies from TMDB API
-  const nowPlayingMovies = () => {
-    fetch(`${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_NOW_PLAYING_URI}${API_QUERY}`)
-      .then(response => response.json())
-      .then(json => {
-        loadNowPlayingMoviesData(json);
-        res.json(json);
-      })
-      .catch(err => {
-        if (err.name === "AbortError") {
-          res.json({ error: err.name });
-        }
-      });
-  };
-
-  // function to fetch all UPCOMING movies from TMDB API
-  const upComingMovies = () => {
-    fetch(
+    // GET request to fetch all the upComing movie details from TMDB Api with axios
+    const upComingMovies = await axios.get(
       `${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_UPCOMING_MOVIES_URI}${API_QUERY}`
-    )
-      .then(response => response.json())
-      .then(json => {
-        loadUpcomingMoviesData(json);
-        res.json(json);
-      })
-      .catch(err => {
-        if (err.name === "AbortError") {
-          res.json({ error: err.name });
-        }
-      });
-  };
-  upComingMovies();
+    );
+
+    // GET request to fetch all the popular movie details from TMDB Api with axios
+    const popularMovies = await axios.get(
+      `${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_POPULAR_MOVIES_URI}${API_QUERY}`
+    );
+
+    // verifying data existence and return the data
+    if (nowplayingmovies.data && upComingMovies.data && popularMovies.data)
+      return res
+        .header("Access-Control-Allow-Origin", "http://localhost:3000")
+        .json({
+          nowplayingmoviesData: nowplayingmovies.data,
+          upComingMoviesData: upComingMovies.data,
+          popularMoviesData: popularMovies.data.results[0]
+        });
+
+    return res.status(501).json({ error: "Internal Server error" });
+  } catch (error) {
+    return res.status(400).json({ error: error });
+  }
 });
 
 module.exports = router;

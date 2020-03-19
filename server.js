@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const cors = require("cors");
 
 const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
@@ -24,6 +25,7 @@ mongoose
 mongoose.set("useCreateIndex", true);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
 app.use("/", home);
 app.use("/users", user);
 app.use("/movies", movies);
