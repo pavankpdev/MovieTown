@@ -33,7 +33,7 @@ module.exports = {
         pc: "502px"
       },
       borderRadius: {
-        extendedcorner: "30px"
+        extendedcorner: "20px"
       }
     }
   },

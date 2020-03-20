@@ -10,6 +10,7 @@
     "postcss-cli": "^7.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-horizontal-scrolling-menu": "^0.7.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "tailwindcss": "^1.2.0"

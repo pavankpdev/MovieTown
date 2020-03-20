@@ -42,7 +42,7 @@ router.get("/", async (req, res) => {
         .json({
           nowplayingmoviesData: nowplayingmovies.data,
           upComingMoviesData: upComingMovies.data,
-          popularMoviesData: popularMovies.data.results[0]
+          popularMoviesData: popularMovies.data
         });
 
     return res.status(501).json({ error: "Internal Server error" });

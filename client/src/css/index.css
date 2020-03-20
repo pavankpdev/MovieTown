@@ -3096,7 +3096,7 @@ video {
 }
 
 .rounded-extendedcorner {
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .rounded-t-none {
@@ -3220,23 +3220,23 @@ video {
 }
 
 .rounded-t-extendedcorner {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .rounded-r-extendedcorner {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .rounded-b-extendedcorner {
-  border-bottom-right-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .rounded-l-extendedcorner {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .rounded-tl-none {
@@ -3336,19 +3336,19 @@ video {
 }
 
 .rounded-tl-extendedcorner {
-  border-top-left-radius: 30px;
+  border-top-left-radius: 20px;
 }
 
 .rounded-tr-extendedcorner {
-  border-top-right-radius: 30px;
+  border-top-right-radius: 20px;
 }
 
 .rounded-br-extendedcorner {
-  border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 20px;
 }
 
 .rounded-bl-extendedcorner {
-  border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 20px;
 }
 
 .border-solid {
@@ -17011,7 +17011,7 @@ video {
   }
 
   .sm\:rounded-extendedcorner {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .sm\:rounded-t-none {
@@ -17135,23 +17135,23 @@ video {
   }
 
   .sm\:rounded-t-extendedcorner {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .sm\:rounded-r-extendedcorner {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .sm\:rounded-b-extendedcorner {
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .sm\:rounded-l-extendedcorner {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .sm\:rounded-tl-none {
@@ -17251,19 +17251,19 @@ video {
   }
 
   .sm\:rounded-tl-extendedcorner {
-    border-top-left-radius: 30px;
+    border-top-left-radius: 20px;
   }
 
   .sm\:rounded-tr-extendedcorner {
-    border-top-right-radius: 30px;
+    border-top-right-radius: 20px;
   }
 
   .sm\:rounded-br-extendedcorner {
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
   }
 
   .sm\:rounded-bl-extendedcorner {
-    border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 20px;
   }
 
   .sm\:border-solid {
@@ -30927,7 +30927,7 @@ video {
   }
 
   .md\:rounded-extendedcorner {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .md\:rounded-t-none {
@@ -31051,23 +31051,23 @@ video {
   }
 
   .md\:rounded-t-extendedcorner {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .md\:rounded-r-extendedcorner {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .md\:rounded-b-extendedcorner {
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .md\:rounded-l-extendedcorner {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .md\:rounded-tl-none {
@@ -31167,19 +31167,19 @@ video {
   }
 
   .md\:rounded-tl-extendedcorner {
-    border-top-left-radius: 30px;
+    border-top-left-radius: 20px;
   }
 
   .md\:rounded-tr-extendedcorner {
-    border-top-right-radius: 30px;
+    border-top-right-radius: 20px;
   }
 
   .md\:rounded-br-extendedcorner {
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
   }
 
   .md\:rounded-bl-extendedcorner {
-    border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 20px;
   }
 
   .md\:border-solid {
@@ -44843,7 +44843,7 @@ video {
   }
 
   .lg\:rounded-extendedcorner {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .lg\:rounded-t-none {
@@ -44967,23 +44967,23 @@ video {
   }
 
   .lg\:rounded-t-extendedcorner {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .lg\:rounded-r-extendedcorner {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .lg\:rounded-b-extendedcorner {
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .lg\:rounded-l-extendedcorner {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .lg\:rounded-tl-none {
@@ -45083,19 +45083,19 @@ video {
   }
 
   .lg\:rounded-tl-extendedcorner {
-    border-top-left-radius: 30px;
+    border-top-left-radius: 20px;
   }
 
   .lg\:rounded-tr-extendedcorner {
-    border-top-right-radius: 30px;
+    border-top-right-radius: 20px;
   }
 
   .lg\:rounded-br-extendedcorner {
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
   }
 
   .lg\:rounded-bl-extendedcorner {
-    border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 20px;
   }
 
   .lg\:border-solid {
@@ -58759,7 +58759,7 @@ video {
   }
 
   .xl\:rounded-extendedcorner {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .xl\:rounded-t-none {
@@ -58883,23 +58883,23 @@ video {
   }
 
   .xl\:rounded-t-extendedcorner {
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .xl\:rounded-r-extendedcorner {
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .xl\:rounded-b-extendedcorner {
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .xl\:rounded-l-extendedcorner {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 
   .xl\:rounded-tl-none {
@@ -58999,19 +58999,19 @@ video {
   }
 
   .xl\:rounded-tl-extendedcorner {
-    border-top-left-radius: 30px;
+    border-top-left-radius: 20px;
   }
 
   .xl\:rounded-tr-extendedcorner {
-    border-top-right-radius: 30px;
+    border-top-right-radius: 20px;
   }
 
   .xl\:rounded-br-extendedcorner {
-    border-bottom-right-radius: 30px;
+    border-bottom-right-radius: 20px;
   }
 
   .xl\:rounded-bl-extendedcorner {
-    border-bottom-left-radius: 30px;
+    border-bottom-left-radius: 20px;
   }
 
   .xl\:border-solid {
