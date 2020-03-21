@@ -9,7 +9,7 @@
     "frontend": "cd client && npm start",
     "backend": "nodemon server.js",
     "localStorage_api": "nodemon localStorageSimulate.api.js",
-    "install_movietown": "concurrently \"npm run client_install\" \"npm run server_install\"",
+    "install_movietown": "concurrently \"npm run server_install\" \"npm run client_install\"",
     "server": "concurrently  \"npm run backend\" \"npm run localStorage_api\"",
     "client": "npm run frontend "
   },
