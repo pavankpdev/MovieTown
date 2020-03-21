@@ -1,10 +1,9 @@
 import React from "react";
 
-
 const PopularMovieCard = ({ imageUrl, imageWidth, imagePath }) => {
   return (
     <div className="card mt-6">
-      <div className="mx-3 relative shadow-2xl lg:mx-20">
+      <div className="ml-3 relative shadow-2xl lg:mx-20">
         <img
           className="h-48 mx-auto rounded-lg w-full md:h-64 lg:h-pc lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
           src={`${imageUrl}${imageWidth}${imagePath}`}

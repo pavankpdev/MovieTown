@@ -1,9 +1,75 @@
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+.card-slider {
+  position: relative;
+  margin: 0 auto;
+}
 
-  .card {
-    display: inline-block;
+.cards-slider-wrapper {
+  display: flex;
+  position: absolute;
+}
+
+@media (min-width: 300px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 400px;
+  }
+  .arrow-btns {
+    position: absolute;
+    top: 45%;
+    right: 50%;
+    left: 50%;
+    color: #5a67d8;
+  }
+
+  .arrow-btns .arrow-left {
+    position: absolute;
+    right: 20px;
+  }
+  .arrow-btns .arrow-RIGHT {
+    position: absolute;
+    left: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 702px;
+  }
+  .arrow-btns {
+    position: absolute;
+    top: 45%;
+    right: 50%;
+    left: 50%;
+    color: #5a67d8;
+  }
+
+  .arrow-btns .arrow-left {
+    position: absolute;
+    right: 20px;
+  }
+  .arrow-btns .arrow-RIGHT {
+    position: absolute;
+    left: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 1200px;
+  }
+  .arrow-btns {
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    color: #5a67d8;
+  }
+
+  .arrow-btns .arrow-left {
+    position: absolute;
+    right: 50px;
+  }
+  .arrow-btns .arrow-RIGHT {
+    position: absolute;
+    left: 50px;
   }
 }
