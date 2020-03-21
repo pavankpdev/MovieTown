@@ -30,9 +30,12 @@
   <code>npm run client_install</code><br>
 <code>npm run server</code> ---> this script will start the backend<br>
 <code>npm run client</code> ---> this script will start the frontend
+  
+  
+After executing above instuctions open this link in your browser <code>http://localhost:3000</code> you should see the UI of the home page
 
 ### Instructions to pull request will be updated soon.
 
 ### Any issues or bug report please open a discussion in issue panel
 
-### Note this code is purely backend and frontend is not yet implemented, please dont modify the code that you're not familiar with.
+### Note:- please dont modify the code that you're not familiar with.
