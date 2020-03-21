@@ -24,7 +24,8 @@
 
 <code>git clone <--project-url--></code><br>
 <code>cd MovieTown</code><br>
-<code>npm run install_movietown</code><br> --> run this script only if you're setting up the project for the first time else jump to next instruction.<br>
+<code>npm run server_install</code><br> --> <b>run this script only if you're setting up the project for the first time else jump to next instruction.</b><br>
+  <code>npm run client_install</code><br> --> <b>run this script only if you're setting up the project for the first time else jump to next instruction.</b><br>
 <code>npm run server</code> ---> this script will start the backend<br>
 <code>npm run client</code> ---> this script will start the frontend
 
