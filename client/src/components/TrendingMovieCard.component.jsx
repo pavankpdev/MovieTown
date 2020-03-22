@@ -17,10 +17,10 @@ const TrendingMovies = ({
         alt="Trending"
       />
 
-      <div className="relative px-4 -mt-10 ">
+      <div className="relative px-4 -mt-10">
         <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-9/12 lg:mx-auto">
           <div>
-            <div className="flex items-baseline border">
+            <div className="flex items-baseline">
               <h4 className="text-headingColor font-semibold text-lg w-32 truncate overflow-hidden lg:text-2xl lg:w-56">
                 {title}
               </h4>

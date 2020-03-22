@@ -51,10 +51,10 @@ router.get("/", async (req, res) => {
       // reducing the surplus data
       trendingMovies.data.results.length = 2;
 
-      // fetching all the details of the trending movie
-      let fetchTrendingMoviesDetails = async () => {
+      // function to fetching all the details of the specied movie with refering to movie id
+      let fetchTrendingMoviesDetails = async source => {
         try {
-          const response = trendingMovies.data.results.map(data => {
+          const response = source.map(data => {
             return axios.get(
               `${TMDB_FETCH_MOVIES_BASE_URI}${data.id}?api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}`
             );
@@ -67,6 +67,7 @@ router.get("/", async (req, res) => {
           const filteredResult = unfilteredResult.map(data => {
             return data.data;
           });
+          console.log(`filteredResult of ${source} -- >`, filteredResult);
 
           return filteredResult;
         } catch (error) {
@@ -75,14 +76,28 @@ router.get("/", async (req, res) => {
       };
 
       // storing the resultant array of data in a constant
-      const trendingMoviesDetails = await fetchTrendingMoviesDetails();
+      const trendingMoviesDetails = await fetchTrendingMoviesDetails(
+        trendingMovies.data.results
+      );
+      // storing the resultant array of data in a constant
+      const nowPlayingMoviesDetails = await fetchTrendingMoviesDetails(
+        nowplayingmovies.data.results
+      );
+      // storing the resultant array of data in a constant
+      const upComingMoviesDetails = await fetchTrendingMoviesDetails(
+        upComingMovies.data.results
+      );
+      // storing the resultant array of data in a constant
+      const popularMoviesDetails = await fetchTrendingMoviesDetails(
+        popularMovies.data.results
+      );
 
       return res
         .header("Access-Control-Allow-Origin", "http://localhost:3000")
         .json({
-          nowplayingmoviesData: nowplayingmovies.data,
-          upComingMoviesData: upComingMovies.data,
-          popularMoviesData: popularMovies.data,
+          nowplayingmoviesData: nowPlayingMoviesDetails,
+          upComingMoviesData: upComingMoviesDetails,
+          popularMoviesData: popularMoviesDetails,
           trendingMoviesData: trendingMoviesDetails
         });
     }

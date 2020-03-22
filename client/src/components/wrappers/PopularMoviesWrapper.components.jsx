@@ -1,15 +1,16 @@
 import React from "react";
 
-import PopularMovieCard from "./PopularMovie.component";
-import ArrowButtons from "./Arrowbuttons.component";
-import "./styles/PopularMoviesWrapper.styles.css";
+import PopularMovieCard from "../PopularMovie.component";
+import ArrowButtons from "../Arrowbuttons.component";
+import "../styles/PopularMoviesWrapper.styles.css";
 const PropularMoviesWrapper = ({
   tranlateProperty,
   imageUrl,
   imageWidth,
   list,
   onClickArrowLeft,
-  onClickArrowRight
+  onClickArrowRight,
+  clickFuntion
 }) => {
   let count = 0;
   return (
@@ -27,6 +28,7 @@ const PropularMoviesWrapper = ({
               imageUrl={imageUrl}
               imageWidth={imageWidth}
               imagePath={data.poster_path}
+              clickFuntion={clickFuntion}
             />
           ))}
         </div>

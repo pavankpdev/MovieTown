@@ -1,9 +1,13 @@
 import React from "react";
 
-const PopularMovieCard = ({ imageUrl, imageWidth, imagePath }) => {
+const PopularMovieCard = ({ imageUrl, imageWidth, imagePath,clickFuntion }) => {
   return (
-    <div className="card mt-6 ">
+    <div className="card mt-6">
       <div className="ml-3 relative shadow-2xl lg:mx-20">
+        <div
+          onClick={clickFuntion}
+          className="absolute bg-black h-full mx-auto rounded-lg w-full opacity-25 hover:opacity-50  lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
+        ></div>
         <img
           className="h-48 mx-auto rounded-lg w-full md:h-64 lg:h-pc lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
           src={`${imageUrl}${imageWidth}${imagePath}`}
@@ -11,6 +15,7 @@ const PopularMovieCard = ({ imageUrl, imageWidth, imagePath }) => {
           // src="https://cdn.pixabay.com/photo/2020/03/12/17/29/tiger-4925778_960_720.jpg"
           alt="popular movie"
         />
+
         <div
           className="bg-white uppercase font-bold text-xs text-logoColor tracking-widest px-2 py-1 rounded-full"
           style={{ position: "absolute", top: "8px", left: "6px" }}
