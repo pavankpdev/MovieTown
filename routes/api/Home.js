@@ -6,6 +6,7 @@ const {
   TMDB_UPCOMING_MOVIES_URI,
   TMDB_NOW_PLAYING_URI,
   TMDB_POPULAR_MOVIES_URI,
+  TMDB_TRENDING_MOVIES_URI,
   TMDB_API_KEY,
   TMDB_REGION,
   TMDB_LANGUAGE
@@ -35,15 +36,56 @@ router.get("/", async (req, res) => {
       `${TMDB_FETCH_MOVIES_BASE_URI}${TMDB_POPULAR_MOVIES_URI}${API_QUERY}`
     );
 
+    // GET request to fetch all the trending movie details from TMDB Api with axios
+    const trendingMovies = await axios.get(
+      `${TMDB_TRENDING_MOVIES_URI}${TMDB_API_KEY}`
+    );
+
     // verifying data existence and return the data
-    if (nowplayingmovies.data && upComingMovies.data && popularMovies.data)
+    if (
+      nowplayingmovies.data &&
+      upComingMovies.data &&
+      popularMovies.data &&
+      trendingMovies.data
+    ) {
+      // reducing the surplus data
+      trendingMovies.data.results.length = 2;
+
+      // fetching all the details of the trending movie
+      let fetchTrendingMoviesDetails = async () => {
+        try {
+          const response = trendingMovies.data.results.map(data => {
+            return axios.get(
+              `${TMDB_FETCH_MOVIES_BASE_URI}${data.id}?api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}`
+            );
+          });
+
+          // wait until all promises resolve and returns the surplus data
+          const unfilteredResult = await Promise.all(response);
+
+          // map around surplus data and return only adequate data
+          const filteredResult = unfilteredResult.map(data => {
+            return data.data;
+          });
+
+          return filteredResult;
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      // storing the resultant array of data in a constant
+      const trendingMoviesDetails = await fetchTrendingMoviesDetails();
+
       return res
         .header("Access-Control-Allow-Origin", "http://localhost:3000")
         .json({
           nowplayingmoviesData: nowplayingmovies.data,
           upComingMoviesData: upComingMovies.data,
-          popularMoviesData: popularMovies.data
+          popularMoviesData: popularMovies.data,
+          trendingMoviesData: trendingMoviesDetails
         });
+    }
 
     return res.status(501).json({ error: "Internal Server error" });
   } catch (error) {

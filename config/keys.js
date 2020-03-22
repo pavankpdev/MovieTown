@@ -9,6 +9,7 @@ module.exports = {
   TMDB_NOW_PLAYING_URI: "now_playing?",
   TMDB_UPCOMING_MOVIES_URI: "upcoming?",
   TMDB_POPULAR_MOVIES_URI: "popular?",
+  TMDB_TRENDING_MOVIES_URI: "https://api.themoviedb.org/3/trending/movie/day?api_key=",
   TMDB_FETCH_MOVIES_BASE_URI: "https://api.themoviedb.org/3/movie/",
   TMDB_IMAGE_BASE_URL: "http://image.tmdb.org/t/p/",
   TMDB_POSTER_WIDTH: "w200",

@@ -1,6 +1,6 @@
 const Joi = require("@hapi/joi");
 
-// USER REGISTER validation
+// USER REGISTER validation using Joi
 const validateUserRegister = user => {
   const schema = Joi.object({
     fullname: Joi.string()
@@ -21,7 +21,7 @@ const validateUserRegister = user => {
   return schema.validate(user);
 };
 
-// USER LOGIN validation
+// USER LOGIN validation using Joi
 const validateUserLogin = user => {
   const schema = Joi.object({
     email: Joi.string()

@@ -1,18 +1,6 @@
-.card-slider {
-  position: relative;
-  margin: 0 auto;
-}
-
-.cards-slider-wrapper {
-  display: flex;
-  position: absolute;
-}
 
 @media (min-width: 300px) {
-  .cards-slider-wrapper .card {
-    flex: 1;
-    min-width: 400px;
-  }
+
   .arrow-btns {
     position: absolute;
     top: 45%;
@@ -28,16 +16,10 @@
   .arrow-btns .arrow-RIGHT {
     position: absolute;
     left: 20px;
-  }
-  .trendingCard {
-    margin-top: 300px;
   }
 }
 @media (min-width: 768px) {
-  .cards-slider-wrapper .card {
-    flex: 1;
-    min-width: 702px;
-  }
+
   .arrow-btns {
     position: absolute;
     top: 45%;
@@ -54,15 +36,9 @@
     position: absolute;
     left: 20px;
   }
-  .trendingCard {
-    margin-top: 300px;
-  }
 }
 @media (min-width: 1024px) {
-  .cards-slider-wrapper .card {
-    flex: 1;
-    min-width: 1200px;
-  }
+
   .arrow-btns {
     position: absolute;
     top: 100%;
@@ -77,8 +53,5 @@
   .arrow-btns .arrow-RIGHT {
     position: absolute;
     left: 50px;
-  }
-  .trendingCard {
-    margin-top: 620px;
   }
 }

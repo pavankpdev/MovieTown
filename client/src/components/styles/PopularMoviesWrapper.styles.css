@@ -1,0 +1,31 @@
+.card-slider {
+  position: relative;
+  margin: 0 auto;
+}
+
+.cards-slider-wrapper {
+  display: flex;
+  position: absolute;
+}
+
+@media (min-width: 300px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 400px;
+  }
+
+}
+@media (min-width: 768px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 702px;
+  }
+
+}
+@media (min-width: 1024px) {
+  .cards-slider-wrapper .card {
+    flex: 1;
+    min-width: 1200px;
+  }
+
+}
