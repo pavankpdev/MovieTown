@@ -3,9 +3,9 @@ import axios from "axios";
 
 import TrendingMoviesWrapper from "../components/wrappers/TendingMovieWrapper.component";
 import PropularMoviesWrapper from "../components/wrappers/PopularMoviesWrapper.components";
-import NowPlaying from "../components/NowPlayingMovies.component";
+import NowPlayingMoviesWrapper from "../components/wrappers/NowPlayingMoviesWrapper.component";
+import UpcomingMoviesWrapper from "../components/wrappers/UpcomingMoviesWrapper.component";
 import "./styles/Home.styles.css";
-import NowPlayingMovies from "../components/NowPlayingMovies.component";
 class HomePage extends Component {
   constructor() {
     super();
@@ -37,7 +37,7 @@ class HomePage extends Component {
           trendingMovies: data.trendingMoviesData
         },
         () => {
-          console.log(this.state.nowPlayingMovie);
+          console.log(this.state.upcomingMovies[0].genres);
         }
       );
     } catch (error) {
@@ -100,34 +100,41 @@ class HomePage extends Component {
             />
           </div>
         </div>
+
         <div className="absolute nowPlayingCard">
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Now Playing In Theaters
           </h2>
           <div className="mt-8 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
-            {this.state.nowPlayingMovie.map(data => {
-              let { production_companies, genres } = data;
+            <NowPlayingMoviesWrapper
+              source={this.state.nowPlayingMovie}
+              image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
+            />
+            <button
+              type="button"
+              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md"
+            >
+              load more
+            </button>
+          </div>
+        </div>
 
-              production_companies =
-                production_companies.length !== 0
-                  ? production_companies[0].name
-                  : "Team Effort";
+        <div className="absolute upComingCard">
+          <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
+            Upcoming Movies
+          </h2>
 
-              genres = genres.length !== 0 ? genres[0].name : "drama";
-              return (
-                <NowPlayingMovies
-                  key={data.id}
-                  image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}${data.poster_path}`}
-                  title={data.title}
-                  production={production_companies}
-                  lan={data.original_language}
-                  genre={genres}
-                  certificate={data.adult}
-                  ratingsAvg={data.vote_average}
-                  ratingsTotal={data.vote_count}
-                />
-              );
-            })}
+          <div className="mt-8 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
+            <UpcomingMoviesWrapper
+              source={this.state.upcomingMovies}
+              image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
+            />
+            <button
+              type="button"
+              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md"
+            >
+              load more
+            </button>
           </div>
         </div>
       </div>

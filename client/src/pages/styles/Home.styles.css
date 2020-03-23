@@ -35,6 +35,9 @@
   .nowPlayingCard {
     margin-top: 1080px;
   }
+  .upComingCard {
+    margin-top: 3680px;
+  }
 }
 @media (min-width: 768px) {
   .cards-slider-wrapper .card {
@@ -63,6 +66,9 @@
   .nowPlayingCard {
     margin-top: 1080px;
   }
+  .upComingCard {
+    margin-top: 3680px;
+  }
 }
 @media (min-width: 1024px) {
   .cards-slider-wrapper .card {
@@ -89,5 +95,8 @@
   }
   .nowPlayingCard {
     margin-top: 1450px;
+  }
+  .upComingCard {
+    margin-top: 2470px;
   }
 }

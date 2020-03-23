@@ -6,7 +6,7 @@ const PopularMovieCard = ({ imageUrl, imageWidth, imagePath,clickFuntion }) => {
       <div className="ml-3 relative shadow-2xl lg:mx-20">
         <div
           onClick={clickFuntion}
-          className="absolute bg-black h-full mx-auto rounded-lg w-full opacity-25 hover:opacity-50  lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
+          className="absolute bg-black h-full mx-auto rounded-lg w-full opacity-25 cursor-pointer hover:opacity-50  lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
         ></div>
         <img
           className="h-48 mx-auto rounded-lg w-full md:h-64 lg:h-pc lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
