@@ -67,7 +67,6 @@ router.get("/", async (req, res) => {
           const filteredResult = unfilteredResult.map(data => {
             return data.data;
           });
-          console.log(`filteredResult of ${source} -- >`, filteredResult);
 
           return filteredResult;
         } catch (error) {

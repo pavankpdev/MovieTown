@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class SignUpPage extends Component {
   constructor() {
@@ -6,20 +7,47 @@ class SignUpPage extends Component {
     this.state = {
       fullName: "",
       email: "",
-      password: ""
+      password: "",
+      phoneno: "",
+      error: {}
     };
 
+    // binding utility functions
     this.onChangeValues = this.onChangeValues.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  //function that sets value to state
   onChangeValues(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit() {
-    console.log(this.state);
+  //function to handle submission
+  async onSubmit(e) {
+    e.preventDefault();
+
+    const newUser = {
+      fullname: this.state.fullName,
+      email: this.state.email,
+      phno: this.state.phoneno,
+      password: this.state.password
+    };
+    // sending data to server with axios, and redirecting user to home page if successfully registered
+    try {
+      const registerUser = await axios.post(
+        "http://localhost:4000/users/register",
+        newUser
+      );
+
+      console.log(registerUser.data);
+
+      this.setState({ fullName: "", email: "", password: "", phoneno: "" });
+      this.props.history.push("/");
+    } catch (error) {
+      alert(error.error);
+    }
   }
+
   render() {
     return (
       <div className="bg-logoColor pb-32 lg:flex lg:justify-between lg:items-center lg:pb-20">
@@ -49,7 +77,10 @@ class SignUpPage extends Component {
                 </center>
               </div>
               <div className="mt-4 pb-6 sm:text-center md:text-center lg:pb-16">
-                <form action="" className="mx-auto sm:text-center md:text-left">
+                <form
+                  onSubmit={this.onSubmit}
+                  className="mx-auto sm:text-center md:text-left"
+                >
                   <div className="mt-2 lg:mt-4">
                     <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
                       <i className={`fas fa-user text-gray-400`}></i>
@@ -84,6 +115,22 @@ class SignUpPage extends Component {
 
                   <div className="mt-2 lg:mt-4">
                     <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                      <i className={`fas fa-envelope text-gray-400`}></i>
+                      <input
+                        type="phoneno"
+                        name="phoneno"
+                        id="phoneno"
+                        placeholder="Phone number"
+                        value={this.state.phoneno}
+                        onChange={this.onChangeValues}
+                        required
+                        className="bg-transparent ml-2 text-xs w-48 h-6 focus:outline-none lg:text-sm lg:w-4/5 lg:h-8"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mt-2 lg:mt-4">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
                       <i className={`fas fa-lock text-gray-400`}></i>
                       <input
                         type="password"
@@ -100,8 +147,7 @@ class SignUpPage extends Component {
 
                   <div className="my-3 mx-8 flex justify-between items-center">
                     <button
-                      onClick={this.onSubmit}
-                      type="button"
+                      type="submit"
                       className="bg-logoColor text-white px-6 py-1 rounded shadow-lg uppercase text-xs tracking-wider lg:py-2"
                     >
                       sign up

@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
   //validating inputs before submiting to database
   const { error } = validateUserRegister(req.body);
 
-  if (error) return res.status(400).json({ error: error.details[0].message });
+  if (error) return res.status(400).json({ error: "validating error "+error.details[0].message });
 
   try {
     // check whether the user exisits or not
