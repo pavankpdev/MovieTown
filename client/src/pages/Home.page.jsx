@@ -112,7 +112,7 @@ class HomePage extends Component {
             />
             <button
               type="button"
-              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md"
+              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white] hover:border-2 hover:border-logoColor hover:text-logoColor"
             >
               load more
             </button>
@@ -131,7 +131,7 @@ class HomePage extends Component {
             />
             <button
               type="button"
-              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md"
+              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white] hover:border-2 hover:border-logoColor hover:text-logoColor"
             >
               load more
             </button>

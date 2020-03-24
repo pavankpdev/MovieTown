@@ -15,7 +15,11 @@ const NowPlayingMovies = ({
       <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
         <img
           className="h-64 w-full object-fill object-contain"
-          src={image ? image : "http://www.newdesignfile.com/postpic/2015/02/no-icon-available_68024.png"}
+          src={
+            image
+              ? image
+              : "http://www.newdesignfile.com/postpic/2015/02/no-icon-available_68024.png"
+          }
           alt={`${title} poster`}
         />
         <div className="px-3 py-4 flex justify-between items-center lg:px-4">
@@ -27,7 +31,8 @@ const NowPlayingMovies = ({
               {production ? production : "Team Effort"}
             </h5>
             <div className="mt-1 text-gray-600 text-xs uppercase font-semibold tracking-wide lg:text-sm">
-              {lan} &bull; {genre ? genre : "drama"} &bull; {certificate ? "A" : "UA"}
+              {lan} &bull; {genre ? genre : "drama"} &bull;{" "}
+              {certificate ? "A" : "UA"}
             </div>
             <div className="flex mt-2 text-logoColor">
               <i className="fas fa-star"></i>
@@ -42,7 +47,7 @@ const NowPlayingMovies = ({
           </div>
           <button
             type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2"
+            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
           >
             Book now
           </button>

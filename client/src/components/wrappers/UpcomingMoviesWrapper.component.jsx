@@ -14,6 +14,7 @@ const UpPlayingMoviesWrapper = ({ source, image }) => {
     genres = genres.length !== 0 ? genres[0].name : "drama";
     return (
       <UpcomingMovies
+        key={data.id}
         image={`${image}${data.poster_path}`}
         title={data.title}
         production={production_companies}

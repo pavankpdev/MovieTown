@@ -41,7 +41,7 @@ const TrendingMovies = ({
           <div>
             <button
               type="button"
-              className="uppercase bg-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-white lg:px-3 lg:py-2"
+              className="uppercase bg-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
             >
               Book now
             </button>

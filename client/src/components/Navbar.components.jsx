@@ -13,7 +13,8 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div className=" bg-white">
+      
+      <div className="lg:-mx-6 bg-white">
         <div className="px-4 py-3 flex justify-between items-center shadow lg:px-8">
           {/* Logo container */}
           <div>

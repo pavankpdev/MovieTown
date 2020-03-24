@@ -14,11 +14,7 @@ const UpcomingMovie = ({
       <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
         <img
           className="h-64 w-full object-fill object-contain"
-          src={
-            image
-              ? image
-              : "http://www.newdesignfile.com/postpic/2015/02/no-icon-available_68024.png"
-          }
+          src={image}
           alt={`${title} poster`}
         />
         <div className="px-3 py-4 flex justify-between items-center lg:px-3">
@@ -42,9 +38,9 @@ const UpcomingMovie = ({
           </div>
           <button
             type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2"
+            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
           >
-            Interested <i class="far fa-thumbs-up    "></i>
+            Interested <i className="far fa-thumbs-up"></i>
           </button>
         </div>
       </div>
