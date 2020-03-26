@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { registerUser } from "../redux/reducers/authReducer/auth.action";
 
 class SignUpPage extends Component {
   constructor() {
@@ -32,28 +33,18 @@ class SignUpPage extends Component {
       phno: this.state.phoneno,
       password: this.state.password
     };
-    // sending data to server with axios, and redirecting user to home page if successfully registered
-    try {
-      const registerUser = await axios.post(
-        "http://localhost:4000/users/register",
-        newUser
-      );
 
-      console.log(registerUser.data);
+    this.props.registerUser(newUser);
 
-      this.setState({ fullName: "", email: "", password: "", phoneno: "" });
-      this.props.history.push("/");
-    } catch (error) {
-      alert(error.error);
-    }
   }
 
   render() {
+    const { user } = this.props.auth;
     return (
       <div className="bg-logoColor pb-32 lg:flex lg:justify-between lg:items-center lg:pb-20">
         <div className="text-white pt-16 text-center lg:text-left lg:pt-48">
           <h2 className="text-3xl font-semibold tracking-wider lg:text-5xl lg:ml-32">
-            Hi! New to
+            Hi! {user.email} New to
           </h2>
           <span className="uppercase text-3xl font-bold  tracking-wider lg:text-5xl lg:ml-32">
             movie town
@@ -167,4 +158,8 @@ class SignUpPage extends Component {
   }
 }
 
-export default SignUpPage;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { registerUser })(SignUpPage);
