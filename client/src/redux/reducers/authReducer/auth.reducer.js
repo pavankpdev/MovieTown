@@ -1,4 +1,4 @@
-import { TEST_DISPATCH } from "./auth.types";
+import { SET_CURRENT_USER } from "./auth.types";
 
 const INITIAL_STATE = {
   isAuthenticated: false,
@@ -7,10 +7,11 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case TEST_DISPATCH:
+    case SET_CURRENT_USER:
       return {
         ...state,
-        user: action.payload
+        isAuthenticated: action.payload ? true : false,
+        user: action.payload ? action.payload : {}
       };
     default:
       return state;

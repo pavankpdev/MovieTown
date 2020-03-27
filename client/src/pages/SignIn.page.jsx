@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { loginUser } from "../redux/reducers/authReducer/auth.action";
 
 class SigninPage extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
 
     // binding utility functions
@@ -19,6 +24,13 @@ class SigninPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/");
+    } else {
+      return;
+    }
+  }
   //function to handle submission
   async onSubmit(e) {
     e.preventDefault();
@@ -27,6 +39,8 @@ class SigninPage extends Component {
       password: this.state.password
     };
 
+    this.props.loginUser(userData, this.props.history);
+
     // sending data to server with axios, and redirecting user to home page if authenticated
     try {
       const loginUser = await Axios.post(
@@ -34,8 +48,7 @@ class SigninPage extends Component {
         userData
       );
       console.log(loginUser.data);
-      this.setState({ email: "", password: "" });
-      this.props.history.push("/");
+      this.props.loginUser(loginUser.data);
     } catch (error) {
       console.log(error);
     }
@@ -125,4 +138,9 @@ class SigninPage extends Component {
   }
 }
 
-export default SigninPage;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { loginUser })(withRouter(SigninPage));

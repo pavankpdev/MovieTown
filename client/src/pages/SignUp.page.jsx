@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { registerUser } from "../redux/reducers/authReducer/auth.action";
 
 class SignUpPage extends Component {
@@ -23,7 +24,15 @@ class SignUpPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  //function to handle submission
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ error: nextProps.errors }, () =>
+        console.log(this.state.error)
+      );
+    }
+  }
+
+  //function to handle submission and handle the controll to redux
   async onSubmit(e) {
     e.preventDefault();
 
@@ -34,27 +43,21 @@ class SignUpPage extends Component {
       password: this.state.password
     };
 
-    this.props.registerUser(newUser);
-
+    this.props.registerUser(newUser, this.props.history);
   }
 
   render() {
-    const { user } = this.props.auth;
     return (
       <div className="bg-logoColor pb-32 lg:flex lg:justify-between lg:items-center lg:pb-20">
         <div className="text-white pt-16 text-center lg:text-left lg:pt-48">
           <h2 className="text-3xl font-semibold tracking-wider lg:text-5xl lg:ml-32">
-            Hi! {user.email} New to
+            Hi! New to
           </h2>
           <span className="uppercase text-3xl font-bold  tracking-wider lg:text-5xl lg:ml-32">
             movie town
           </span>
           <h5 className="mt-2 text-xs font-light tracking-widest text-center sm:px-2 md:px-0 lg:text-lg lg:pl-32 lg:text-left">
             Fill up the form and we 'll get you on board
-            {/* <br />
-            {subtitle2} */}
-            {/* Sign in to know more about new released
-      <br /> movies and discounts available. */}
           </h5>
         </div>
         <div className="mx-8 mt-10 md:mx-48 lg:mx-24 lg:w-1/3 lg:mt-48">
@@ -158,8 +161,12 @@ class SignUpPage extends Component {
   }
 }
 
+
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(SignUpPage);
+export default connect(mapStateToProps, { registerUser })(
+  withRouter(SignUpPage)
+);
