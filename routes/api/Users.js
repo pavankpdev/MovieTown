@@ -17,7 +17,10 @@ router.post("/register", async (req, res) => {
   //validating inputs before submiting to database
   const { error } = validateUserRegister(req.body);
 
-  if (error) return res.status(400).json({ error: "validating error "+error.details[0].message });
+  if (error)
+    return res
+      .status(400)
+      .json({ error: "validating error " + error.details[0].message });
 
   try {
     // check whether the user exisits or not
@@ -62,10 +65,10 @@ router.post("/login", async (req, res) => {
     if (!verifyUser) return res.status(400).json({ error: "invalid password" });
 
     // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
-    const payload = _.pick(user, ["_id", "name", "email"]);
+    const payload = _.pick(user, ["_id", "fullname", "email"]);
     const Token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 });
 
-    // when succesful return user information with jwt token 
+    // when succesful return user information with jwt token
     res.json({ ...user._doc, token: "Bearer " + Token });
   } catch (error) {
     res.json({ error: error.message });

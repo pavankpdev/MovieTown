@@ -22,7 +22,12 @@ export const registerUser = (userData, history) => async dispatch => {
   }
 };
 
-export const loginUser = (userData, history) => async dispatch => {
+export const setUser = userData => ({
+  type: SET_CURRENT_USER,
+  payload: userData
+});
+
+export const loginUser = userData => async dispatch => {
   //   sending data to server with axios
   try {
     const loginUser = await axios.post(
@@ -36,14 +41,22 @@ export const loginUser = (userData, history) => async dispatch => {
     defaultAxiosHeader(token);
     // decode token to get user data
     const decodedUser = jwt_decode(token);
-    dispatch({
-      type: SET_CURRENT_USER,
-      payload: decodedUser
-    });
+    dispatch(setUser(decodedUser));
   } catch (error) {
     dispatch({
       type: GET_ERROR,
       payload: error.response.data.error
     });
   }
+};
+
+export const logoutUser = () => dispatch => {
+  // Remove the token from localStorage
+  localStorage.removeItem("jwtToken");
+  // Remove token from axios header
+  defaultAxiosHeader();
+  // Remove the details from store by passing empty SET_CURRENT_USER and empty payload
+  dispatch(setUser());
+  // redirect the user back to signin page
+  window.location.href = "/auth/signin";
 };

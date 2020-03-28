@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import { loginUser } from "../redux/reducers/authReducer/auth.action";
 
@@ -24,13 +24,6 @@ class SigninPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/");
-    } else {
-      return;
-    }
-  }
   //function to handle submission
   async onSubmit(e) {
     e.preventDefault();
@@ -47,10 +40,18 @@ class SigninPage extends Component {
         "http://localhost:4000/users/login",
         userData
       );
-      console.log(loginUser.data);
+
       this.props.loginUser(loginUser.data);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/");
+    } else {
+      return;
     }
   }
 
@@ -65,8 +66,7 @@ class SigninPage extends Component {
             movie town
           </span>
           <h5 className="mt-2 text-xs font-light tracking-widest text-center sm:px-2 md:px-0 lg:text-lg lg:pl-32 lg:text-left">
-            Sign in to know more about new released
-            <br /> movies and discounts available.
+            Sign in to unlock special offers & great benefits
           </h5>
         </div>
         <div className="mx-8 mt-10 md:mx-48 lg:mx-24 lg:w-1/3 lg:mt-48">
@@ -126,8 +126,10 @@ class SigninPage extends Component {
                   </div>
                 </form>
                 <span className="text-xs font-semibold text-textColor tracking-wide pt-2 lg:text-base">
-                  already a member?
-                  <span className="text-logoColor">sign in</span>
+                  New to Movie Town?
+                  <Link to="/auth/signup">
+                    <span className="text-logoColor hover:text-blue-900">sign up</span>
+                  </Link>
                 </span>
               </div>
             </div>

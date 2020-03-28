@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { registerUser } from "../redux/reducers/authReducer/auth.action";
 
 class SignUpPage extends Component {
@@ -57,7 +57,7 @@ class SignUpPage extends Component {
             movie town
           </span>
           <h5 className="mt-2 text-xs font-light tracking-widest text-center sm:px-2 md:px-0 lg:text-lg lg:pl-32 lg:text-left">
-            Fill up the form and we 'll get you on board
+            Fill up the form and unlock special offers & great benefits
           </h5>
         </div>
         <div className="mx-8 mt-10 md:mx-48 lg:mx-24 lg:w-1/3 lg:mt-48">
@@ -150,7 +150,11 @@ class SignUpPage extends Component {
                 </form>
                 <span className="text-xs font-semibold text-textColor tracking-wide pt-2 lg:text-base">
                   already a member?
-                  <span className="text-logoColor">sign in</span>
+                  <Link to="/auth/signin">
+                    <span className="text-logoColor hover:text-blue-900">
+                      sign in
+                    </span>
+                  </Link>
                 </span>
               </div>
             </div>
@@ -160,7 +164,6 @@ class SignUpPage extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   auth: state.auth,

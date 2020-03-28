@@ -1,5 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
 
+import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
 import PopularMovieCard from "../PopularMovie.component";
 import ArrowButtons from "../Arrowbuttons.component";
 import "../styles/PopularMoviesWrapper.styles.css";
@@ -10,9 +12,13 @@ const PropularMoviesWrapper = ({
   list,
   onClickArrowLeft,
   onClickArrowRight,
-  clickFuntion
+  ...props
 }) => {
   let count = 0;
+
+  const clickFuntion = e => {
+    props.getMovieInfo(e.target.id);
+  };
   return (
     <div>
       <div className="cards-slider sm:ml-2 md:ml-4 lg:ml-2 xl:ml-2">
@@ -23,13 +29,14 @@ const PropularMoviesWrapper = ({
           }}
         >
           {list.map(data => (
-            <PopularMovieCard
-              key={count++}
-              imageUrl={imageUrl}
-              imageWidth={imageWidth}
-              imagePath={data.poster_path}
-              clickFuntion={clickFuntion}
-            />
+            <div id={data.id} key={count++} onClick={clickFuntion}>
+              <PopularMovieCard
+                id={data.id}
+                imageUrl={imageUrl}
+                imageWidth={imageWidth}
+                imagePath={data.poster_path}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -41,4 +48,10 @@ const PropularMoviesWrapper = ({
   );
 };
 
-export default PropularMoviesWrapper;
+const mapStateToProps = state => ({
+  selectedMovie: state.localMovie
+});
+
+export default connect(mapStateToProps, { getMovieInfo })(
+  PropularMoviesWrapper
+);

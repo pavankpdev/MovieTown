@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import TrendingMoviesWrapper from "../components/wrappers/TendingMovieWrapper.component";
 import PropularMoviesWrapper from "../components/wrappers/PopularMoviesWrapper.components";
 import NowPlayingMoviesWrapper from "../components/wrappers/NowPlayingMoviesWrapper.component";
@@ -21,7 +20,6 @@ class HomePage extends Component {
     this.count = 0;
     this.onClickArrowLeft = this.onClickArrowLeft.bind(this);
     this.onClickArrowRight = this.onClickArrowRight.bind(this);
-    this.clickFuntion = this.clickFuntion.bind(this);
   }
 
   // async function to make GET request to backend to get all nowplaying, upcoming & popular movies data
@@ -29,17 +27,12 @@ class HomePage extends Component {
     try {
       const { data } = await axios.get(`http://localhost:4000/`);
       // storing all the movies details returned from server in state
-      this.setState(
-        {
-          nowPlayingMovie: data.nowplayingmoviesData,
-          upcomingMovies: data.upComingMoviesData,
-          popularMovies: data.popularMoviesData,
-          trendingMovies: data.trendingMoviesData
-        },
-        () => {
-          console.log(this.state.upcomingMovies[0].genres);
-        }
-      );
+      this.setState({
+        nowPlayingMovie: data.nowplayingmoviesData,
+        upcomingMovies: data.upComingMoviesData,
+        popularMovies: data.popularMoviesData,
+        trendingMovies: data.trendingMoviesData
+      });
     } catch (error) {
       console.log(error);
     }
@@ -68,10 +61,6 @@ class HomePage extends Component {
           ? 0
           : this.state.tranlateProperty - 100 / this.state.popularMovies.length
     });
-  }
-
-  clickFuntion() {
-    console.log("clicked kp");
   }
 
   render() {
