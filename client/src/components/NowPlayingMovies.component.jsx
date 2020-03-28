@@ -8,7 +8,9 @@ const NowPlayingMovies = ({
   genre,
   certificate,
   ratingsAvg,
-  ratingsTotal
+  ratingsTotal,
+  id,
+  clickFuntion
 }) => {
   return (
     <div className="mx-4 my-4 lg:w-1/4">
@@ -46,6 +48,8 @@ const NowPlayingMovies = ({
             </div>
           </div>
           <button
+            onClick={clickFuntion}
+            id={id}
             type="button"
             className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
           >

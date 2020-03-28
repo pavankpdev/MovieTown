@@ -6,11 +6,8 @@
   "scripts": {
     "client_install": "cd client && npm install",
     "server_install": "npm install",
-    "frontend": "cd client && npm start",
-    "backend": "nodemon server.js",
-    "localStorage_api": "nodemon localStorageSimulate.api.js",
-    "server": "concurrently  \"npm run backend\" \"npm run localStorage_api\"",
-    "client": "npm run frontend "
+    "client": "cd client && npm start",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +27,6 @@
     "config": "^3.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "json-server": "^0.16.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.3",

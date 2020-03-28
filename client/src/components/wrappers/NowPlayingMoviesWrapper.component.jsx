@@ -1,8 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import NowPlayingMovies from "../NowPlayingMovies.component";
+import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
 
-const NowPlayingMoviesWrapper = ({ source, image }) => {
+const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
+  const clickFuntion = e => {
+    props.getMovieInfo(e.target.id);
+  };
   return source.slice(0, 6).map(data => {
     let { production_companies, genres } = data;
 
@@ -14,6 +19,7 @@ const NowPlayingMoviesWrapper = ({ source, image }) => {
     genres = genres.length !== 0 ? genres[0].name : "drama";
     return (
       <NowPlayingMovies
+        id={data.id}
         key={data.id}
         image={`${image}${data.poster_path}`}
         title={data.title}
@@ -23,9 +29,16 @@ const NowPlayingMoviesWrapper = ({ source, image }) => {
         certificate={data.adult}
         ratingsAvg={data.vote_average}
         ratingsTotal={data.vote_count}
+        clickFuntion={clickFuntion}
       />
     );
   });
 };
 
-export default NowPlayingMoviesWrapper;
+const mapStateToProps = state => ({
+  selectedMovie: state.localMovie
+});
+
+export default connect(mapStateToProps, { getMovieInfo })(
+  NowPlayingMoviesWrapper
+);
