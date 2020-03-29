@@ -7,11 +7,20 @@ const NowPlayingMovies = ({
   lan,
   genre,
   certificate,
-  ratingsAvg,
   ratingsTotal,
   id,
   clickFuntion
 }) => {
+  const stars = (
+    <div>
+      <i className="fas fa-star"></i>
+      <i className="fas fa-star"></i>
+      <i className="fas fa-star"></i>
+      <i className="fas fa-star"></i>
+      <i className="far fa-star"></i>
+    </div>
+  );
+
   return (
     <div className="mx-4 my-4 lg:w-1/4">
       <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
@@ -36,14 +45,12 @@ const NowPlayingMovies = ({
               {lan} &bull; {genre ? genre : "drama"} &bull;{" "}
               {certificate ? "A" : "UA"}
             </div>
-            <div className="flex mt-2 text-logoColor">
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star"></i>
-              <i className="far fa-star"></i>
+            <div className="flex mt-2 text-logoColor items-center">
+              {ratingsTotal > 0 ? stars : null}
               <span className="ml-2 text-xs font-bold uppercase text-logoColor">
-                {ratingsTotal} reviews
+                {ratingsTotal > 0
+                  ? ratingsTotal + " " + "reviews"
+                  : " no reviews yet"}
               </span>
             </div>
           </div>
