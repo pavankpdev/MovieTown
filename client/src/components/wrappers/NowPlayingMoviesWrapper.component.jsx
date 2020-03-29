@@ -21,7 +21,11 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
       <NowPlayingMovies
         id={data.id}
         key={data.id}
-        image={`${image}${data.poster_path}`}
+        image={
+          data.poster_path
+            ? `${image}${data.poster_path}`
+            : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+        }
         title={data.title}
         production={production_companies}
         lan={data.original_language}

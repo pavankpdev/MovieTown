@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 import UpcomingMovies from "../UpcomingMovies.component";
 
-const UpPlayingMoviesWrapper = ({ source, image }) => {
+const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
   return source.slice(0, 6).map(data => {
+    // checking for empty data and updating them with default data
     let { production_companies, genres } = data;
-
     production_companies =
       production_companies.length !== 0
         ? production_companies[0].name
@@ -14,14 +14,19 @@ const UpPlayingMoviesWrapper = ({ source, image }) => {
     genres = genres.length !== 0 ? genres[0].name : "drama";
     return (
       <UpcomingMovies
+        id={data.id}
         key={data.id}
-        image={`${image}${data.poster_path}`}
+        image={
+          data.poster_path
+            ? `${image}${data.poster_path}`
+            : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+        }
         title={data.title}
         production={production_companies}
         lan={data.original_language}
         genre={genres}
         certificate={data.adult}
-        interestTotal="38"
+        interestTotal={data.interested}
       />
     );
   });

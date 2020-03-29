@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const UpcomingMovie = ({
   image,
@@ -7,8 +8,11 @@ const UpcomingMovie = ({
   lan,
   genre,
   certificate,
-  interestTotal
+  interestTotal,
+  id
 }) => {
+  const [click, setClick] = useState(false);
+
   return (
     <div className="mx-4 my-4 lg:w-1/4">
       <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
@@ -37,10 +41,12 @@ const UpcomingMovie = ({
             </div>
           </div>
           <button
+            id={id}
+            onClick={() => setClick(click ? false : true)}
             type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
+            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
           >
-            Interested <i className="far fa-thumbs-up"></i>
+            {click ? "Not Interested" : "Interested"}{" "}
           </button>
         </div>
       </div>

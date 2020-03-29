@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+
+import { getAllmovies } from "../redux/reducers/allMoviesReducer/allMovies.action";
 import TrendingMoviesWrapper from "../components/wrappers/TendingMovieWrapper.component";
 import PropularMoviesWrapper from "../components/wrappers/PopularMoviesWrapper.components";
 import NowPlayingMoviesWrapper from "../components/wrappers/NowPlayingMoviesWrapper.component";
@@ -13,7 +15,8 @@ class HomePage extends Component {
       upcomingMovies: [],
       popularMovies: [],
       trendingMovies: [],
-      tranlateProperty: 0
+      tranlateProperty: 0,
+      error: {}
     };
     this.TMDB_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
     this.TMDB_IMAGE_WIDTH = "original";
@@ -22,25 +25,22 @@ class HomePage extends Component {
     this.onClickArrowRight = this.onClickArrowRight.bind(this);
   }
 
-  // async function to make GET request to backend to get all nowplaying, upcoming & popular movies data
-  async GetMoviesApicall() {
-    try {
-      const { data } = await axios.get(`http://localhost:4000/`);
-      // storing all the movies details returned from server in state
-      this.setState({
-        nowPlayingMovie: data.nowplayingmoviesData,
-        upcomingMovies: data.upComingMoviesData,
-        popularMovies: data.popularMoviesData,
-        trendingMovies: data.trendingMoviesData
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   // GET request made everytime the component mounts/starts
   componentDidMount() {
-    this.GetMoviesApicall();
+    // calling redux action to get the movies from store and save it to the state
+    this.props.getAllmovies();
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this.setState({
+        error: nextProps.error ? nextProps.error : null,
+        nowPlayingMovie: nextProps.nowPlayingMoviesRedux,
+        upcomingMovies: nextProps.upComingMoviesRedux,
+        popularMovies: nextProps.popularMoviesRedux,
+        trendingMovies: nextProps.trendingMoviesRedux
+      });
+    }
   }
 
   // Function fired when right arrow button clicked
@@ -69,8 +69,7 @@ class HomePage extends Component {
         <div>
           <PropularMoviesWrapper
             tranlateProperty={this.state.tranlateProperty}
-            imageUrl={this.TMDB_IMAGE_BASE_URL}
-            imageWidth={this.TMDB_IMAGE_WIDTH}
+            image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
             list={this.state.popularMovies}
             onClickArrowRight={this.onClickArrowRight}
             onClickArrowLeft={this.onClickArrowLeft}
@@ -131,4 +130,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+  popularMoviesRedux: state.allMovies.popularMovies,
+  nowPlayingMoviesRedux: state.allMovies.nowPlayingMovies,
+  trendingMoviesRedux: state.allMovies.trendingMovies,
+  upComingMoviesRedux: state.allMovies.upComingMovies
+});
+
+export default connect(mapStateToProps, { getAllmovies })(HomePage);

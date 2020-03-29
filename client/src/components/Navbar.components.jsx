@@ -20,7 +20,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="lg:-mx-6 bg-white">

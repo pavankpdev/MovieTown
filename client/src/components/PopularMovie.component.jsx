@@ -1,6 +1,6 @@
 import React from "react";
 
-const PopularMovieCard = ({ imageUrl, imageWidth, imagePath, id }) => {
+const PopularMovieCard = ({ image, id }) => {
   return (
     <div className="card mt-6">
       <div className="ml-3 relative shadow-2xl lg:mx-20">
@@ -10,7 +10,7 @@ const PopularMovieCard = ({ imageUrl, imageWidth, imagePath, id }) => {
         ></div>
         <img
           className="h-48 mx-auto rounded-lg w-full md:h-64 lg:h-pc lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
-          src={`${imageUrl}${imageWidth}${imagePath}`}
+          src={`${image}`}
           // src="https://cdn.pixabay.com/photo/2020/03/18/20/01/frankfurt-4945405_960_720.jpg"
           // src="https://cdn.pixabay.com/photo/2020/03/12/17/29/tiger-4925778_960_720.jpg"
           alt="popular movie"

@@ -7,8 +7,7 @@ import ArrowButtons from "../Arrowbuttons.component";
 import "../styles/PopularMoviesWrapper.styles.css";
 const PropularMoviesWrapper = ({
   tranlateProperty,
-  imageUrl,
-  imageWidth,
+  image,
   list,
   onClickArrowLeft,
   onClickArrowRight,
@@ -32,9 +31,11 @@ const PropularMoviesWrapper = ({
             <div id={data.id} key={count++} onClick={clickFuntion}>
               <PopularMovieCard
                 id={data.id}
-                imageUrl={imageUrl}
-                imageWidth={imageWidth}
-                imagePath={data.poster_path}
+                image={
+                  data.poster_path
+                    ? `${image}${data.poster_path}`
+                    : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+                }
               />
             </div>
           ))}

@@ -24,7 +24,7 @@ class SignUpPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ error: nextProps.errors }, () =>
         console.log(this.state.error)
