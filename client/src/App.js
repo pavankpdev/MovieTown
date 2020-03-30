@@ -8,6 +8,7 @@ import { defaultAxiosHeader } from "./utils/axiosDefaults";
 import HomePage from "./pages/Home.page";
 import SignInPage from "./pages/SignIn.page";
 import SignUpPage from "./pages/SignUp.page";
+import MovieInfoPage from "./pages/MovieInfo.page";
 import UnrestrictedHOC from "./HOC/Unrestricted.HOC";
 import RestrictedHOC from "./HOC/Restricted.HOC";
 import store from "./redux/store";
@@ -39,6 +40,7 @@ class App extends Component {
             <div className="lg:mx-6 xl:mx-6">
               <UnrestrictedHOC component={HomePage} path="/" exact />
             </div>
+            <UnrestrictedHOC component={MovieInfoPage} path="/movies" exact />
             <RestrictedHOC exact path="/auth/signin" component={SignInPage} />
             <RestrictedHOC exact path="/auth/signup" component={SignUpPage} />
           </div>
