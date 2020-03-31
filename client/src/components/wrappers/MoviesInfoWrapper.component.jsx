@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 import "../styles/MoviesInfoWrapper.styles.css";
-import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
+// import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
 import ProductionCompanies from "../Production.component";
 class MoviesInfoWrapper extends Component {
   constructor() {

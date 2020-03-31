@@ -17,7 +17,7 @@ export const registerUser = (userData, history) => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: "registerUSer " + " " + error.response.data.error
+      payload: `registerUSer ${error.response.data.error}`
     });
   }
 };
@@ -45,7 +45,7 @@ export const loginUser = userData => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: "login user " + " " + error.response.data.error
+      payload: `login user ${error.response.data.error}`
     });
   }
 };

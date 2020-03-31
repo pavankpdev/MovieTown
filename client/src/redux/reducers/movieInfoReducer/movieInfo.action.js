@@ -16,7 +16,7 @@ export const getMovieInfo = movieID => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: "movieINfo " + " " + error
+      payload: `movieINfo ${error}`
     });
   }
 };

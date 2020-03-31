@@ -24,7 +24,7 @@ export const getAllmovies = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: "allmovies " + " " + error
+      payload: `allmovies ${error}`
     });
   }
 };

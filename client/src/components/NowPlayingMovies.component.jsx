@@ -49,7 +49,7 @@ const NowPlayingMovies = ({
               {ratingsTotal > 0 ? stars : null}
               <span className="ml-2 text-xs font-bold uppercase text-logoColor">
                 {ratingsTotal > 0
-                  ? ratingsTotal + " " + "reviews"
+                  ? `${ratingsTotal} reviews`
                   : " no reviews yet"}
               </span>
             </div>
