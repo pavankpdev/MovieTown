@@ -38,6 +38,10 @@
   .upComingCard {
     margin-top: 3680px;
   }
+  .footer {
+    position: absolute;
+    top: 6200px;
+  }
 }
 @media (min-width: 768px) {
   .cards-slider-wrapper .card {
@@ -69,6 +73,10 @@
   .upComingCard {
     margin-top: 3680px;
   }
+  .footer {
+    position: absolute;
+    top: 6200px;
+  }
 }
 @media (min-width: 1024px) {
   .cards-slider-wrapper .card {
@@ -98,5 +106,9 @@
   }
   .upComingCard {
     margin-top: 2470px;
+  }
+  .footer {
+    position: absolute;
+    top: 3500px;
   }
 }

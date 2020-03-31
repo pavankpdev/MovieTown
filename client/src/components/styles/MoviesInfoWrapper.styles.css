@@ -1,0 +1,111 @@
+@media (min-width: 300px) {
+  .footer {
+    position: absolute;
+    top: 1800px;
+  }
+  .backdropOverlay {
+    height: 200px;
+  }
+  .backdropImage {
+    height: 200px;
+  }
+  .poster {
+    top: 95px;
+  }
+  .overviewDetails {
+    right: 12px;
+    top: 150px;
+  }
+  .title {
+    left: 175px;
+  }
+  .btns {
+    top: 340px;
+    left: 20px;
+  }
+  .description {
+    top: 430px;
+    left: 19px;
+  }
+  .production {
+    top: 710px;
+    left: 19px;
+  }
+  .comments {
+    top: 910px;
+  }
+}
+@media (min-width: 768px) {
+  .footer {
+    position: absolute;
+    top: 1800px;
+  }
+  .backdropOverlay {
+    height: 300px;
+  }
+  .backdropImage {
+    height: 300px;
+  }
+  .poster {
+    top: 160px;
+  }
+  .overviewDetails {
+    left: 200px;
+    top: 250px;
+  }
+  .title {
+    left: 208px;
+  }
+  .btns {
+    top: 380px;
+    right: 20px;
+  }
+  .description {
+    top: 470px;
+    left: 19px;
+  }
+  .production {
+    top: 690px;
+    left: 19px;
+  }
+  .comments {
+    top: 990px;
+  }
+}
+@media (min-width: 1024px) {
+  .footer {
+    position: absolute;
+    top: 2100px;
+  }
+  .backdropOverlay {
+    height: 500px;
+  }
+  .backdropImage {
+    height: 500px;
+  }
+  .poster {
+    top: 280px;
+  }
+  .overviewDetails {
+    left: 320px;
+    top: 440px;
+  }
+  .title {
+    left: 325px;
+  }
+  .btns {
+    top: 620px;
+    left: 325px;
+  }
+  .description {
+    top: 730px;
+    left: 19px;
+  }
+  .production {
+    top: 880px;
+    left: 19px;
+  }
+  .comments {
+    top: 1300px;
+  }
+}

@@ -2,7 +2,6 @@ import React from "react";
 import { Route } from "react-router-dom";
 
 import Navbar from "../components/Navbar.components";
-import Footer from "../components/Footer.component";
 
 const UnrestrictedHOC = ({ component: Component, ...rest }) => {
   return (
@@ -12,7 +11,6 @@ const UnrestrictedHOC = ({ component: Component, ...rest }) => {
         <div>
           <Navbar />
           <Component {...props} />
-          <Footer />
         </div>
       )}
     />

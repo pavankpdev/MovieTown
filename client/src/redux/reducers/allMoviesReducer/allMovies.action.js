@@ -3,7 +3,6 @@ import { GET_ALL_MOVIES } from "./allMovies.types";
 import { GET_ERROR } from "../errorReducer/error.types";
 // async function to make GET request to backend to get all nowplaying, upcoming, popular & trending movies data
 export const getAllmovies = () => async dispatch => {
-
   try {
     const { data } = await axios.get(`http://localhost:4000/`);
 
@@ -25,8 +24,7 @@ export const getAllmovies = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: error
+      payload: "allmovies " + " " + error
     });
   }
 };
-

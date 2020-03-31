@@ -11,12 +11,12 @@ export const getMovieInfo = movieID => async dispatch => {
     );
     dispatch({
       type: GET_MOVIE_INFO,
-      payload: data 
+      payload: data
     });
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: error.response.data.status_message
+      payload: "movieINfo " + " " + error
     });
   }
 };

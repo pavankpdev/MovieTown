@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
 import PopularMovieCard from "../PopularMovie.component";
@@ -28,16 +29,18 @@ const PropularMoviesWrapper = ({
           }}
         >
           {list.map(data => (
-            <div id={data.id} key={count++} onClick={clickFuntion}>
-              <PopularMovieCard
-                id={data.id}
-                image={
-                  data.poster_path
-                    ? `${image}${data.poster_path}`
-                    : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
-                }
-              />
-            </div>
+            <Link to="/movies" key={count++}>
+              <div id={data.id} onClick={clickFuntion}>
+                <PopularMovieCard
+                  id={data.id}
+                  image={
+                    data.poster_path
+                      ? `${image}${data.poster_path}`
+                      : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+                  }
+                />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

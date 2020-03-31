@@ -1,7 +1,7 @@
 import { GET_MOVIE_INFO } from "./movieInfo.types";
 
 const INITIAL_STATE = {
-  selectedMovie: {}
+  selectedMovie: []
 };
 
 const movieInfoReducer = (state = INITIAL_STATE, action) => {
