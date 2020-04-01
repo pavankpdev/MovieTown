@@ -7,7 +7,7 @@ const CommentsComponent = ({ avatar, name, comment, ...props }) => {
         <img className="rounded-full shadow-lg" src={avatar} alt="avatar" />
         <h3 className="ml-2 text-xs font-bold tracking-wider">{name}</h3>
       </div>
-      <div className="ml-10 mr-3">
+      <div className="ml-10 mr-3 lg:mr-16 lg:ml-16">
         <p className="text-sm">{comment}</p>
       </div>
     </div>

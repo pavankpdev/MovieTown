@@ -28,7 +28,7 @@ class Navbar extends Component {
           {/* Logo container */}
           <div>
             <span className="uppercase text-logoColor text-2xl font-bold tracking-wider">
-              movie town
+              <Link to="/"> movie town</Link>
             </span>
           </div>
           {/* Hamburger menu for smaller screen */}
