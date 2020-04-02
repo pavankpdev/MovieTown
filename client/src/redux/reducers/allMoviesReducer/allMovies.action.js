@@ -4,7 +4,9 @@ import { GET_ERROR } from "../errorReducer/error.types";
 // async function to make GET request to backend to get all nowplaying, upcoming, popular & trending movies data
 export const getAllmovies = () => async dispatch => {
   try {
-    const { data } = await axios.get(`http://localhost:4000/home`);
+    const { data } = await axios.get(
+      `http://localhost:${process.env.PORT ? process.env.PORT : 4000}/home`
+    );
 
     // maping through the upcoming movie objects to add interested property
     data.upComingMoviesData.map(

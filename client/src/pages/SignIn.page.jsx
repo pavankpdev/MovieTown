@@ -37,7 +37,9 @@ class SigninPage extends Component {
     // sending data to server with axios, and redirecting user to home page if authenticated
     try {
       const loginUser = await Axios.post(
-        "http://localhost:4000/users/login",
+        `http://localhost:${
+          process.env.PORT ? process.env.PORT : 4000
+        }/users/login`,
         userData
       );
 
@@ -128,7 +130,9 @@ class SigninPage extends Component {
                 <span className="text-xs font-semibold text-textColor tracking-wide pt-2 lg:text-base">
                   New to Movie Town?
                   <Link to="/auth/signup">
-                    <span className="text-logoColor hover:text-blue-900">sign up</span>
+                    <span className="text-logoColor hover:text-blue-900">
+                      sign up
+                    </span>
                   </Link>
                 </span>
               </div>

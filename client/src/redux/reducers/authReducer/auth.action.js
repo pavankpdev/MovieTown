@@ -9,7 +9,9 @@ export const registerUser = (userData, history) => async dispatch => {
   //   sending data to server with axios
   try {
     const registerUser = await axios.post(
-      "http://localhost:4000/users/register",
+      `http://localhost:4000/${
+        process.env.PORT ? process.env.PORT : 4000
+      }/register`,
       userData
     );
     // redirecting user to home page if successfully registered
@@ -31,7 +33,9 @@ export const loginUser = userData => async dispatch => {
   //   sending data to server with axios
   try {
     const loginUser = await axios.post(
-      "http://localhost:4000/users/login",
+      `http://localhost:${
+        process.env.PORT ? process.env.PORT : 4000
+      }/users/login`,
       userData
     );
     // save the jwt token in localStorage
