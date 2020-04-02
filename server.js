@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
+const path = require("path");
 
 const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
@@ -33,10 +34,15 @@ app.use(passport.initialize());
 // Passport Config
 require("./config/passport")(passport);
 
-//The 404 Route
-app.get("*", function(req, res) {
-  res.status(404).send("404 Error! Invalid Route");
-});
+
+// serve static asset in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  });
+}
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

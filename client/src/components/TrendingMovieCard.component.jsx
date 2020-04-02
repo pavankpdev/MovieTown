@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TrendingMovies = ({
   imageURL,
@@ -40,14 +41,16 @@ const TrendingMovies = ({
           </div>
 
           <div>
-            <button
-              id={id}
-              onClick={clickFuntion}
-              type="button"
-              className="uppercase bg-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
-            >
-              Book now
-            </button>
+            <Link to="/movies">
+              <button
+                id={id}
+                onClick={clickFuntion}
+                type="button"
+                className="uppercase bg-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
+              >
+                Book now
+              </button>
+            </Link>
           </div>
         </div>
       </div>

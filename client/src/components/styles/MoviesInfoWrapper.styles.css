@@ -32,7 +32,7 @@
     left: 19px;
   }
   .comments {
-    top: 910px;
+    top: 1000px;
   }
 }
 @media (min-width: 768px) {
@@ -106,6 +106,6 @@
     left: 19px;
   }
   .comments {
-    top: 1300px;
+    top: 1200px;
   }
 }

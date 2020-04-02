@@ -14,6 +14,7 @@ const TrendingMovieCardWrapper = ({
   };
   return trendingMoviesData.map(data => {
     return (
+      
       <TrendingMovies
         id={data.id}
         key={data.id}

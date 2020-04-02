@@ -15,13 +15,16 @@ class MovieInfo extends Component {
   }
 
   async componentDidMount() {
+    
     // getting data from localStorage and saving to state to hold the movieInfo in the session
-    this.setState(
-      {
-        localMovie: new Array(JSON.parse(localStorage.selectedMovie))
-      },
-      () => {}
-    );
+    setTimeout(() => {
+      this.setState(
+        {
+          localMovie: new Array(JSON.parse(localStorage.selectedMovie))
+        },
+        () => {}
+      );
+    }, 3000);
     let dataToState = [];
 
     // loop to get and random users info and comments from api endpoints

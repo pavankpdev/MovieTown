@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NowPlayingMovies = ({
   image,
@@ -54,14 +55,16 @@ const NowPlayingMovies = ({
               </span>
             </div>
           </div>
-          <button
-            onClick={clickFuntion}
-            id={id}
-            type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
-          >
-            Book now
-          </button>
+          <Link to="/movies">
+            <button
+              onClick={clickFuntion}
+              id={id}
+              type="button"
+              className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
+            >
+              Book now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

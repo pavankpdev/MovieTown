@@ -48,7 +48,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
           </div>
           <div className="ml-3 text-center lg:ml-8">
             <h4 className="text-sm font-semibold md:text-base lg:text-xl">
-              {props.props.runtime}
+              {props.props.runtime !== 0 ? props.props.runtime : 120}
             </h4>
 
             <h4 className="text-xs tracking-widest">Minutes</h4>
@@ -112,9 +112,9 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
             Production Companies
           </h3>
         </div>
-        <div className="mt-8 flex mb-4  items-baseline">
-          {props.props.production_companies.slice(0,3).map(prod => (
-            <div className="w-1/3 " key={prod.name}>
+        <div className="mt-8 flex sm:justify-around items-baseline">
+          {props.props.production_companies.slice(0, 2).map(prod => (
+            <div className="w-1/3 sm:w-1/4" key={prod.name}>
               <ProductionCompanies
                 imageUrl={`http://image.tmdb.org/t/p/original${prod.logo_path}`}
                 productionName={prod.name}
@@ -156,12 +156,14 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
             </div>
           </div>
           {comments.map(data => (
-            <CommentCompnent
-              key={data.user}
-              comment={data.comments}
-              avatar={data.avatar}
-              name={data.user}
-            />
+            <div>
+              <CommentCompnent
+                key={data.user}
+                comment={data.comments}
+                avatar={data.avatar}
+                name={data.user}
+              />
+            </div>
           ))}
 
           <div className="text-center my-6">
