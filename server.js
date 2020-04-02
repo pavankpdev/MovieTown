@@ -26,7 +26,7 @@ mongoose.set("useCreateIndex", true);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-app.use("/", home);
+app.use("/home", home);
 app.use("/users", user);
 app.use("/movies/booktickets", seats);
 app.use(passport.initialize());
