@@ -11,7 +11,7 @@
     "server_install": "npm install",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION = false cd client && npm install && npm run build"
+    "heroku-postbuild": "heroku config:set NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
