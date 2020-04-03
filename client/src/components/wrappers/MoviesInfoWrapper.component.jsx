@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import MoviesInfoComponent from "../MovieInfo.component";
 import "../styles/MoviesInfoWrapper.styles.css";

@@ -98,13 +98,15 @@ class HomePage extends Component {
               source={this.state.nowPlayingMovie}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
             />
+          </div>
+          <center>
             <button
               type="button"
-              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
+              className="mt-4 px-6 bg-logoColor text-white text-xs font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
             >
               load more
             </button>
-          </div>
+          </center>
         </div>
 
         <div className="absolute upComingCard">
@@ -117,13 +119,15 @@ class HomePage extends Component {
               source={this.state.upcomingMovies}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
             />
+          </div>
+          <center>
             <button
               type="button"
-              className="my-4 mx-8 w-full bg-logoColor text-white text-sm font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
+              className="mt-4 px-6 bg-logoColor text-white text-xs font-semibold py-2 uppercase tracking-wider rounded-md lg:ml-24 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
             >
               load more
             </button>
-          </div>
+          </center>
         </div>
       </div>
     );

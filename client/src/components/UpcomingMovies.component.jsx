@@ -44,7 +44,7 @@ const UpcomingMovie = ({
             id={id}
             onClick={() => setClick(click ? false : true)}
             type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
+            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor sm:text-tiny md:text-xs lg:text-xs lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
           >
             {click ? "Not Interested" : "Interested"}{" "}
           </button>

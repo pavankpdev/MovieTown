@@ -23,9 +23,9 @@ const NowPlayingMovies = ({
   );
 
   return (
-    <div className="mx-4 my-4 lg:w-1/4">
-      <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
-        <img
+    <div className="mx-0 my-4 lg:w-1/4 lg:mx-4">
+      <div className="mx-6 sm:mx-4 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
+        <img 
           className="h-64 w-full object-fill object-contain"
           src={
             image
@@ -60,7 +60,7 @@ const NowPlayingMovies = ({
               onClick={clickFuntion}
               id={id}
               type="button"
-              className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
+              className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor sm:text-tiny md:text-xs lg:text-xs lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white"
             >
               Book now
             </button>

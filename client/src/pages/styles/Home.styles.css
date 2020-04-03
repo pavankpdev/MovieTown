@@ -15,7 +15,7 @@
   }
   .arrow-btns {
     position: absolute;
-    top: 45%;
+    top: 55%;
     right: 50%;
     left: 50%;
     color: #5a67d8;
@@ -102,10 +102,10 @@
     margin-top: 620px;
   }
   .nowPlayingCard {
-    margin-top: 1450px;
+    margin-top: 1500px;
   }
   .upComingCard {
-    margin-top: 2470px;
+    margin-top: 2550px;
   }
   .footer {
     position: absolute;

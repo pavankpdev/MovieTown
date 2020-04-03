@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import ProductionCompanies from "./Production.component";
 import CommentCompnent from "./Comments.component";

@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/ArrowButtons.styles.css";
 
 const ArrowButtons = ({ onClickArrowLeft, onClickArrowRight }) => {
   return (
