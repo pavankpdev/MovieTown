@@ -24,15 +24,15 @@ class Navbar extends Component {
 
     return (
       <div className="lg:-mx-6 bg-white">
-        <div className="px-4 py-3 flex justify-between items-center shadow lg:px-8">
+        <div className=" px-6 py-3 flex justify-between items-center shadow lg:px-8">
           {/* Logo container */}
           <div>
-            <span className="uppercase text-logoColor text-2xl font-bold tracking-wider">
+            <span className="uppercase text-logoColor text-xl font-bold tracking-wider">
               <Link to="/"> movie town</Link>
             </span>
           </div>
           {/* Hamburger menu for smaller screen */}
-          <div className="text-logoColor sm:block md:block lg:hidden xl:hidden">
+          <div className="-mr-32 text-logoColor md:hidden lg:hidden xl:hidden">
             <button
               className="hover:text-headingColor focus:outline-none focus:text-logoColor"
               onClick={this.toggleMenu}
@@ -42,7 +42,7 @@ class Navbar extends Component {
           </div>
           {/* Buttons for large screens */}
           <div className={isAuthenticated ? `hidden` : ``}>
-            <div className="sm:hidden md:hidden lg:block xl:block">
+            <div className="sm:hidden md:block lg:block xl:block">
               <Link to="/auth/signin">
                 <button className="ml-4 mr-4 uppercase tracking-widest font-semibold px-3 py-1 text-sm text-logoColor hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor focus:outline-none">
                   sign in
