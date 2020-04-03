@@ -118,7 +118,7 @@ class SigninPage extends Component {
                       type="submit"
                       className="bg-logoColor text-white px-6 py-1 rounded shadow-lg uppercase text-xs tracking-wider lg:py-2"
                     >
-                      sign up
+                      sign in
                     </button>
                   </div>
                 </form>
@@ -126,7 +126,7 @@ class SigninPage extends Component {
                   New to Movie Town?
                   <Link to="/auth/signup">
                     <span className="text-logoColor hover:text-blue-900">
-                      sign up
+                      sign in
                     </span>
                   </Link>
                 </span>
