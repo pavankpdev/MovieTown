@@ -126,7 +126,7 @@ class SigninPage extends Component {
                   New to Movie Town?
                   <Link to="/auth/signup">
                     <span className="text-logoColor hover:text-blue-900">
-                      sign in
+                      sign up
                     </span>
                   </Link>
                 </span>
