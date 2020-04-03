@@ -13,7 +13,7 @@ const TrendingMovies = ({
   id
 }) => {
   return (
-    <div className=" sm:mt-3 md:mt-3 lg:mt-0 xl:mt-0">
+    <div className=" sm:mt-4 md:mt-3 lg:mt-0 xl:mt-0">
       <img
         className="w-full h-64 object-fill object-contain rounded-lg shadow-md lg:w-9/12 lg:h-9/12 lg:mx-auto"
         src={imageURL}

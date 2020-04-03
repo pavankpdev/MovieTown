@@ -10,18 +10,19 @@
     height: 200px;
   }
   .poster {
-    top: 95px;
+    top: 125px;
   }
   .overviewDetails {
-    right: 12px;
-    top: 150px;
+    left: 117px;
+    top: 160px;
   }
   .title {
-    left: 175px;
+    left: 130px;
   }
   .btns {
     top: 340px;
     left: 20px;
+    right: 20px;
   }
   .description {
     top: 430px;

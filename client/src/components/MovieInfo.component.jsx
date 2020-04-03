@@ -16,7 +16,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
           alt="backdrop poster"
         />
       </div>
-      <div className="absolute w-2/6 ml-4  border-4 border-white rounded-lg shadow poster md:w-1/5 lg:rounded-extendedcorner">
+      <div className="absolute w-2/6 ml-2  border-4 border-white rounded-lg shadow poster md:w-1/5 md:ml-4 lg:ml-4 lg:rounded-extendedcorner">
         <img
           className=" rounded-lg shadow-2xl lg:rounded-extendedcorner"
           src={`http://image.tmdb.org/t/p/original${props.props.poster_path}`}
@@ -25,20 +25,20 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
       </div>
       {/* overview details */}
       <div className="absolute mx-2 text-white overviewDetails">
-        <div className="flex sm:justify-between items-center md:justify-start">
+        <div className="flex sm:justify-between items-baseline md:justify-start">
           <div className=" text-center block">
             <h4 className="text-sm font-semibold md:text-base lg:text-xl">
               {props.props.release_date}
             </h4>
 
-            <h4 className="text-xs tracking-widest">Release Data</h4>
+            <h4 className="text-tiny tracking-widest">Release Data</h4>
           </div>
           <div className="ml-3 text-center lg:ml-8">
             <h4 className="text-sm font-semibold md:text-base lg:text-xl">
               {props.props.vote_average}
             </h4>
 
-            <div className="flex text-xs">
+            <div className="flex text-tiny">
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
               <i className="fas fa-star"></i>
@@ -51,17 +51,17 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
               {props.props.runtime !== 0 ? props.props.runtime : 120}
             </h4>
 
-            <h4 className="text-xs tracking-widest">Minutes</h4>
+            <h4 className="text-tiny tracking-widest">Minutes</h4>
           </div>
         </div>
       </div>
       {/* title */}
       <div className="absolute mt-3 title">
         <div>
-          <h2 className="w-3/6 truncate text-headingColor text-xl font-bold uppercase lg:text-2xl lg:w-full">
+          <h2 className="w-40 truncate text-headingColor text-lg font-bold uppercase lg:text-2xl lg:w-full">
             {props.props.title}: {props.props.tagline}
           </h2>
-          <h3 className="uppercase text-sm text-gray-600 font-semibold lg:text-lg">
+          <h3 className="w-40 truncate uppercase text-sm text-gray-600 font-semibold lg:text-lg">
             {props.props.production_companies
               .slice(0, 1)
               .map(prod => `${prod.name}`)}
@@ -74,11 +74,11 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
         </div>
       </div>
       {/* Buttons */}
-      <div className="absolute flex justify-between items-center btns md:justify-end lg:justify-start">
+      <div className="absolute flex justify-around items-center btns md:justify-end lg:justify-start">
         <div>
           <button
             type="button"
-            className="uppercase text-sm bg-logoColor text-white font-semibold tracking-wider px-12 py-3 hover:bg-transparent hover:border-2 hover:border-logoColor hover:text-logoColor focus:bg-transparent focus:border-2 focus:border-logoColor focus:text-logoColor"
+            className="uppercase text-tiny border-2 border-logoColor bg-logoColor text-white font-semibold tracking-wider px-10 py-3 hover:bg-blue-900 focus:bg-blue-900 focus:outline-none"
           >
             Book tickets
           </button>
@@ -86,9 +86,9 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
         <div>
           <button
             type="button"
-            className="ml-3 uppercase text-sm border-2 border-logoColor text-logoColor font-semibold tracking-wider px-8 py-3 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
+            className="md:ml-2 lg:ml-2 uppercase text-tiny border-2 border-logoColor text-logoColor font-semibold tracking-wider px-10 py-3 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white focus:outline-none"
           >
-            rate this movie
+            review
           </button>
         </div>
       </div>
