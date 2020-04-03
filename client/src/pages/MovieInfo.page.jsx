@@ -15,7 +15,6 @@ class MovieInfo extends Component {
   }
 
   async componentDidMount() {
-    
     // getting data from localStorage and saving to state to hold the movieInfo in the session
     setTimeout(() => {
       this.setState(
@@ -44,7 +43,9 @@ class MovieInfo extends Component {
       dataToState.push(template);
     }
     // saving the template to state
-    this.setState({ comments: dataToState }, () => {});
+    this.setState({ comments: dataToState }, () =>
+      console.log("state", this.state.comments)
+    );
   }
 
   render() {

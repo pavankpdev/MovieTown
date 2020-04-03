@@ -36,12 +36,7 @@ class SigninPage extends Component {
 
     // sending data to server with axios, and redirecting user to home page if authenticated
     try {
-      const loginUser = await Axios.post(
-        `http://localhost:${
-          process.env.PORT ? process.env.PORT : 4000
-        }/users/login`,
-        userData
-      );
+      const loginUser = await Axios.post("/users/login", userData);
 
       this.props.loginUser(loginUser.data);
     } catch (error) {

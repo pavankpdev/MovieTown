@@ -8,12 +8,7 @@ import { SET_CURRENT_USER } from "./auth.types";
 export const registerUser = (userData, history) => async dispatch => {
   //   sending data to server with axios
   try {
-    const registerUser = await axios.post(
-      `http://localhost:4000/${
-        process.env.PORT ? process.env.PORT : 4000
-      }/register`,
-      userData
-    );
+    const registerUser = await axios.post("/users/register", userData);
     // redirecting user to home page if successfully registered
     return history.push("/");
   } catch (error) {
@@ -32,12 +27,7 @@ export const setUser = userData => ({
 export const loginUser = userData => async dispatch => {
   //   sending data to server with axios
   try {
-    const loginUser = await axios.post(
-      `http://localhost:${
-        process.env.PORT ? process.env.PORT : 4000
-      }/users/login`,
-      userData
-    );
+    const loginUser = await axios.post("/users/login", userData);
     // save the jwt token in localStorage
     const { token } = loginUser.data;
     localStorage.setItem("jwtToken", token);
