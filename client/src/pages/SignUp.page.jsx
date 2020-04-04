@@ -11,7 +11,7 @@ class SignUpPage extends Component {
       email: "",
       password: "",
       phoneno: "",
-      error: {}
+      error: {},
     };
 
     // binding utility functions
@@ -40,7 +40,7 @@ class SignUpPage extends Component {
       fullname: this.state.fullName,
       email: this.state.email,
       phno: this.state.phoneno,
-      password: this.state.password
+      password: this.state.password,
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -76,7 +76,7 @@ class SignUpPage extends Component {
                   className="mx-auto sm:text-center md:text-left"
                 >
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-user text-gray-400`}></i>
                       <input
                         type="text"
@@ -92,7 +92,7 @@ class SignUpPage extends Component {
                   </div>
 
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-envelope text-gray-400`}></i>
                       <input
                         type="email"
@@ -108,7 +108,7 @@ class SignUpPage extends Component {
                   </div>
 
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-envelope text-gray-400`}></i>
                       <input
                         type="phoneno"
@@ -124,7 +124,7 @@ class SignUpPage extends Component {
                   </div>
 
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-lock text-gray-400`}></i>
                       <input
                         type="password"
@@ -165,9 +165,9 @@ class SignUpPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, { registerUser })(

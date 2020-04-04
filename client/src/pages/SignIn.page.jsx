@@ -11,7 +11,7 @@ class SigninPage extends Component {
     this.state = {
       email: "",
       password: "",
-      error: ""
+      error: "",
     };
 
     // binding utility functions
@@ -29,7 +29,7 @@ class SigninPage extends Component {
     e.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
 
     this.props.loginUser(userData, this.props.history);
@@ -82,7 +82,7 @@ class SigninPage extends Component {
                   className="mx-auto sm:text-center md:text-left"
                 >
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-envelope text-gray-400`}></i>
                       <input
                         type="email"
@@ -98,7 +98,7 @@ class SigninPage extends Component {
                   </div>
 
                   <div className="mt-2 lg:mt-4">
-                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 ">
+                    <div className="border border-gray-600 mx-8 py-2 rounded md:pl-4 lg:py-4 hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor">
                       <i className={`fas fa-lock text-gray-400`}></i>
                       <input
                         type="password"
@@ -139,9 +139,9 @@ class SigninPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, { loginUser })(withRouter(SigninPage));

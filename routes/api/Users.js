@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const { userModel } = require("../../Model/User.Model");
 const {
   validateUserRegister,
-  validateUserLogin
+  validateUserLogin,
 } = require("../../validation/validation");
 const { BCRYPT_SALT, JWT_PRIVATE_KEY } = require("../../config/keys");
 
@@ -65,10 +65,12 @@ router.post("/login", async (req, res) => {
     if (!verifyUser) return res.status(400).json({ error: "invalid password" });
 
     // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
-    const payload = _.pick(user, ["_id", "fullname", "email"]);
+    const payload = _.pick(user, ["fullname", "email"]);
     const Token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 });
 
     // when succesful return user information with jwt token
+    console.log(user);
+
     res.json({ ...user._doc, token: "Bearer " + Token });
   } catch (error) {
     res.json({ error: error.message });
