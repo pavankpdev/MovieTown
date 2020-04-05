@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
       trendingMovies.data.results.length = 2;
 
       // function to fetching all the details of the specied movie with refering to movie id
-      let fetchTrendingMoviesDetails = async source => {
+      let fetchMoviesDetails = async source => {
         try {
           const response = source.map(data => {
             return axios.get(
@@ -75,19 +75,19 @@ router.get("/", async (req, res) => {
       };
 
       // storing the resultant array of data in a constant
-      const trendingMoviesDetails = await fetchTrendingMoviesDetails(
+      const trendingMoviesDetails = await fetchMoviesDetails(
         trendingMovies.data.results
       );
       // storing the resultant array of data in a constant
-      const nowPlayingMoviesDetails = await fetchTrendingMoviesDetails(
+      const nowPlayingMoviesDetails = await fetchMoviesDetails(
         nowplayingmovies.data.results
       );
       // storing the resultant array of data in a constant
-      const upComingMoviesDetails = await fetchTrendingMoviesDetails(
+      const upComingMoviesDetails = await fetchMoviesDetails(
         upComingMovies.data.results
       );
       // storing the resultant array of data in a constant
-      const popularMoviesDetails = await fetchTrendingMoviesDetails(
+      const popularMoviesDetails = await fetchMoviesDetails(
         popularMovies.data.results
       );
 

@@ -7,6 +7,7 @@ const path = require("path");
 const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
 const seats = require("./routes/api/bookTickets");
+const search = require("./routes/api/SearchMovie");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -16,10 +17,10 @@ mongoose
   .connect(DB_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
   .then(() => console.log("Connected to MongoDB.."))
-  .catch(error => console.log(error));
+  .catch((error) => console.log(error));
 
 // middlewares
 mongoose.set("useCreateIndex", true);
@@ -29,6 +30,7 @@ app.use(cors());
 app.use("/home", home);
 app.use("/users", user);
 app.use("/movies/booktickets", seats);
+app.use("/movies/search", search);
 app.use(passport.initialize());
 
 // Passport Config
