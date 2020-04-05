@@ -33,15 +33,6 @@ class SigninPage extends Component {
     };
 
     this.props.loginUser(userData, this.props.history);
-
-    // sending data to server with axios, and redirecting user to home page if authenticated
-    try {
-      const loginUser = await Axios.post("/users/login", userData);
-
-      this.props.loginUser(loginUser.data);
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { logoutUser } from "../redux/reducers/authReducer/auth.action";
+import SearchBar from "./SearchBar.component";
 class Navbar extends Component {
   constructor() {
     super();
@@ -24,13 +25,18 @@ class Navbar extends Component {
 
     return (
       <div className="lg:-mx-6 bg-white">
-        <div className=" px-6 py-3 flex justify-between items-center shadow lg:px-8">
+        <div className=" px-6 py-3 flex justify-between items-baseline shadow lg:px-8">
           {/* Logo container */}
           <div>
-            <span className="uppercase text-logoColor text-xl font-bold tracking-wider">
+            <span className="uppercase text-logoColor text-xl font-bold tracking-wider lg:text-2xl">
               <Link to="/"> movie town</Link>
             </span>
           </div>
+          {/* search bar for larger screen */}
+          <div className="sm:hidden md:block lg:block xl:block">
+            <SearchBar />
+          </div>
+
           {/* Hamburger menu for smaller screen */}
           <div className="-mr-32 text-logoColor md:hidden lg:hidden xl:hidden">
             <button
@@ -55,14 +61,20 @@ class Navbar extends Component {
               </Link>
             </div>
           </div>
+          {/* compoenents to show only when logged in */}
           <div className={isAuthenticated ? `` : `hidden`}>
-            <div className="sm:hidden md:hidden lg:block xl:block">
-              <button
-                onClick={this.onClickLogout}
-                className="ml-4 uppercase tracking-widest font-semibold px-3 py-1 text-sm text-white border-2 border-logoColor rounded bg-logoColor hover:bg-white hover:text-logoColor focus:bg-white focus:text-logoColor focus:outline-none"
+            <div className="flex items-center">
+              <i className="fas fa-shopping-basket fa-lg mr-8 text-logoColor"></i>
+              <div
+                className="cursor-pointer sm:hidden lg:block xl:block"
+                onClick={() => console.log("clicked avatar")}
               >
-                logout
-              </button>
+                <img
+                  className="rounded-full"
+                  src="https://randomuser.me/api/portraits/thumb/men/62.jpg"
+                  alt="user"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -73,6 +85,8 @@ class Navbar extends Component {
               this.state.isClicked ? "block pt-2 pb-4" : "hidden pt-2 pb-4"
             } // listening to toggle
           >
+            {/* search bar for smaller screen */}
+            <SearchBar />
             <Link to="/auth/signin">
               <button className="block ml-4 mr-4 uppercase tracking-widest font-semibold px-3 py-1 text-xs text-logoColor hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor focus:outline-none">
                 sign in
@@ -104,8 +118,8 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logoutUser })(Navbar);

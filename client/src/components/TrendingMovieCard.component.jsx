@@ -21,7 +21,7 @@ const TrendingMovies = ({
       />
 
       <div className="relative px-2 -mt-10">
-        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-9/12 lg:mx-auto">
+        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-8/12 lg:mx-auto">
           <div>
             <div className="flex items-baseline">
               <h4 className="text-headingColor font-semibold text-base w-20 truncate overflow-hidden lg:text-2xl lg:w-56">

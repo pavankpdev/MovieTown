@@ -6,8 +6,12 @@ import "../styles/MoviesInfoWrapper.styles.css";
 const MoviesInfoWrapper = ({ list, comments, ...props }) => {
   return (
     <div>
-      {list.map(data => (
-        <MoviesInfoComponent props={data} comments={comments} />
+      {list.map((data) => (
+        <MoviesInfoComponent
+          key={`${data.title}`}
+          props={data}
+          comments={comments}
+        />
       ))}
     </div>
   );

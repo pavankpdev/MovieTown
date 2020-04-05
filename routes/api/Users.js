@@ -69,10 +69,11 @@ router.post("/login", async (req, res) => {
     const Token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 });
 
     // when succesful return user information with jwt token
-    console.log(user);
 
     res.json({ ...user._doc, token: "Bearer " + Token });
   } catch (error) {
+    console.log(error);
+
     res.json({ error: error.message });
   }
 });

@@ -5,26 +5,27 @@ import { defaultAxiosHeader } from "../../../utils/axiosDefaults";
 import { GET_ERROR } from "../errorReducer/error.types";
 import { SET_CURRENT_USER } from "./auth.types";
 
-export const registerUser = (userData, history) => async dispatch => {
+export const setUser = (userData) => ({
+  type: SET_CURRENT_USER,
+  payload: userData,
+});
+
+export const registerUser = (userData, history) => async (dispatch) => {
   //   sending data to server with axios
   try {
     const registerUser = await axios.post("/users/register", userData);
+    dispatch(setUser(registerUser.data));
     // redirecting user to home page if successfully registered
     return history.push("/");
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: `registerUSer ${error.response.data.error}`
+      payload: error.response.data.error,
     });
   }
 };
 
-export const setUser = userData => ({
-  type: SET_CURRENT_USER,
-  payload: userData
-});
-
-export const loginUser = userData => async dispatch => {
+export const loginUser = (userData) => async (dispatch) => {
   //   sending data to server with axios
   try {
     const loginUser = await axios.post("/users/login", userData);
@@ -39,12 +40,12 @@ export const loginUser = userData => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_ERROR,
-      payload: `login user ${error.response.data.error}`
+      payload: error.response.data.error,
     });
   }
 };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   // Remove the token from localStorage
   localStorage.removeItem("jwtToken");
   // Remove token from axios header
