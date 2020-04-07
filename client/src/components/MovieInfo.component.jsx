@@ -3,13 +3,20 @@ import React from "react";
 import ProductionCompanies from "./Production.component";
 import CommentCompnent from "./Comments.component";
 const MoviesInfoComponent = ({ comments, ...props }) => {
-  console.log(props.props.backdrop_path);
-
   return (
     <div className="relative">
       <div>
         {/* Images */}
-        <div className="absolute bg-black w-full opacity-50 backdropOverlay md:w-full"></div>
+        <div className="absolute bg-black w-full opacity-50 backdropOverlay md:w-full">
+          <center>
+            <button
+              className="hover:text-white focus:outline-none"
+              onClick={() => console.log("player")}
+            >
+              <i className="fas fa-play-circle text-white fa-3x mt-16 md:mt-24 lg:mt-48"></i>
+            </button>
+          </center>
+        </div>
         <img
           className="w-full backdropImage"
           src={`http://image.tmdb.org/t/p/original${props.props.backdrop_path}`}
@@ -64,11 +71,11 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
           <h3 className="w-40 truncate uppercase text-sm text-gray-600 font-semibold lg:text-lg">
             {props.props.production_companies
               .slice(0, 1)
-              .map(prod => `${prod.name}`)}
+              .map((prod) => `${prod.name}`)}
           </h3>
           <h3 className="uppercase text-sm text-gray-600 font-semibold lg:text-lg">
             {props.props.original_language} &#8226;{" "}
-            {props.props.genres.slice(0, 1).map(genre => `${genre.name}`)}{" "}
+            {props.props.genres.slice(0, 1).map((genre) => `${genre.name}`)}{" "}
             &#8226; UA
           </h3>
         </div>
@@ -113,7 +120,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
           </h3>
         </div>
         <div className="mt-8 flex sm:justify-around items-baseline">
-          {props.props.production_companies.slice(0, 2).map(prod => (
+          {props.props.production_companies.slice(0, 2).map((prod) => (
             <div className="w-1/3 sm:w-1/4" key={prod.name}>
               <ProductionCompanies
                 imageUrl={`http://image.tmdb.org/t/p/original${prod.logo_path}`}
@@ -155,10 +162,10 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
               </button>
             </div>
           </div>
-          {comments.map(data => (
+          {comments.map((data) => (
             <div>
               <CommentCompnent
-                key={data.user}
+                key={`${data.user}`}
                 comment={data.comments}
                 avatar={data.avatar}
                 name={data.user}

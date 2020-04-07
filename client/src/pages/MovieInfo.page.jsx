@@ -10,7 +10,7 @@ class MovieInfo extends Component {
     this.state = {
       comments: [],
       errors: {},
-      localMovie: []
+      localMovie: [],
     };
   }
 
@@ -19,7 +19,7 @@ class MovieInfo extends Component {
     setTimeout(() => {
       this.setState(
         {
-          localMovie: new Array(JSON.parse(localStorage.selectedMovie))
+          localMovie: new Array(JSON.parse(localStorage.selectedMovie)),
         },
         () => {}
       );
@@ -38,19 +38,15 @@ class MovieInfo extends Component {
       const template = {
         user: `${users.data.results[0].name.title} ${users.data.results[0].name.first} ${users.data.results[0].name.last}`,
         avatar: `${users.data.results[0].picture.thumbnail}`,
-        comments: `${data[0].body}`
+        comments: `${data[0].body}`,
       };
       dataToState.push(template);
     }
     // saving the template to state
-    this.setState({ comments: dataToState }, () =>
-      console.log("state", this.state.comments)
-    );
+    this.setState({ comments: dataToState }, () => {});
   }
 
   render() {
-    console.log(this.state.localMovie);
-
     return (
       <div>
         <MoviesInfoWrapper
@@ -62,9 +58,9 @@ class MovieInfo extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   selectedMovieRedux: state.localMovie.selectedMovie,
-  error: state.errors
+  error: state.errors,
 });
 
 export default connect(mapStateToProps, { getMovieInfo })(MovieInfo);

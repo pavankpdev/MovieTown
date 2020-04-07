@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { logoutUser } from "../redux/reducers/authReducer/auth.action";
 import SearchBar from "./SearchBar.component";
+
 class Navbar extends Component {
   constructor() {
     super();
@@ -34,7 +35,10 @@ class Navbar extends Component {
           </div>
           {/* search bar for larger screen */}
           <div className="sm:hidden md:block lg:block xl:block">
-            <SearchBar />
+            <div className="flex items-baseline text-logoColor">
+              <SearchBar />
+              
+            </div>
           </div>
 
           {/* Hamburger menu for smaller screen */}

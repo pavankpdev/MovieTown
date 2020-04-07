@@ -12,6 +12,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-horizontal-scrolling-menu": "^0.7.7",
+    "react-player": "^1.15.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
@@ -42,5 +43,12 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env"
+  ],
+  "plugins": [
+    "emotion"
+  ]
 }

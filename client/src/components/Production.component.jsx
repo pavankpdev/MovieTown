@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProductionCOmponent = ({ imageUrl, productionName, ...props }) => {
-  console.log(imageUrl);
 
   return (
     <div className="">

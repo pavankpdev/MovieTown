@@ -13,7 +13,7 @@ const {
 // @des EXTERNAL_API_CALL to search the movies according to the input string and get details of that movie
 // @access PUBLIC
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const queryString = encodeURI(req.body.search_string);
   try {
     // search the query string for any movie match
@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
     );
 
     // if no movies found return with error message
+
     if (!searchMovies)
       return res.status(500).json({ error: "No movies found, Sorry!:(" });
 
@@ -32,7 +33,7 @@ router.get("/", async (req, res) => {
       try {
         const response = source.map((data) => {
           return axios.get(
-            `${TMDB_FETCH_MOVIES_BASE_URI}${data.id}?api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}`
+            `${TMDB_FETCH_MOVIES_BASE_URI}${data.id}?api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}&append_to_response=videos`
           );
         });
 
@@ -43,7 +44,6 @@ router.get("/", async (req, res) => {
         const filteredResult = unfilteredResult.map((data) => {
           return data.data;
         });
-        console.log("fetchMoviesDetails -> filteredResult", filteredResult);
 
         return filteredResult;
       } catch (error) {
@@ -52,11 +52,9 @@ router.get("/", async (req, res) => {
     };
 
     // return the detailed movie list
-    return res
-      .status(200)
-      .json({
-        searchMovies: await fetchMoviesDetails(searchMovies.data.results),
-      });
+    return res.status(200).json({
+      searchMovies: await fetchMoviesDetails(searchMovies.data.results),
+    });
   } catch (error) {
     return res.status(400).json({ error: error });
   }
