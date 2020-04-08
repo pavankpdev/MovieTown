@@ -33,7 +33,7 @@ class SearchBar extends Component {
         <div className=" -ml-4 my-3  md:ml-0 md:my-0 lg:ml-0 lg:my-0">
           <div className="pt-2 relative text-gray-600 mr-12">
             <input
-              className="border w-64 border-logoColor bg-white h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none "
+              className="border w-64 border-gray-500 bg-white h-10 px-8 pr-16 rounded-lg text-sm focus:outline-none shadow-md"
               type="search"
               id="search"
               name="search"

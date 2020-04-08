@@ -5,7 +5,6 @@ const INITIAL_STATE = {
 };
 
 const searchMovieReducer = (state = INITIAL_STATE, action) => {
-
   switch (action.type) {
     case SEARCH_MOVIES:
       localStorage.setItem("searchedMovies", JSON.stringify(action.payload));

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NowPlayingMovies = ({
+const SearchedMovies = ({
   image,
   title,
   production,
@@ -23,7 +23,7 @@ const NowPlayingMovies = ({
   );
 
   return (
-    <div className="mx-4 my-4 lg:w-1/4">
+    <div className="mx-4 my-4">
       <div className="mx-6 sm:mx-4 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
         <img
           className="h-64 w-full object-fill object-contain"
@@ -67,4 +67,4 @@ const NowPlayingMovies = ({
   );
 };
 
-export default NowPlayingMovies;
+export default SearchedMovies;

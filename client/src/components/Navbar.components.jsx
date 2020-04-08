@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { logoutUser } from "../redux/reducers/authReducer/auth.action";
-import SearchBar from "./SearchBar.component";
 
 class Navbar extends Component {
   constructor() {
@@ -32,13 +31,6 @@ class Navbar extends Component {
             <span className="uppercase text-logoColor text-xl font-bold tracking-wider lg:text-2xl">
               <Link to="/"> movie town</Link>
             </span>
-          </div>
-          {/* search bar for larger screen */}
-          <div className="sm:hidden md:block lg:block xl:block">
-            <div className="flex items-baseline text-logoColor">
-              <SearchBar />
-              
-            </div>
           </div>
 
           {/* Hamburger menu for smaller screen */}
@@ -89,8 +81,7 @@ class Navbar extends Component {
               this.state.isClicked ? "block pt-2 pb-4" : "hidden pt-2 pb-4"
             } // listening to toggle
           >
-            {/* search bar for smaller screen */}
-            <SearchBar />
+           
             <Link to="/auth/signin">
               <button className="block ml-4 mr-4 uppercase tracking-widest font-semibold px-3 py-1 text-xs text-logoColor hover:border-2 hover:border-logoColor focus:border-2 focus:border-logoColor focus:outline-none">
                 sign in

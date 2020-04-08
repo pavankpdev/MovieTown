@@ -7,7 +7,7 @@ export const searchMovies = (inputString) => async (dispatch) => {
     const { data } = await axios.post("/movies/search", inputString);
     dispatch({
       type: SEARCH_MOVIES,
-      payload: data,
+      payload: data.searchMovieData,
     });
     window.location.href = "/search";
   } catch (error) {

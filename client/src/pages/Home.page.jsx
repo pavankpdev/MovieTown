@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { getAllmovies } from "../redux/reducers/allMoviesReducer/allMovies.action";
+import SearchBar from "../components/SearchBar.component";
+
 import TrendingMoviesWrapper from "../components/wrappers/TendingMovieWrapper.component";
 import PropularMoviesWrapper from "../components/wrappers/PopularMoviesWrapper.components";
 import NowPlayingMoviesWrapper from "../components/wrappers/NowPlayingMoviesWrapper.component";
@@ -16,7 +18,7 @@ class HomePage extends Component {
       popularMovies: [],
       trendingMovies: [],
       tranlateProperty: 0,
-      error: {}
+      error: {},
     };
     this.TMDB_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
     this.TMDB_IMAGE_WIDTH = "original";
@@ -38,7 +40,7 @@ class HomePage extends Component {
         nowPlayingMovie: nextProps.nowPlayingMoviesRedux,
         upcomingMovies: nextProps.upComingMoviesRedux,
         popularMovies: nextProps.popularMoviesRedux,
-        trendingMovies: nextProps.trendingMoviesRedux
+        trendingMovies: nextProps.trendingMoviesRedux,
       });
     }
   }
@@ -49,7 +51,7 @@ class HomePage extends Component {
       tranlateProperty:
         this.state.tranlateProperty === 100
           ? 0
-          : this.state.tranlateProperty + 100 / this.state.popularMovies.length
+          : this.state.tranlateProperty + 100 / this.state.popularMovies.length,
     });
   }
 
@@ -59,13 +61,16 @@ class HomePage extends Component {
       tranlateProperty:
         this.state.tranlateProperty === 0
           ? 0
-          : this.state.tranlateProperty - 100 / this.state.popularMovies.length
+          : this.state.tranlateProperty - 100 / this.state.popularMovies.length,
     });
   }
 
   render() {
     return (
       <div>
+        <div className="mx-auto">
+          <SearchBar />
+        </div>
         <div>
           <PropularMoviesWrapper
             tranlateProperty={this.state.tranlateProperty}
@@ -134,11 +139,11 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   popularMoviesRedux: state.allMovies.popularMovies,
   nowPlayingMoviesRedux: state.allMovies.nowPlayingMovies,
   trendingMoviesRedux: state.allMovies.trendingMovies,
-  upComingMoviesRedux: state.allMovies.upComingMovies
+  upComingMoviesRedux: state.allMovies.upComingMovies,
 });
 
 export default connect(mapStateToProps, { getAllmovies })(HomePage);

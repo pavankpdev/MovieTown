@@ -21,10 +21,10 @@ const TrendingMovies = ({
       />
 
       <div className="relative px-2 -mt-10">
-        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-8/12 lg:mx-auto">
+        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-9/12 lg:mx-auto">
           <div>
             <div className="flex items-baseline">
-              <h4 className="text-headingColor font-semibold text-base w-20 truncate overflow-hidden lg:text-2xl lg:w-56">
+              <h4 className="text-headingColor font-semibold text-base w-20 truncate overflow-hidden lg:text-xl lg:w-48">
                 {title}
               </h4>
               <i className="fas fa-heart fa-md text-red-600 ml-2 lg:text-xl"></i>
@@ -46,7 +46,7 @@ const TrendingMovies = ({
                 id={id}
                 onClick={clickFuntion}
                 type="button"
-                className="uppercase bg-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
+                className="uppercase bg-logoColor rounded px-2 py-2 text-tiny tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
               >
                 Book now
               </button>

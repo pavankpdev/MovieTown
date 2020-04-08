@@ -17,13 +17,13 @@ router.post("/", async (req, res) => {
   const queryString = encodeURI(req.body.search_string);
   try {
     // search the query string for any movie match
-    const searchMovies = await axios.get(
+    const { data } = await axios.get(
       `${TMDB_SEARCH_MOVIES_BASE_URI}?api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}&query=${queryString}&page=1&include_adult=false&region=${TMDB_REGION}`
     );
 
     // if no movies found return with error message
 
-    if (!searchMovies)
+    if (!data)
       return res.status(500).json({ error: "No movies found, Sorry!:(" });
 
     // if movies found map the list to get mor details on the movies
@@ -51,9 +51,11 @@ router.post("/", async (req, res) => {
       }
     };
 
+    const searchMovieData = await fetchMoviesDetails(data.results);
+
     // return the detailed movie list
-    return res.status(200).json({
-      searchMovies: await fetchMoviesDetails(searchMovies.data.results),
+    return res.status(200).send({
+      searchMovieData,
     });
   } catch (error) {
     return res.status(400).json({ error: error });
