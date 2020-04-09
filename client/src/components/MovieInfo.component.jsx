@@ -3,6 +3,10 @@ import React from "react";
 import ProductionCompanies from "./Production.component";
 import CommentCompnent from "./Comments.component";
 const MoviesInfoComponent = ({ comments, ...props }) => {
+  const image = "http://image.tmdb.org/t/p/original";
+  // let { backdrop_path, poster_path } = props.props;
+  // backdrop_path ? backdrop_path : "../asset/backdrop.png";
+  // poster_path ? poster_path : "../asset/poster.png";
   return (
     <div className="relative">
       <div>
@@ -19,14 +23,22 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
         </div>
         <img
           className="w-full backdropImage"
-          src={`http://image.tmdb.org/t/p/original${props.props.backdrop_path}`}
+          src={
+            props.props.backdrop_path !== null
+              ? `${image}${props.props.backdrop_path}`
+              : "https://i.ibb.co/pvBcssg/backdrop.png"
+          }
           alt="backdrop poster"
         />
       </div>
       <div className="absolute w-2/6 ml-2  border-4 border-white rounded-lg shadow poster md:w-1/5 md:ml-4 lg:ml-4 lg:rounded-extendedcorner">
         <img
           className=" rounded-lg shadow-2xl lg:rounded-extendedcorner"
-          src={`http://image.tmdb.org/t/p/original${props.props.poster_path}`}
+          src={
+            props.props.poster_path !== null
+              ? `${image}${props.props.poster_path}`
+              : "https://i.ibb.co/6ntQSKt/poster.png"
+          }
           alt="poster"
         />
       </div>

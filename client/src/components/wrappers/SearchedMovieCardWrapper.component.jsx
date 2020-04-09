@@ -28,7 +28,7 @@ const SearchedMovieCardWrapper = ({ source, ...props }) => {
               image={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                  : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+                  : "https://i.ibb.co/6ntQSKt/poster.png"
               }
               title={movie.title}
               production={production_companies}

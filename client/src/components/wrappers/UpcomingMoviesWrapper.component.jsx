@@ -19,7 +19,7 @@ const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
         image={
           data.poster_path
             ? `${image}${data.poster_path}`
-            : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+            : "https://i.ibb.co/6ntQSKt/poster.png"
         }
         title={data.title}
         production={production_companies}

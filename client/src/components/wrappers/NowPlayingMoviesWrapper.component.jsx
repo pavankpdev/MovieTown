@@ -5,10 +5,10 @@ import NowPlayingMovies from "../NowPlayingMovies.component";
 import { getMovieInfo } from "../../redux/reducers/movieInfoReducer/movieInfo.action";
 
 const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
-  const clickFuntion = e => {
+  const clickFuntion = (e) => {
     props.getMovieInfo(e.target.id);
   };
-  return source.slice(0, 6).map(data => {
+  return source.slice(0, 6).map((data) => {
     let { production_companies, genres } = data;
 
     production_companies =
@@ -24,7 +24,7 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
         image={
           data.poster_path
             ? `${image}${data.poster_path}`
-            : "https://images.wallpapersden.com/image/download/tim-and-phil-despicable-me-minions-wallpaper_40127_2048x1152.jpg"
+            : "https://i.ibb.co/6ntQSKt/poster.png"
         }
         title={data.title}
         production={production_companies}
@@ -39,8 +39,8 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
   });
 };
 
-const mapStateToProps = state => ({
-  selectedMovie: state.localMovie
+const mapStateToProps = (state) => ({
+  selectedMovie: state.localMovie,
 });
 
 export default connect(mapStateToProps, { getMovieInfo })(
