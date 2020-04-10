@@ -35,6 +35,16 @@
   .comments {
     top: 1000px;
   }
+  .panel {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 10;
+  }
+  .backdropParent {
+    filter: blur(4px);
+  }
 }
 @media (min-width: 768px) {
   .footer {
@@ -72,6 +82,7 @@
   .comments {
     top: 990px;
   }
+
 }
 @media (min-width: 1024px) {
   .footer {
