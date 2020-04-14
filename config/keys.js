@@ -14,7 +14,7 @@ module.exports = {
   TMDB_SEARCH_MOVIES_BASE_URI: "https://api.themoviedb.org/3/search/movie/",
   TMDB_IMAGE_BASE_URL: "http://image.tmdb.org/t/p/",
   TMDB_POSTER_WIDTH: "w200",
-  THEATER_API_BASE_URL: "https://api.jsonbin.io/b/5e733e9bc4a5cb162866f33c",
+  THEATER_API_BASE_URL: "https://api.jsonbin.io/b/5e733e9bb325b3162e3a869b/1",
   LOCALSTORAGE_API_BASE_URL_FOR_MOVIE:
     "http://localhost:5000/api/localStorage/movieInfo",
   LOCALSTORAGE_API_BASE_URL_FOR_THEATER:

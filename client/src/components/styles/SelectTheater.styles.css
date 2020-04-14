@@ -1,0 +1,18 @@
+@media (min-width: 300px) {
+  .theater-card {
+    top: 400px;
+    border-radius: 35px 35px 0 0;
+  }
+}
+@media (min-width: 768px) {
+  .theater-card {
+    top: 600px;
+    border-radius: 35px 35px 0 0;
+  }
+}
+@media (min-width: 1024px) {
+  .theater-card {
+    top: 600px;
+    border-radius: 35px 35px 0 0;
+  }
+}

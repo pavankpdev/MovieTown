@@ -9,7 +9,7 @@ export const searchMovies = (inputString) => async (dispatch) => {
       type: SEARCH_MOVIES,
       payload: data.searchMovieData,
     });
-    window.location.href = "/search";
+    window.location.href = "/movies/search";
   } catch (error) {
     dispatch({
       type: GET_ERROR,

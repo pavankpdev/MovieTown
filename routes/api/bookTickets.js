@@ -6,34 +6,27 @@ const router = require("express").Router();
 const {
   THEATER_API_BASE_URL,
   LOCALSTORAGE_API_BASE_URL_FOR_MOVIE,
-  LOCALSTORAGE_API_BASE_URL_FOR_THEATER
+  LOCALSTORAGE_API_BASE_URL_FOR_THEATER,
 } = require("../../config/keys");
 
 // @Route   GET /movies/booktickets/<movie_id>
-// @des     gets the details of all the theater from Theater APi and also selected movie detail from localstorage
+// @des     gets the details of all the theater from Theater APi
 // @access  PUBLIC
-router.get("/:movie_id", async (req, res) => {
-  const movieId = encodeURI(req.params.movie_id);
-
-  // GET request to fetch selected movie details from localstorage Api with axios
-  const movie = await axios.get(`${LOCALSTORAGE_API_BASE_URL_FOR_MOVIE}`);
-
-  // verifying data existence
-  if (!movie.data) return res.status(401).json({ error: "invalid movie" });
+router.get("/", async (req, res) => {
 
   // GET request to fetch all theater from Theater APi details with axios
   const theaters = await axios.get(`${THEATER_API_BASE_URL}`, {
     params: {},
     headers: {
       "secret-key":
-        "$2b$10$Aq89FSFbnAvcgWoQtRllUuUp8uAEttKmO29tXKFWLBE5JjApL2ea2"
-    }
+        "$2b$10$Aq89FSFbnAvcgWoQtRllUuUp8uAEttKmO29tXKFWLBE5JjApL2ea2",
+    },
   });
 
   // verifying data existence
   if (!theaters.data) return res.status(401).json({ error: "invalid movie" });
 
-  return res.json({ movieInfo: movie.data, theatersInfo: theaters.data });
+  return res.json({ theatersInfo: theaters.data });
 });
 
 // @Route   GET /movies/booktickets/select_seats/:movie_id/:theater_id
@@ -66,7 +59,7 @@ router.get(
             "popularity",
             "genres",
             "adult",
-            "release_date"
+            "release_date",
           ]),
           theare: _.pick(theaterInfo.data, [
             "theater_name",
@@ -74,8 +67,8 @@ router.get(
             "location",
             "movies",
             "facilities",
-            "seats"
-          ])
+            "seats",
+          ]),
         });
 
       return res.status(501).json({ error: "Internal server error!" });

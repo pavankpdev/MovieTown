@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 
 import ProductionCompanies from "./Production.component";
 import CommentCompnent from "./Comments.component";
@@ -47,7 +48,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
           url={`https://www.youtube.com/watch?v=${
             props.props.videos.results.length !== 0
               ? props.props.videos.results[0].key
-              : "kpkpkkpkpkpkk"
+              : "someInvalidKey"
           }`}
           controls
         />
@@ -124,10 +125,10 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
         {/* title */}
         <div className="absolute mt-3 title">
           <div>
-            <h2 className="w-40 truncate text-headingColor text-lg font-bold uppercase lg:text-2xl lg:w-full">
-              {props.props.title}: {props.props.tagline}
+            <h2 className=" text-headingColor text-base font-bold uppercase lg:text-2xl">
+              {props.props.title}
             </h2>
-            <h3 className="w-40 truncate uppercase text-sm text-gray-600 font-semibold lg:text-lg">
+            <h3 className=" uppercase text-sm text-gray-600 font-semibold lg:text-lg">
               {props.props.production_companies
                 .slice(0, 1)
                 .map((prod) => `${prod.name}`)}
@@ -142,12 +143,14 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
         {/* Buttons */}
         <div className="absolute flex justify-around items-center btns md:justify-end lg:justify-start">
           <div>
-            <button
-              type="button"
-              className="uppercase text-tiny border-2 border-logoColor bg-logoColor text-white font-semibold tracking-wider px-10 py-3 hover:bg-blue-900 focus:bg-blue-900 focus:outline-none"
-            >
-              Book tickets
-            </button>
+            <Link to="/movies/theater">
+              <button
+                type="button"
+                className="uppercase text-tiny border-2 border-logoColor bg-logoColor text-white font-semibold tracking-wider px-10 py-3 hover:bg-blue-900 focus:bg-blue-900 focus:outline-none"
+              >
+                Book tickets
+              </button>
+            </Link>
           </div>
           <div>
             <button
