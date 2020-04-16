@@ -33,10 +33,10 @@
     margin-top: 300px;
   }
   .nowPlayingCard {
-    margin-top: 1080px;
+    margin-top: 1400px;
   }
   .upComingCard {
-    margin-top: 3680px;
+    margin-top: 4000px;
   }
   .footer {
     position: absolute;
@@ -65,13 +65,14 @@
     left: 20px;
   }
   .trendingCard {
-    margin-top: 300px;
+    margin-top: 400px;
   }
+
   .nowPlayingCard {
-    margin-top: 1080px;
+    margin-top: 1200px;
   }
   .upComingCard {
-    margin-top: 3680px;
+    margin-top: 2650px;
   }
   .footer {
     position: absolute;
@@ -101,11 +102,12 @@
   .trendingCard {
     margin-top: 620px;
   }
+
   .nowPlayingCard {
-    margin-top: 1500px;
+    margin-top: 1350px;
   }
   .upComingCard {
-    margin-top: 2550px;
+    margin-top: 2350px;
   }
   .footer {
     position: absolute;

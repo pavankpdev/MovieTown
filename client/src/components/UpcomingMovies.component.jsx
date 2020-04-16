@@ -14,7 +14,7 @@ const UpcomingMovie = ({
   const [click, setClick] = useState(false);
 
   return (
-    <div className="mx-4 my-4 lg:w-1/4">
+    <div className="mx-4 my-4 md:w-1/2 md:mx-0 md:my-2 lg:w-1/4">
       <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
         <img
           className="h-64 w-full object-fill object-contain"

@@ -13,15 +13,15 @@ const TrendingMovies = ({
   id
 }) => {
   return (
-    <div className=" sm:mt-4 md:mt-3 lg:mt-0 xl:mt-0">
+    <div className=" sm:mt-4 md:w-1/2 md:mt-3 lg:ml-6 lg:mt-0 xl:mt-0">
       <img
-        className="w-full h-64 object-fill object-contain rounded-lg shadow-md lg:w-9/12 lg:h-9/12 lg:mx-auto"
+        className="w-full h-64 object-fill object-contain rounded-lg shadow-md md:w-10/12 lg:w-full lg:h-9/12 lg:mx-auto"
         src={imageURL}
         alt="Trending"
       />
 
       <div className="relative px-2 -mt-10">
-        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg lg:w-9/12 lg:mx-auto">
+        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg md:w-10/12 lg:mx-auto">
           <div>
             <div className="flex items-baseline">
               <h4 className="text-headingColor font-semibold text-base w-20 truncate overflow-hidden lg:text-xl lg:w-48">
@@ -46,7 +46,7 @@ const TrendingMovies = ({
                 id={id}
                 onClick={clickFuntion}
                 type="button"
-                className="uppercase bg-logoColor rounded px-2 py-2 text-tiny tracking-wider font-semibold text-white lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
+                className="uppercase bg-logoColor rounded px-2 py-2 text-tiny tracking-wider font-semibold text-white md: lg:px-3 lg:py-2 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
               >
                 Book now
               </button>
