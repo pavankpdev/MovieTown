@@ -33,7 +33,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
             controls
           />
           <button type="button" onClick={() => setToggle(false)}>
-            <i class="fas fa-times-circle fa-lg"></i>
+            <i className="fas fa-times-circle fa-lg"></i>
           </button>
         </center>
       </div>

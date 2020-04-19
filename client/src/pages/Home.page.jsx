@@ -86,7 +86,7 @@ class HomePage extends Component {
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Trending Now
           </h2>
-          <div className="mt-10 mx-6 md:flex md:-mb-4 md:flex-wrap md:justify-center lg:mx-3 lg:flex">
+          <div className="mt-10 mx-6 md:flex md:-mb-4 md:flex-wrap md:justify-center lg:mx-0 lg:flex lg:justify-center lg:items-center ">
             <TrendingMoviesWrapper
               trendingMoviesData={this.state.trendingMovies}
               imageURL={`${this.TMDB_IMAGE_BASE_URL}/w400`}
@@ -98,7 +98,7 @@ class HomePage extends Component {
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Now Playing In Theaters
           </h2>
-          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
+          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:mx-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
             <NowPlayingMoviesWrapper
               source={this.state.nowPlayingMovie}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
@@ -119,7 +119,7 @@ class HomePage extends Component {
             Upcoming Movies
           </h2>
 
-          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
+          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:mx-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
             <UpcomingMoviesWrapper
               source={this.state.upcomingMovies}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
