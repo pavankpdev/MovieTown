@@ -8,6 +8,7 @@ const home = require("./routes/api/Home");
 const user = require("./routes/api/Users");
 const seats = require("./routes/api/bookTickets");
 const search = require("./routes/api/SearchMovie");
+const theaters = require("./routes/api/Thearters");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/home", home);
 app.use("/users", user);
+app.use("/movies/theaters", theaters);
 app.use("/movies/booktickets", seats);
 app.use("/movies/search", search);
 app.use(passport.initialize());
@@ -49,10 +51,10 @@ if (process.env.NODE_ENV === "production") {
   app.get("/search", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
-app.get("/auth/signin", (req, res) => {
+  app.get("/auth/signin", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
-app.get("/auth/signup", (req, res) => {
+  app.get("/auth/signup", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
