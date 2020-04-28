@@ -10,27 +10,27 @@ module.exports = {
       lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      xl: "1280px"
+      xl: "1280px",
       // => @media (min-width: 1280px) { ... }
     },
     extend: {
       fontSize: {
-        tiny: ".60rem"
+        tiny: ".60rem",
       },
       textColor: {
         logoColor: "#5a67d8",
         headingColor: "#001934",
-        textColor: "#303030"
+        textColor: "#303030",
       },
-      backgroundColor: theme => ({
+      backgroundColor: (theme) => ({
         logoColor: "#5a67d8",
         headingColor: "#001934",
-        textColor: "#303030"
+        textColor: "#303030",
       }),
-      borderColor: theme => ({
+      borderColor: (theme) => ({
         logoColor: "#5a67d8",
         headingColor: "#001934",
-        textColor: "#303030"
+        textColor: "#303030",
       }),
       spacing: {
         pc: "502px",
@@ -60,16 +60,17 @@ module.exports = {
         "9/12": "75%",
         "10/12": "83.333333%",
         "11/12": "91.666667%",
-        "38": "38%"
+        "38": "38%",
       },
       borderRadius: {
-        extendedcorner: "20px"
-      }
-    }
+        extendedcorner: "20px",
+      },
+    },
   },
   variants: {
-    borderColor: ["responsive", "hover", "focus"],
-    borderWidth: ["responsive", "hover", "focus"]
+    borderColor: ["responsive", "hover", "focus", "active"],
+    borderWidth: ["responsive", "hover", "focus", "active"],
+    backgroundColor: ["responsive", "hover", "focus", "active"],
   },
-  plugins: []
+  plugins: [],
 };

@@ -1,0 +1,16 @@
+@media (min-width: 300px) {
+  .select-seat_backdropImage {
+    height: 202px;
+    background-color: #383a47;
+    opacity: 50%;
+  }
+
+  .select-seat_title {
+    opacity: 100%;
+  }
+
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1024px) {
+}

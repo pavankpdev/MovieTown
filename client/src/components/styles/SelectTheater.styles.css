@@ -2,13 +2,99 @@
   position: absolute;
   background-color: white;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 10px;
   z-index: 10;
 }
 
 .select-teater_backdropParent {
   filter: blur(4px);
 }
+input[type=range] {
+  -webkit-appearance: none;
+  width: 70%;
+  margin: 6.35px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6.3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #4fd1c5;
+  border-radius: 1.3px;
+  border: 0.1px solid #4fd1c5;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #4fd1c5, 0px 0px 1px #63d6cc;
+  border: 0.7px solid #4fd1c5;
+  height: 19px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6.45px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #4fd1c5;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6.3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #4fd1c5;
+  border-radius: 1.3px;
+  border: 0.1px solid #4fd1c5;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #4fd1c5, 0px 0px 1px #63d6cc;
+  border: 0.7px solid #4fd1c5;
+  height: 19px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6.3px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #4fd1c5;
+  border: 0.1px solid #4fd1c5;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #4fd1c5;
+  border: 0.1px solid #4fd1c5;
+  border-radius: 2.6px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #4fd1c5, 0px 0px 1px #63d6cc;
+  border: 0.7px solid #4fd1c5;
+  height: 19px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 6.3px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #4fd1c5;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #4fd1c5;
+}
+
 @media (min-width: 300px) {
   .theater-card {
     top: 250px;
@@ -27,6 +113,11 @@
     left: 132px;
     top: 200px;
   }
+  input[type=range] {
+  -webkit-appearance: none;
+  width: 70%;
+  margin: 6.35px 0;
+}
 }
 @media (min-width: 768px) {
   .theater-card {
@@ -45,6 +136,11 @@
     left: 180px;
     top: 300px;
   }
+  input[type=range] {
+  -webkit-appearance: none;
+  width: 50%;
+  margin: 6.35px 0;
+}
 }
 @media (min-width: 1024px) {
   .theater-card {
@@ -63,4 +159,9 @@
     left: 280px;
     top: 490px;
   }
+  input[type=range] {
+  -webkit-appearance: none;
+  width: 30%;
+  margin: 6.35px 0;
+}
 }
