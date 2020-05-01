@@ -21,6 +21,16 @@ const validateUserLogin = (user) => {
   return schema.validate(user);
 };
 
+// THEATER AND MOVIE NAME validation using Joi
+const validateMovieAndTheaterNames = (details) => {
+  const schema = Joi.object({
+    movie_name: Joi.string().required().min(3),
+    theater_name: Joi.string().required().min(3),
+    time: Joi.string().required().min(4)
+  });
+  return schema.validate(details);
+};
 
 exports.validateUserRegister = validateUserRegister;
 exports.validateUserLogin = validateUserLogin;
+exports.validateMovieAndTheaterNames = validateMovieAndTheaterNames;

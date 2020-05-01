@@ -3,17 +3,14 @@ const axios = require("axios");
 const _ = require("lodash");
 const router = require("express").Router();
 
-const {
-  THEATER_API_BASE_URL,
-  LOCALSTORAGE_API_BASE_URL_FOR_MOVIE,
-  LOCALSTORAGE_API_BASE_URL_FOR_THEATER,
-} = require("../../config/keys");
+const { THEATER_API_BASE_URL } = require("../../config/keys");
+const seatsModel = require("../../Model/Seats.Model");
+const { validateMovieAndTheaterNames } = require("../../validation/validation");
 
 // @Route   GET /movies/booktickets/<movie_id>
 // @des     gets the details of all the theater from Theater APi
 // @access  PUBLIC
 router.get("/", async (req, res) => {
-
   // GET request to fetch all theater from Theater APi details with axios
   const theaters = await axios.get(`${THEATER_API_BASE_URL}`, {
     params: {},
@@ -29,51 +26,86 @@ router.get("/", async (req, res) => {
   return res.json({ theatersInfo: theaters.data });
 });
 
-// @Route   GET /movies/booktickets/select_seats/:movie_id/:theater_id
+// @Route   GET /movies/booktickets/select_seats/:movie_name/:theater_name/:time
 // @des     gets the details of movie and theater stored in localStorage Api
 // @access  PRIVATE
 router.get(
-  "/select_seats/:movie_id/:theater_id",
+  "/select_seats/:movie_name/:theater_name/:time",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    // validate the input parameters
+    const { error } = validateMovieAndTheaterNames(req.params);
+    if (error) return res.status(401).json({ validation_error: error });
     try {
-      const { movie_id, theater_id } = req.params;
-
-      // GET request to fetch movie details from localstorage Api with axios
-      const movieInfo = await axios.get(
-        `${LOCALSTORAGE_API_BASE_URL_FOR_MOVIE}`
-      );
-
-      // GET request to fetch theater details from localstorage Api with axios
-      const theaterInfo = await axios.get(
-        `${LOCALSTORAGE_API_BASE_URL_FOR_THEATER}`
-      );
-
-      // verifying data existence and returning the response to client in JSON
-      if (movieInfo.data && theaterInfo.data)
+      // find theater in the database
+      const isTheaterAvailable = await seatsModel.findOne({
+        theater_name: { $eq: req.params.theater_name },
+      });
+      // if theater found, check for movie name in that theater object
+      if (isTheaterAvailable) {
+        const isMovieAvailable = await seatsModel
+          .findOne({
+            "movies.movie_name": req.params.movie_name,
+          })
+          .select("movies.movie_name movies.shows");
+        // if movie is found, return the seat details
+        if (isMovieAvailable)
+          return res.json({
+            movie: isMovieAvailable.movies.filter(
+              (movie) => movie.movie_name === req.params.movie_name
+            ),
+          });
+        // if movie not found, add the movie property to the theater document
+        let update = [
+          ...isTheaterAvailable.movies,
+          {
+            movie_name: req.params.movie_name,
+            shows: [
+              {
+                time: req.params.time,
+                seats: [],
+              },
+            ],
+          },
+        ];
+        let newMovie = await seatsModel
+          .findOneAndUpdate(
+            { theater_name: isTheaterAvailable.theater_name },
+            { movies: update },
+            { new: true }
+          )
+          .select("movies.movie_name movies.shows");
+        newMovie.save();
         return res.json({
-          movie: _.pick(movieInfo.data, [
-            "original_title",
-            "id",
-            "overview",
-            "popularity",
-            "genres",
-            "adult",
-            "release_date",
-          ]),
-          theare: _.pick(theaterInfo.data, [
-            "theater_name",
-            "theater_id",
-            "location",
-            "movies",
-            "facilities",
-            "seats",
-          ]),
+          movie: newMovie.movies.filter(
+            (movie) => movie.movie_name === req.params.movie_name
+          ),
         });
+      }
 
-      return res.status(501).json({ error: "Internal server error!" });
-    } catch (err) {
-      return res.json({ error: err });
+      // if theater not found, then create new theater document
+      let newTheater = new seatsModel({
+        theater_name: req.params.theater_name,
+        movies: [
+          {
+            movie_name: req.params.movie_name,
+            shows: [
+              {
+                time: req.params.time,
+                seats: [],
+              },
+            ],
+          },
+        ],
+      });
+      newTheater.save();
+      return res.json({
+        movie: newTheater.movies.filter(
+          (movie) => movie.movie_name === req.params.movie_name
+        ),
+      });
+    } catch (error) {
+      res.json({ request_error: error.message });
     }
   }
 );

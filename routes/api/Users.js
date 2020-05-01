@@ -65,15 +65,14 @@ router.post("/login", async (req, res) => {
     if (!verifyUser) return res.status(400).json({ error: "invalid password" });
 
     // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
-    const payload = _.pick(user, ["fullname", "email"]);
-    const Token = jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 });
-
-    // when succesful return user information with jwt token
-
-    res.json({ ...user._doc, token: "Bearer " + Token });
+    const payload = _.pick(user, ["fullname", "email", "_id"]);
+    console.log("payload", payload);
+    jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 }, (err, token) => {
+      if (err) return res.status(500).json({ error: err });
+      // when succesful return user information with jwt token
+      res.json({ ...payload, token: "Bearer " + token });
+    });
   } catch (error) {
-    console.log(error);
-
     res.json({ error: error.message });
   }
 });
