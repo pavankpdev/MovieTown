@@ -66,7 +66,6 @@ router.post("/login", async (req, res) => {
 
     // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
     const payload = _.pick(user, ["fullname", "email", "_id"]);
-    console.log("payload", payload);
     jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 }, (err, token) => {
       if (err) return res.status(500).json({ error: err });
       // when succesful return user information with jwt token

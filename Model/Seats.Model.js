@@ -21,6 +21,7 @@ const seatSchema = new mongoose.Schema({
           seats: {
             type: Array,
             required: true,
+            default: [],
           },
         },
       ],

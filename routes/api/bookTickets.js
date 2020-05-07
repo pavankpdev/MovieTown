@@ -37,72 +37,130 @@ router.get(
     const { error } = validateMovieAndTheaterNames(req.params);
     if (error) return res.status(401).json({ validation_error: error });
     try {
-      // find theater in the database
-      const isTheaterAvailable = await seatsModel.findOne({
-        theater_name: { $eq: req.params.theater_name },
+      // check for theatrer availability
+      const theater = await seatsModel.findOne({
+        theater_name: req.params.theater_name,
       });
-      // if theater found, check for movie name in that theater object
-      if (isTheaterAvailable) {
-        const isMovieAvailable = await seatsModel
-          .findOne({
-            "movies.movie_name": req.params.movie_name,
-          })
-          .select("movies.movie_name movies.shows");
-        // if movie is found, return the seat details
-        if (isMovieAvailable)
-          return res.json({
-            movie: isMovieAvailable.movies.filter(
-              (movie) => movie.movie_name === req.params.movie_name
-            ),
-          });
-        // if movie not found, add the movie property to the theater document
-        let update = [
-          ...isTheaterAvailable.movies,
-          {
-            movie_name: req.params.movie_name,
-            shows: [
-              {
-                time: req.params.time,
-                seats: [],
-              },
-            ],
-          },
-        ];
-        let newMovie = await seatsModel
-          .findOneAndUpdate(
-            { theater_name: isTheaterAvailable.theater_name },
-            { movies: update },
-            { new: true }
-          )
-          .select("movies.movie_name movies.shows");
-        newMovie.save();
+      // if theater, not available create new theater
+      if (!theater) {
+        // creating a new theater document
+        const newTheater = new seatsModel({
+          theater_name: req.params.theater_name,
+          movies: [
+            {
+              movie_name: req.params.movie_name,
+              shows: [{ time: req.params.time }],
+            },
+          ],
+        });
+        // saving the document to database
+        newTheater.save();
+        // Sorting all the surplus data of new movie
+        const sortNewTheaterData = newTheater.movies.filter((movie) => {
+          return movie.movie_name === req.params.movie_name;
+        });
+        // return new theater
         return res.json({
-          movie: newMovie.movies.filter(
-            (movie) => movie.movie_name === req.params.movie_name
-          ),
+          movie_name: sortNewTheaterData[0].movie_name,
+          show: sortNewTheaterData[0].shows[0],
         });
       }
+      // if theater available,
+      // check for movie availability
+      const checkmovies = theater.movies.filter(
+        (movie) => movie.movie_name === req.params.movie_name
+      );
 
-      // if theater not found, then create new theater document
-      let newTheater = new seatsModel({
-        theater_name: req.params.theater_name,
-        movies: [
+      // if movie not available, create new one
+      if (!checkmovies[0]) {
+        // templating all the existing movies and new movie into an array
+        const oldMovies =
+          theater.movies.length !== 0
+            ? [
+                ...theater.movies,
+                {
+                  movie_name: req.params.movie_name,
+                  shows: [{ time: req.params.time }],
+                },
+              ]
+            : [
+                {
+                  movie_name: req.params.movie_name,
+                  shows: [{ time: req.params.time }],
+                },
+              ];
+
+        // updating the movie document in the database
+        const newMovie = await seatsModel.findOneAndUpdate(
           {
-            movie_name: req.params.movie_name,
-            shows: [
-              {
-                time: req.params.time,
-                seats: [],
-              },
-            ],
+            theater_name: req.params.theater_name,
           },
-        ],
+          { movies: oldMovies },
+          { new: true }
+        );
+
+        // save to DB
+        newMovie.save();
+
+        // Sorting all the surplus data of new movie
+        const sortNewMovieData = newMovie.movies.filter((movie) => {
+          return movie.movie_name === req.params.movie_name;
+        });
+        // return to the client
+        return res.json({
+          movie_name: sortNewMovieData[0].movie_name,
+          show: sortNewMovieData[0].shows[0],
+        });
+      }
+      // if movie is avaialble then, check for the specified time
+      // Sorting all the surplus data of exisiting movie
+      const sortTheaterData = theater.movies.filter((movie) => {
+        return movie.movie_name === req.params.movie_name;
       });
-      newTheater.save();
-      return res.json({
-        movie: newTheater.movies.filter(
+
+      // check for the specified time
+      const time = sortTheaterData[0].shows.filter(
+        (show) => show.time === req.params.time
+      );
+
+      // if the time is'nt available
+      if (time.length === 0) {
+        const oldshowInfo = [
+          ...sortTheaterData[0].shows,
+          {
+            time: req.params.time,
+          },
+        ];
+        // update the database
+        const newTime = await seatsModel.findOneAndUpdate(
+          {
+            theater_name: req.params.theater_name,
+            "movies.movie_name": req.params.movie_name,
+          },
+          { $set: { "movies.$.shows": oldshowInfo } },
+          { new: true }
+        );
+        // save to database
+        newTime.save();
+        // filter the surplus data returned
+        const sortMovieName = newTime.movies.filter(
           (movie) => movie.movie_name === req.params.movie_name
-        ),
+        );
+
+        const sortNewTimeData = sortMovieName[0].shows.filter(
+          (show) => show.time === req.params.time
+        );
+
+        return res.json({
+          movie_name: sortTheaterData[0].movie_name,
+          show: sortNewTimeData[0],
+        });
+      }
+      // if the specified time exists then,
+      // return to the client
+      return res.json({
+        movie_name: sortTheaterData[0].movie_name,
+        show: time[0],
       });
     } catch (error) {
       res.json({ request_error: error.message });
