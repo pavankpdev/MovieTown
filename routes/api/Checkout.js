@@ -2,11 +2,16 @@ const router = require("express").Router();
 const passport = require("passport");
 
 const seatsModel = require("../../Model/Seats.Model");
+const { validateMovieAndTheaterNames } = require("../../validation/validation");
 
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    // validate the input parameters
+    const { error } = validateMovieAndTheaterNames(req.params);
+    if (error) return res.status(401).json({ validation_error: error });
+
     try {
       // search for the theater
       const getSeats = await seatsModel.findOne({
@@ -19,10 +24,10 @@ router.post(
         .map((show) => show.shows.filter((show) => show.time === req.body.time))
         .flat();
 
+      // pushing the reserved seats to its respective object
       sortedData[0].seats.push(...req.body.seats);
 
-      // console.log(sortedData[0].__parentArray);
-
+      // updating the DB
       const updateSeats = await seatsModel.findOneAndUpdate(
         {
           theater_name: req.body.theater_name,
@@ -33,8 +38,10 @@ router.post(
         },
         { new: true }
       );
+      // saving to dataBase
       updateSeats.save();
-      res.send(updateSeats);
+      // return to client
+      res.json(updateSeats);
     } catch (error) {
       res.json({ request_error: error.message });
     }

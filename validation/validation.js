@@ -26,7 +26,7 @@ const validateMovieAndTheaterNames = (details) => {
   const schema = Joi.object({
     movie_name: Joi.string().required().min(3),
     theater_name: Joi.string().required().min(3),
-    time: Joi.string().required().min(4)
+    time: Joi.string().required().min(4),
   });
   return schema.validate(details);
 };
