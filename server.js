@@ -9,6 +9,7 @@ const user = require("./routes/api/Users");
 const seats = require("./routes/api/bookTickets");
 const search = require("./routes/api/SearchMovie");
 const theaters = require("./routes/api/Thearters");
+const checkout = require("./routes/api/Checkout");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/users", user);
 app.use("/movies/theaters", theaters);
 app.use("/movies/booktickets", seats);
 app.use("/movies/search", search);
+app.use("/movies/checkout", checkout);
 app.use(passport.initialize());
 
 // Passport Config
