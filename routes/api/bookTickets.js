@@ -6,6 +6,7 @@ const router = require("express").Router();
 const { THEATER_API_BASE_URL } = require("../../config/keys");
 const seatsModel = require("../../Model/Seats.Model");
 const { validateMovieAndTheaterNames } = require("../../validation/validation");
+const { seats } = require("../../utils/Seats.template");
 
 // @Route   GET /movies/booktickets/<movie_id>
 // @des     gets the details of all the theater from Theater APi
@@ -49,7 +50,7 @@ router.get(
           movies: [
             {
               movie_name: req.params.movie_name,
-              shows: [{ time: req.params.time }],
+              shows: [{ time: req.params.time, seats: seats }],
             },
           ],
         });
@@ -80,13 +81,13 @@ router.get(
                 ...theater.movies,
                 {
                   movie_name: req.params.movie_name,
-                  shows: [{ time: req.params.time }],
+                  shows: [{ time: req.params.time, seats: seats }],
                 },
               ]
             : [
                 {
                   movie_name: req.params.movie_name,
-                  shows: [{ time: req.params.time }],
+                  shows: [{ time: req.params.time, seats: seats }],
                 },
               ];
 
@@ -129,6 +130,7 @@ router.get(
           ...sortTheaterData[0].shows,
           {
             time: req.params.time,
+            seats: seats,
           },
         ];
         // update the database

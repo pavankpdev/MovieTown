@@ -24,6 +24,7 @@ const validateUserLogin = (user) => {
 // THEATER AND MOVIE NAME validation using Joi
 const validateMovieAndTheaterNames = (details) => {
   const schema = Joi.object({
+    seats: Joi.array(),
     movie_name: Joi.string().required().min(3),
     theater_name: Joi.string().required().min(3),
     time: Joi.string().required().min(4),

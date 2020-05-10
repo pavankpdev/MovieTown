@@ -3,12 +3,14 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 import MobileScreen from "../asset/Line 2.svg";
+import Seats from "./Seats.component";
 import "./styles/SelectSeats.styles.css";
 class SeatsComp extends Component {
   constructor() {
     super();
     this.state = {
       selectedMovie: [],
+      toggle: false,
     };
   }
   componentDidMount() {
@@ -22,10 +24,10 @@ class SeatsComp extends Component {
       <div>
         {/* image */}
         <div>
-          <div className="absolute w-full select-seat_backdropImage md:w-full">
-            <div className="px-6 flex justify-between items-center">
-              <div className="w-6/12 mt-10">
-                <h3 className="text-white font-bold text-2xl select-seat_title">
+          <div className="absolute w-full select-seat_backdropImage md:w-full  xs:hidden sm:hidden  md:block lg:block xl:block">
+            <div className="px-6 flex justify-between items-center xs:flex-none sm:flex-none lg:flex xl:flex">
+              <div className="w-6/12 mt-10 xs:hidden md:block sm:hidden lg:block xl:block">
+                <h3 className="text-white font-bold text-xl select-seat_title">
                   {this.state.selectedMovie.title}
                 </h3>
                 <h5 className="text-white font-semibold text-sm uppercase tracking-wider">
@@ -40,16 +42,6 @@ class SeatsComp extends Component {
                     : "DRAMA"}
                   &#8226;UA
                 </span>
-              </div>
-              <div className="w-6/12">
-                <center>
-                  <button
-                    className="hover:text-white focus:outline-none"
-                    onClick={() => this.setState({ toggle: true })}
-                  >
-                    <i className="fas fa-play-circle text-white fa-3x mt-16 md:mt-24 lg:mt-48"></i>
-                  </button>
-                </center>
               </div>
             </div>
           </div>
@@ -98,14 +90,16 @@ class SeatsComp extends Component {
           </div>
         </div>
         {/* screen */}
-        <div className="mt-5 md:hidden lg:hidden xl:hidden">
+        <div className="mt-8 md:hidden lg:hidden xl:hidden">
           <center>
-            <img src={MobileScreen} alt="screen" />
+            <img className="h-12" src={MobileScreen} alt="screen" />
           </center>
         </div>
         {/* seats */}
-        <div className="mt-5">
-          <div></div>
+        <div className="">
+          <div>
+            <Seats />
+          </div>
         </div>
       </div>
     );

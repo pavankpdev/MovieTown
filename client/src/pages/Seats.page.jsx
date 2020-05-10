@@ -9,7 +9,7 @@ class Seats extends Component {
 
   render() {
     return (
-      <div>
+      <div className="bg-white">
         <SeatsComp />
       </div>
     );
