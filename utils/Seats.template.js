@@ -125,6 +125,56 @@ const seats = [
       type: "checkbox",
       id: "LE5",
     },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LF1",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LF2",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LF3",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LF4",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LF5",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LG1",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LG2",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LG3",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LG4",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "LG5",
+    },
   ],
   [
     {
@@ -251,6 +301,56 @@ const seats = [
       className: "ml-2 mt-2 w-1/5 checkbox",
       type: "checkbox",
       id: "RE5",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RF1",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RF2",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RF3",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RF4",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RF5",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RG1",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RG2",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RG3",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RG4",
+    },
+    {
+      className: "ml-2 mt-2 w-1/5 checkbox",
+      type: "checkbox",
+      id: "RG5",
     },
   ],
 ];

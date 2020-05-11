@@ -60,6 +60,7 @@ router.get(
         const sortNewTheaterData = newTheater.movies.filter((movie) => {
           return movie.movie_name === req.params.movie_name;
         });
+
         // return new theater
         return res.json({
           movie_name: sortNewTheaterData[0].movie_name,
@@ -107,6 +108,7 @@ router.get(
         const sortNewMovieData = newMovie.movies.filter((movie) => {
           return movie.movie_name === req.params.movie_name;
         });
+
         // return to the client
         return res.json({
           movie_name: sortNewMovieData[0].movie_name,
@@ -158,6 +160,7 @@ router.get(
           show: sortNewTimeData[0],
         });
       }
+
       // if the specified time exists then,
       // return to the client
       return res.json({
