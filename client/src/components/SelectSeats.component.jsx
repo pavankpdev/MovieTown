@@ -10,6 +10,7 @@ class SeatsComp extends Component {
     super();
     this.state = {
       selectedMovie: [],
+      theaterDetails: [],
       toggle: false,
       seats: [["wx"], ["xw"]],
       selectedSeats: ["xyz"],
@@ -19,11 +20,12 @@ class SeatsComp extends Component {
     this.launchRazorPay = this.launchRazorPay.bind(this);
   }
   componentDidMount() {
-    if (!localStorage.selectedMovie) {
+    if (!localStorage.selectedMovie && !localStorage.theaterDetails) {
       alert("Something went wrong");
     }
     this.setState({
       selectedMovie: JSON.parse(localStorage.selectedMovie),
+      theaterDetails: JSON.parse(localStorage.theaterDetails),
     });
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -36,7 +38,7 @@ class SeatsComp extends Component {
   recordIds(e) {
     let oldData = this.state.selectedSeats;
     let price = Number(
-      oldData.length * this.props.location.state.theaterDetails.price +
+      oldData.length * this.state.theaterDetails.price +
         60 * oldData.length
     );
     if (oldData.includes(e.target.id)) {
@@ -45,7 +47,7 @@ class SeatsComp extends Component {
         selectedSeats: res,
         amount:
           this.state.amount -
-          (Number(this.props.location.state.theaterDetails.price) + 60),
+          (Number(this.state.theaterDetails.price) + 60),
       });
       return;
     }
@@ -74,14 +76,14 @@ class SeatsComp extends Component {
       },
       notes: {
         seats: this.state.selectedSeats,
-        theater_name: this.props.location.state.theaterDetails.name,
-        theater_address: this.props.location.state.theaterDetails.location,
+        theater_name: this.state.theaterDetails.name,
+        theater_address: this.state.theaterDetails.location,
         movie_name: this.state.selectedMovie.title,
-        time: this.props.location.state.theaterDetails.time,
-        price: this.props.location.state.theaterDetails.price,
+        time: this.state.theaterDetails.time,
+        price: this.state.theaterDetails.price,
         quantity: this.state.selectedSeats.length - 1,
-        type: this.props.location.state.theaterDetails.type,
-        date: `${this.props.location.state.theaterDetails.date} ${this.props.location.state.theaterDetails.month}`,
+        type: this.state.theaterDetails.type,
+        date: `${this.state.theaterDetails.date} ${this.state.theaterDetails.month}`,
       },
       theme: {
         color: "#5a67d8",
@@ -104,16 +106,16 @@ class SeatsComp extends Component {
         {/* theater info */}
         <div className="mx-4 mt-5">
           <h3 className="text-xl font-bold text-headingColor lg:text-2xl">
-            {this.props.location.state.theaterDetails.name}
+            {this.state.theaterDetails.name}
           </h3>
           <h3 className="text-xs font-light w-10/12 truncate text-gray-600 lg:text-sm lg:text-headingColor">
-            {this.props.location.state.theaterDetails.location}
+            {this.state.theaterDetails.location}
           </h3>
           <span className="uppercase text-sm text-gray-600">
-            {this.props.location.state.theaterDetails.date}{" "}
-            {this.props.location.state.theaterDetails.month} |{" "}
-            {this.props.location.state.theaterDetails.time} |{" "}
-            {this.props.location.state.theaterDetails.type}{" "}
+            {this.state.theaterDetails.date}{" "}
+            {this.state.theaterDetails.month} |{" "}
+            {this.state.theaterDetails.time} |{" "}
+            {this.state.theaterDetails.type}{" "}
           </span>
         </div>
         {/* Ticket legends */}
@@ -180,7 +182,7 @@ class SeatsComp extends Component {
           <h3 className="text-red-500 text-xs tracking-wider lg:text-sm">
             Please use below card details for payment and{" "}
             <span className="font-bold">
-              please remember to un-check the remember card
+              If otp is asked, please click skip saved cards
             </span>
           </h3>
           <div className="flex justify-around items-center text-xs text-headingColor lg:justify-start lg:text-sm">
@@ -206,11 +208,11 @@ class SeatsComp extends Component {
               <div className="flex mx-auto items-baseline justify-between">
                 <h3 className="   lg:text-xl text-white">Ticket Price</h3>
                 <h4 className=" text-xs  lg:text-sm text-white">
-                  {this.props.location.state.theaterDetails.price} x{" "}
+                  {this.state.theaterDetails.price} x{" "}
                   {this.state.selectedSeats.length - 1}
                 </h4>
                 <h3 className="  lg:text-xl text-white">
-                  {this.props.location.state.theaterDetails.price *
+                  {this.state.theaterDetails.price *
                     (this.state.selectedSeats.length - 1)}
                 </h3>
               </div>
@@ -227,7 +229,7 @@ class SeatsComp extends Component {
             <div className="flex mx-auto justify-between items-baseline lg:text-xl  text-white">
               <h3 className=" font-semibold">Grand Total</h3>
               <h3 className=" font-semibold lg:text-xl">
-                {this.props.location.state.theaterDetails.price *
+                {this.state.theaterDetails.price *
                   (this.state.selectedSeats.length - 1) +
                   60 * (this.state.selectedSeats.length - 1)}
               </h3>

@@ -38,7 +38,13 @@ router.post("/register", async (req, res) => {
 
     // save to database
     newUser = await newUser.save();
-    res.json(newUser);
+    // generate JSON-WEB-TOKEN for the user EXPIRES IN 3HRS
+    const payload = _.pick(newUser, ["fullname", "email", "_id"]);
+    jwt.sign(payload, JWT_PRIVATE_KEY, { expiresIn: 10800 }, (err, token) => {
+      if (err) return res.status(500).json({ error: err });
+      // when succesful return user information with jwt token
+      return res.json({ ...payload, token: "Bearer " + token });
+    });
   } catch (error) {
     res.json({ error: error.message });
   }

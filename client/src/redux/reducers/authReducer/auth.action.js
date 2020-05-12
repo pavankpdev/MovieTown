@@ -14,8 +14,17 @@ export const registerUser = (userData, history) => async (dispatch) => {
   //   sending data to server with axios
   try {
     const registerUser = await axios.post("/users/register", userData);
-    dispatch(setUser(registerUser.data));
-    // redirecting user to home page if successfully registered
+    // save the jwt token in localStorage
+    const { token } = registerUser.data;
+    localStorage.setItem("jwtToken", token);
+    // set token to auth header
+    defaultAxiosHeader(token);
+    if (localStorage.customRoute) {
+      return (window.location.href = "/movies/seats");
+    }
+    // decode token to get user data
+    const decodedUser = jwt_decode(token);
+    dispatch(setUser(decodedUser));
     return history.push("/");
   } catch (error) {
     dispatch({
@@ -36,6 +45,9 @@ export const loginUser = (userData) => async (dispatch) => {
     defaultAxiosHeader(token);
     // decode token to get user data
     const decodedUser = jwt_decode(token);
+    if (localStorage.customRoute) {
+      return (window.location.href = "/movies/seats");
+    }
     dispatch(setUser(decodedUser));
   } catch (error) {
     dispatch({

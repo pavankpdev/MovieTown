@@ -9,10 +9,25 @@ class TheaterList extends Component {
       time: 0,
     };
     this.onClickTime = this.onClickTime.bind(this);
+    this.onClickSelecTheater = this.onClickSelecTheater.bind(this);
   }
 
   onClickTime(e) {
     this.setState({ time: e.target.id }, () => {});
+  }
+
+  onClickSelecTheater() {
+    const theaterDetails = {
+      name: this.props.name,
+      location: this.props.location,
+      time: this.state.time,
+      price: this.props.price,
+      type: this.props.type,
+      date: this.props.date,
+      month: this.props.month,
+    };
+    localStorage.setItem("theaterDetails", JSON.stringify(theaterDetails));
+    window.location.href = "/movies/seats";
   }
 
   render() {
@@ -23,7 +38,9 @@ class TheaterList extends Component {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold text-lg lg:text-2xl">{this.props.name}</h3>
+            <h3 className="font-semibold text-lg lg:text-2xl">
+              {this.props.name}
+            </h3>
             <h6 className="text-xs w-48 truncate md:w-full lg:w-full lg:text-sm xl:w-full">
               {this.props.location}
             </h6>
@@ -48,32 +65,18 @@ class TheaterList extends Component {
               ))}
             </div>
             <div>
-              <Link
-                to={{
-                  pathname: "/movies/seats",
-                  state: {
-                    theaterDetails: {
-                      name: this.props.name,
-                      location: this.props.location,
-                      time: this.state.time,
-                      price: this.props.price,
-                      type: this.props.type,
-                      date: this.props.date,
-                      month: this.props.month,
-                    },
-                  },
-                }}
+              <button
+                id={this.props.id}
+                className="mt-1  py-2 text-xs text-logoColor font-semibold lg:text-sm"
+                onClick={this.onClickSelecTheater}
               >
-                <button
-                  id={this.props.id}
-                  className="mt-1  py-2 text-xs text-logoColor font-semibold lg:text-sm"
-                >
-                  Select Seats <i className="fas fa-arrow-right"></i>
-                </button>
-              </Link>
+                Select Seats <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
-          <div className="font-semibold text-lg lg:text-2xl">₹{this.props.price}</div>
+          <div className="font-semibold text-lg lg:text-2xl">
+            ₹{this.props.price}
+          </div>
         </div>
       </div>
     );

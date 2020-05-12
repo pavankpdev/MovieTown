@@ -31,7 +31,7 @@ class SigninPage extends Component {
       password: this.state.password,
     };
 
-    this.props.loginUser(userData, this.props.history);
+    this.props.loginUser(userData);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
