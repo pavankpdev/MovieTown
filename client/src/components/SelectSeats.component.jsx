@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 
 import MobileScreen from "../asset/Line 2.svg";
 import PcScreen from "../asset/Path 17.svg";
-import Seats from "./Seats.component";
 import "./styles/SelectSeats.styles.css";
 class SeatsComp extends Component {
   constructor() {
@@ -14,8 +13,10 @@ class SeatsComp extends Component {
       toggle: false,
       seats: [["wx"], ["xw"]],
       selectedSeats: ["xyz"],
+      amount: 0,
     };
     this.recordIds = this.recordIds.bind(this);
+    this.launchRazorPay = this.launchRazorPay.bind(this);
   }
   componentDidMount() {
     if (!localStorage.selectedMovie) {
@@ -26,7 +27,6 @@ class SeatsComp extends Component {
     });
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps) {
       this.setState({
         seats: nextProps.seats,
@@ -34,9 +34,58 @@ class SeatsComp extends Component {
     }
   }
   recordIds(e) {
+    let oldData = this.state.selectedSeats;
+    let price = Number(
+      oldData.length * this.props.location.state.theaterDetails.price +
+        60 * oldData.length
+    );
+    if (oldData.includes(e.target.id)) {
+      let res = oldData.filter((data) => data !== e.target.id);
+      this.setState({
+        selectedSeats: res,
+        amount:
+          this.state.amount -
+          (Number(this.props.location.state.theaterDetails.price) + 60),
+      });
+      return;
+    }
     this.setState({
       selectedSeats: [...this.state.selectedSeats, `${e.target.id}`],
+      amount: price,
     });
+  }
+  launchRazorPay() {
+    let options = {
+      key: "rzp_test_WFcjTVM7sIrlJx",
+      amount: `${this.state.amount * 100}`,
+      currency: "INR",
+      name: "Movie Town",
+      description: "Cinema Seat Reservation",
+      image: "https://i.ibb.co/GH9nk13/typographical.png",
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+      },
+      prefill: {
+        name: this.props.user.fullname,
+        email: this.props.user.email,
+      },
+      notes: {
+        seats: this.state.selectedSeats,
+        theater_name: this.props.location.state.theaterDetails.name,
+        theater_address: this.props.location.state.theaterDetails.location,
+        movie_name: this.state.selectedMovie.title,
+        time: this.props.location.state.theaterDetails.time,
+        price: this.props.location.state.theaterDetails.price,
+        quantity: this.state.selectedSeats.length - 1,
+        type: this.props.location.state.theaterDetails.type,
+        date: `${this.props.location.state.theaterDetails.date} ${this.props.location.state.theaterDetails.month}`,
+      },
+      theme: {
+        color: "#5a67d8",
+      },
+    };
+    let rzp = new window.Razorpay(options);
+    rzp.open();
   }
   render() {
     return (
@@ -101,80 +150,79 @@ class SeatsComp extends Component {
           </center>
         </div>
         {/* seats */}
-        <div className="flex justify-around lg:mt-4">
-          <div className="container w-6/12">
-            <div className="inside-container p-3 flex flex-wrap mb-4 lg:px-48">
-              {this.state.seats[0].map((seat) => (
-                <input
-                  {...seat}
-                  key={Math.random()}
-                  onChange={this.recordIds}
-                  checked={
-                    this.state.selectedSeats.includes(seat.id) ? true : false
-                  }
-                />
-              ))}
-            </div>
-          </div>
-          <div className="container w-6/12">
-            <div className="inside-container p-3 flex flex-wrap mb-4 lg:px-48">
-              {this.state.seats[1].map((seat) => (
-                <input
-                  {...seat}
-                  key={Math.random()}
-                  onChange={this.recordIds}
-                  checked={
-                    this.state.selectedSeats.includes(seat.id) ? true : false
-                  }
-                />
-              ))}
-            </div>
-          </div>
+        <div className="flex justify-center flex-wrap mx-4 lg:mt-6 lg:mx-64 seats">
+          {this.state.seats[0].map((seat) => (
+            <input
+              {...seat}
+              key={Math.random()}
+              onChange={this.recordIds}
+              checked={
+                this.state.selectedSeats.includes(seat.id) ? true : false
+              }
+            />
+          ))}
+          {this.state.seats[1].map((seat) => (
+            <input
+              {...seat}
+              key={Math.random()}
+              onChange={this.recordIds}
+              checked={
+                this.state.selectedSeats.includes(seat.id) ? true : false
+              }
+            />
+          ))}
         </div>
         {/* summary */}
-        <div className="w-9/12 ml-4">
-          <h1 className="text-logoColor text-lg font-semibold">
-            Order Summary
-          </h1>
-          <div className="mt-2 border-b-2 border-headingColor">
-            <div className="flex mx-auto justify-around items-baseline">
-              <h3 className="font-semibold text-headingColor">Ticket Price</h3>
-              <h4 className="text-gray-600 text-xs">
-                {this.props.location.state.theaterDetails.price} x{" "}
-                {this.state.selectedSeats.length - 1}
-              </h4>
-              <h3 className="font-semibold text-headingColor">
+        <div className="mt-12 lg:flex lg:justify-around mt-12 lg:items-center bg-logoColor py-4 text-white mx-4 rounded-extendedcorner shadow-lg lg:mx-6 lg:py-8">
+          <div className="w-9/12 ml-4  lg:w-4/12 lg:mt-0">
+            <h1 className="text-xl font-semibold lg:text-2xl text-white">
+              Order Summary
+            </h1>
+            <div className="mt-2 border-b-2 border-white">
+              <div className="flex mx-auto items-baseline justify-between">
+                <h3 className="font-semibold   lg:text-xl text-white">
+                  Ticket Price
+                </h3>
+                <h4 className=" text-xs  lg:text-sm text-white">
+                  {this.props.location.state.theaterDetails.price} x{" "}
+                  {this.state.selectedSeats.length - 1}
+                </h4>
+                <h3 className="font-semibold  lg:text-xl text-white">
+                  {this.props.location.state.theaterDetails.price *
+                    (this.state.selectedSeats.length - 1)}
+                </h3>
+              </div>
+              <div className="flex mx-auto items-baseline  justify-between">
+                <h3 className="font-semibold lg:text-xl text-white">
+                  Service Fee
+                </h3>
+                <h4 className=" text-xs   lg:text-sm text-white">
+                  60 x {this.state.selectedSeats.length - 1}
+                </h4>
+                <h3 className="font-semibold lg:text-xl text-white">
+                  {60 * (this.state.selectedSeats.length - 1)}
+                </h3>
+              </div>
+            </div>
+            <div className="flex mx-auto justify-between items-baseline lg:text-xl  text-white">
+              <h3>Grand Total</h3>
+              <h3 className=" lg:text-xl">
                 {this.props.location.state.theaterDetails.price *
-                  (this.state.selectedSeats.length - 1)}
-              </h3>
-            </div>
-            <div className="flex mx-auto justify-around items-baseline">
-              <h3 className="font-semibold text-headingColor">Service Fee</h3>
-              <h4 className="text-gray-600 text-xs">
-                60 x {this.state.selectedSeats.length - 1}
-              </h4>
-              <h3 className="font-semibold text-headingColor">
-                {60 * (this.state.selectedSeats.length - 1)}
+                  (this.state.selectedSeats.length - 1) +
+                  60 * (this.state.selectedSeats.length - 1)}
               </h3>
             </div>
           </div>
-          <div className="flex mx-auto justify-between items-baseline text-headingColor px-4 border-b-2 border-headingColor">
-            <h3>Grand Total</h3>
-            <h3>
-              {this.props.location.state.theaterDetails.price *
-                (this.state.selectedSeats.length - 1) +
-                60 * (this.state.selectedSeats.length - 1)}
-            </h3>
+          {/* checkout button */}
+          <div className="content-center mx-4 mt-4 lg:w-4/12 lg:mt-0">
+            <button
+              type="button"
+              className="w-full uppercase text-xs tracking-wider text-white font-semibold rounded-sm py-2 shadow-lg lg:w-8/12 lg:py-5 lg:text-sm text-logoColor bg-white"
+              onClick={this.launchRazorPay}
+            >
+              book my ticket <i className="fas fa-lock"></i>
+            </button>
           </div>
-        </div>
-        {/* checkout button */}
-        <div className="content-center mx-4 mt-4">
-          <button
-            type="button"
-            className="w-full uppercase text-xs tracking-wider text-white font-semibold bg-logoColor rounded-sm py-2"
-          >
-            book my ticket <i className="fas fa-arrow-right"></i>
-          </button>
         </div>
       </div>
     );

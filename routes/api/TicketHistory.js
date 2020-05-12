@@ -4,6 +4,10 @@ const _ = require("lodash");
 
 const { ticketModel } = require("../../Model/TicketHistory.Model");
 const { validateUserTicketHistory } = require("../../validation/validation");
+
+// @Route   POST /users/mytickets
+// @des     stores the booked ticket to database
+// @access  PRIVATE
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

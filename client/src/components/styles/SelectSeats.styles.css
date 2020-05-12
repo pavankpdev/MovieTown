@@ -88,16 +88,5 @@ input[disabled] {
     height: 20px;
     position: relative;
   }
-
-  @media (min-width: 300px) {
-    .select-seat_backdropImage {
-      height: 25rem;
-      background-color: #383a47;
-      opacity: 50%;
-    }
-
-    .select-seat_title {
-      opacity: 100%;
-    }
-  }
+  
 }

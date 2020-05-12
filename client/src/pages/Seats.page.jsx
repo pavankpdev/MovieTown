@@ -9,6 +9,7 @@ class Seats extends Component {
     super();
     this.state = {
       seats: [],
+      user: [],
     };
   }
   // GET request made everytime the component mounts/starts
@@ -19,17 +20,14 @@ class Seats extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps) {
-      console.log(nextProps);
 
-      this.setState({ seats: nextProps.seatInfoRedux.seats });
+      this.setState({ seats: nextProps.seatInfoRedux.seats, user: nextProps.userRedux });
     }
   }
   render() {
-    console.log(this.state.seats);
-
     return (
       <div className="bg-white">
-        <SeatsComp seats={this.state.seats} />;
+        <SeatsComp seats={this.state.seats} user={this.state.user} />;
       </div>
     );
   }
@@ -37,5 +35,6 @@ class Seats extends Component {
 
 const mapStateToProps = (state) => ({
   seatInfoRedux: state.getSeatInfo.seatsInfo,
+  userRedux: state.auth.user,
 });
 export default connect(mapStateToProps, { getSeatsInfo })(withRouter(Seats));

@@ -4,6 +4,9 @@ const passport = require("passport");
 const seatsModel = require("../../Model/Seats.Model");
 const { validateMovieAndTheaterNames } = require("../../validation/validation");
 
+// @Route   POST /movies/checkout
+// @des     updates the seating information in the database
+// @access  PRIVATE
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

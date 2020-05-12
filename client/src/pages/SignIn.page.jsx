@@ -38,7 +38,10 @@ class SigninPage extends Component {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/");
     } else {
-      return;
+      this.setState({ error: nextProps.errors });
+      setTimeout(() => {
+        this.setState({ error: "" });
+      }, 5000);
     }
   }
 
@@ -58,6 +61,31 @@ class SigninPage extends Component {
         </div>
         <div className="mx-8 mt-10 md:mx-48 lg:mx-24 lg:w-1/3 lg:mt-48">
           <div className="bg-white rounded-lg shadow-xl lg:rounded-extendedcorner lg:shadow-2xl">
+            {/* error alert */}
+            <div className={this.state.error ? "block" : "hidden"}>
+              <div
+                className="bg-red-100 border-t-4 border-red-500 rounded-lg text-teal-900 px-4 py-3"
+                role="alert"
+              >
+                <div className="flex">
+                  <div className="py-1">
+                    <svg
+                      className="fill-current h-6 w-6 text-red-500 mr-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-bold">{this.state.error}</p>
+                    <p className="text-sm">
+                      Make sure to fix these errors and try again.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div>
               <div className="pt-6">
                 <center>
