@@ -61,6 +61,12 @@ if (process.env.NODE_ENV === "production") {
   app.get("/auth/signup", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
+  app.get("/movies/theater", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+  app.get("/movies/seats", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 app.get("*", (req, res) => {

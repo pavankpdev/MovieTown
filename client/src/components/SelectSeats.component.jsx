@@ -55,6 +55,9 @@ class SeatsComp extends Component {
     });
   }
   launchRazorPay() {
+    if (this.state.amount === 0) {
+      return alert("Please select atleast one seat to proceed");
+    }
     let options = {
       key: "rzp_test_WFcjTVM7sIrlJx",
       amount: `${this.state.amount * 100}`,
@@ -172,6 +175,27 @@ class SeatsComp extends Component {
             />
           ))}
         </div>
+        {/* caution */}
+        <div className="mx-3 mt-12 lg:mx-8">
+          <h3 className="text-red-500 text-xs tracking-wider lg:text-sm">
+            Please use below card details for payment and{" "}
+            <span className="font-bold">
+              please remember to un-check the remember card
+            </span>
+          </h3>
+          <div className="flex justify-around items-center text-xs text-headingColor lg:justify-start lg:text-sm">
+            <ul>
+              <li>Card no:- 5104 0600 0000 0008 </li>
+              <li>exp:- 12/21 </li>
+              <li>cvv: 123</li>
+            </ul>
+            <ul className="lg:ml-4">
+              <li>Card no:- 4111 1111 1111 1111 </li>
+              <li>exp:- 12/21 </li>
+              <li>cvv: 123</li>
+            </ul>
+          </div>
+        </div>
         {/* summary */}
         <div className="mt-12 lg:flex lg:justify-around mt-12 lg:items-center bg-logoColor py-4 text-white mx-4 rounded-extendedcorner shadow-lg lg:mx-6 lg:py-8">
           <div className="w-9/12 ml-4  lg:w-4/12 lg:mt-0">
@@ -180,33 +204,29 @@ class SeatsComp extends Component {
             </h1>
             <div className="mt-2 border-b-2 border-white">
               <div className="flex mx-auto items-baseline justify-between">
-                <h3 className="font-semibold   lg:text-xl text-white">
-                  Ticket Price
-                </h3>
+                <h3 className="   lg:text-xl text-white">Ticket Price</h3>
                 <h4 className=" text-xs  lg:text-sm text-white">
                   {this.props.location.state.theaterDetails.price} x{" "}
                   {this.state.selectedSeats.length - 1}
                 </h4>
-                <h3 className="font-semibold  lg:text-xl text-white">
+                <h3 className="  lg:text-xl text-white">
                   {this.props.location.state.theaterDetails.price *
                     (this.state.selectedSeats.length - 1)}
                 </h3>
               </div>
               <div className="flex mx-auto items-baseline  justify-between">
-                <h3 className="font-semibold lg:text-xl text-white">
-                  Service Fee
-                </h3>
+                <h3 className=" lg:text-xl text-white">Service Fee</h3>
                 <h4 className=" text-xs   lg:text-sm text-white">
                   60 x {this.state.selectedSeats.length - 1}
                 </h4>
-                <h3 className="font-semibold lg:text-xl text-white">
+                <h3 className=" lg:text-xl text-white">
                   {60 * (this.state.selectedSeats.length - 1)}
                 </h3>
               </div>
             </div>
             <div className="flex mx-auto justify-between items-baseline lg:text-xl  text-white">
-              <h3>Grand Total</h3>
-              <h3 className=" lg:text-xl">
+              <h3 className=" font-semibold">Grand Total</h3>
+              <h3 className=" font-semibold lg:text-xl">
                 {this.props.location.state.theaterDetails.price *
                   (this.state.selectedSeats.length - 1) +
                   60 * (this.state.selectedSeats.length - 1)}
@@ -220,7 +240,7 @@ class SeatsComp extends Component {
               className="w-full uppercase text-xs tracking-wider text-white font-semibold rounded-sm py-2 shadow-lg lg:w-8/12 lg:py-5 lg:text-sm text-logoColor bg-white"
               onClick={this.launchRazorPay}
             >
-              book my ticket <i className="fas fa-lock"></i>
+              Pay Securely <i className="fas fa-lock"></i>
             </button>
           </div>
         </div>
