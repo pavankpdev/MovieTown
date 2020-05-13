@@ -11,12 +11,11 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    console.log(req.body);
-
     try {
       // storing the data in a constant to reuse
       const userData = [
         _.pick(req.body, [
+          "poster",
           "theater_name",
           "theater_address",
           "movie_name",
@@ -57,6 +56,21 @@ router.post(
       // save to DB
       updateHistory.save();
       return res.json(updateHistory);
+    } catch (error) {
+      res.json({ request_error: error.message });
+    }
+  }
+);
+// @Route   GET /users/mytickets/get
+// @des     get all the tickets info of the specified email
+// @access  PRIVATE
+router.get(
+  "/get/:email",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      const history = await ticketModel.findOne({ email: req.params.email });
+      res.send(history);
     } catch (error) {
       res.json({ request_error: error.message });
     }

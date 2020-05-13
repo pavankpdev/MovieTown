@@ -71,6 +71,7 @@ class SeatsComp extends Component {
       theater_name: this.state.theaterDetails.name,
       theater_address: this.state.theaterDetails.location,
       movie_name: this.state.selectedMovie.title,
+      poster: this.state.selectedMovie.poster_path,
       time: this.state.theaterDetails.time,
       price: this.state.theaterDetails.price,
       quantity: this.state.selectedSeats.length - 1,

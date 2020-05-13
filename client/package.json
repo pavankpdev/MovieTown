@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
     "postcss-cli": "^7.1.0",
+    "qrcode.react": "^1.0.0",
     "razorpay": "^2.0.6",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",

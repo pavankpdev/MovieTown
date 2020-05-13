@@ -64,6 +64,6 @@ export const logoutUser = () => (dispatch) => {
   defaultAxiosHeader();
   // Remove the details from store by passing empty SET_CURRENT_USER and empty payload
   dispatch(setUser());
-  // redirect the user back to signin page
-  window.location.href = "/auth/signin";
+  // redirect the user back to home page
+  window.location.href = "/";
 };

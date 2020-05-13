@@ -13,6 +13,7 @@ import MovieInfoPage from "./pages/MovieInfo.page";
 import SearchMovies from "./pages/SearchMovies.page";
 import SelectTheater from "./pages/SelectTheaters.pages";
 import Seats from "./pages/Seats.page";
+import Mytickets from "./pages/Mytickets.pages";
 import UnrestrictedHOC from "./HOC/Unrestricted.HOC";
 import RestrictedHOC from "./HOC/Restricted.HOC";
 import store from "./redux/store";
@@ -55,6 +56,7 @@ class App extends Component {
               exact
             />
             <UnrestrictedHOC component={Seats} path="/movies/seats" exact />
+            <UnrestrictedHOC component={Mytickets} path="/mytickets" exact />
             <RestrictedHOC exact path="/auth/signin" component={SignInPage} />
             <RestrictedHOC exact path="/auth/signup" component={SignUpPage} />
           </div>

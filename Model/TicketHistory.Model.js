@@ -9,6 +9,7 @@ const Schema = new mongoose.Schema({
   },
   history: [
     {
+      poster: { type: String, required: true, minlength: 3 },
       theater_name: {
         type: String,
         required: true,
