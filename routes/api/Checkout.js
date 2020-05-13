@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 
 const seatsModel = require("../../Model/Seats.Model");
-const { validateMovieAndTheaterNames } = require("../../validation/validation");
 
 // @Route   POST /movies/checkout
 // @des     updates the seating information in the database
@@ -11,9 +10,6 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    // validate the input parameters
-    const { error } = validateMovieAndTheaterNames(req.body);
-    if (error) return res.status(401).json({ validation_error: error });
 
     try {
       // search for the theater

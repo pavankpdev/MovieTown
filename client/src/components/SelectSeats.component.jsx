@@ -1,6 +1,8 @@
 import React from "react";
 import { Component } from "react";
 import { withRouter } from "react-router-dom";
+import swal from "@sweetalert/with-react";
+import { Success_payment } from "../function/Success_payment";
 
 import MobileScreen from "../asset/Line 2.svg";
 import PcScreen from "../asset/Path 17.svg";
@@ -21,7 +23,12 @@ class SeatsComp extends Component {
   }
   componentDidMount() {
     if (!localStorage.selectedMovie && !localStorage.theaterDetails) {
-      alert("Something went wrong");
+      swal(
+        <div>
+          <h1>Hello world!</h1>
+          <p>This is now rendered with JSX!</p>
+        </div>
+      );
     }
     this.setState({
       selectedMovie: JSON.parse(localStorage.selectedMovie),
@@ -38,16 +45,14 @@ class SeatsComp extends Component {
   recordIds(e) {
     let oldData = this.state.selectedSeats;
     let price = Number(
-      oldData.length * this.state.theaterDetails.price +
-        60 * oldData.length
+      oldData.length * this.state.theaterDetails.price + 60 * oldData.length
     );
     if (oldData.includes(e.target.id)) {
       let res = oldData.filter((data) => data !== e.target.id);
       this.setState({
         selectedSeats: res,
         amount:
-          this.state.amount -
-          (Number(this.state.theaterDetails.price) + 60),
+          this.state.amount - (Number(this.state.theaterDetails.price) + 60),
       });
       return;
     }
@@ -60,6 +65,18 @@ class SeatsComp extends Component {
     if (this.state.amount === 0) {
       return alert("Please select atleast one seat to proceed");
     }
+    let data = {
+      email: this.props.user.email,
+      seats: this.state.selectedSeats,
+      theater_name: this.state.theaterDetails.name,
+      theater_address: this.state.theaterDetails.location,
+      movie_name: this.state.selectedMovie.title,
+      time: this.state.theaterDetails.time,
+      price: this.state.theaterDetails.price,
+      quantity: this.state.selectedSeats.length - 1,
+      type: this.state.theaterDetails.type,
+      date: `${this.state.theaterDetails.date} ${this.state.theaterDetails.month}`,
+    };
     let options = {
       key: "rzp_test_WFcjTVM7sIrlJx",
       amount: `${this.state.amount * 100}`,
@@ -68,23 +85,31 @@ class SeatsComp extends Component {
       description: "Cinema Seat Reservation",
       image: "https://i.ibb.co/GH9nk13/typographical.png",
       handler: function (response) {
-        alert(response.razorpay_payment_id);
+        Success_payment(data);
+        swal(
+          <div>
+            <center>
+              <img
+                src="https://i.ibb.co/TWqBp2P/pluto-welcome.png"
+                alt="success"
+                className="w-9/12"
+              />
+              <h2 className="mt-5 text-headingColor text-lg font-bold">
+                Yay!. Your seat has been reserved.
+              </h2>
+              <h4 className="text-gray-700 text-xs font-semibold ">
+                You can find your ticket in ticket cart{" "}
+                <i className="fas fa-shopping-basket fa-lg mr-8 text-logoColor"></i>
+              </h4>
+            </center>
+          </div>
+        );
       },
       prefill: {
         name: this.props.user.fullname,
         email: this.props.user.email,
       },
-      notes: {
-        seats: this.state.selectedSeats,
-        theater_name: this.state.theaterDetails.name,
-        theater_address: this.state.theaterDetails.location,
-        movie_name: this.state.selectedMovie.title,
-        time: this.state.theaterDetails.time,
-        price: this.state.theaterDetails.price,
-        quantity: this.state.selectedSeats.length - 1,
-        type: this.state.theaterDetails.type,
-        date: `${this.state.theaterDetails.date} ${this.state.theaterDetails.month}`,
-      },
+      
       theme: {
         color: "#5a67d8",
       },
@@ -112,10 +137,8 @@ class SeatsComp extends Component {
             {this.state.theaterDetails.location}
           </h3>
           <span className="uppercase text-sm text-gray-600">
-            {this.state.theaterDetails.date}{" "}
-            {this.state.theaterDetails.month} |{" "}
-            {this.state.theaterDetails.time} |{" "}
-            {this.state.theaterDetails.type}{" "}
+            {this.state.theaterDetails.date} {this.state.theaterDetails.month} |{" "}
+            {this.state.theaterDetails.time} | {this.state.theaterDetails.type}{" "}
           </span>
         </div>
         {/* Ticket legends */}

@@ -3,7 +3,6 @@ const passport = require("passport");
 const _ = require("lodash");
 
 const { ticketModel } = require("../../Model/TicketHistory.Model");
-const { validateUserTicketHistory } = require("../../validation/validation");
 
 // @Route   POST /users/mytickets
 // @des     stores the booked ticket to database
@@ -12,8 +11,7 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const { error } = validateUserTicketHistory(req.body);
-    if (error) return res.status(401).json({ validation_error: error.details[0].message });
+    console.log(req.body);
 
     try {
       // storing the data in a constant to reuse

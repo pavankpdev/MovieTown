@@ -32,24 +32,7 @@ const validateMovieAndTheaterNames = (details) => {
   return schema.validate(details);
 };
 
-// USER TICKET HISTORY validation using Joi
-const validateUserTicketHistory = (data) => {
-  const schema = Joi.object({
-    email: Joi.string().required().min(6).email(),
-    movie_name: Joi.string().required().min(3),
-    theater_name: Joi.string().required().min(3),
-    time: Joi.string().required().min(4),
-    theater_address: Joi.string().required().min(8),
-    price: Joi.number().required(),
-    quantity: Joi.number().required(),
-    type: Joi.string().required().min(3),
-    date: Joi.string().required().min(3),
-  });
-
-  return schema.validate(data);
-};
 
 exports.validateUserRegister = validateUserRegister;
 exports.validateUserLogin = validateUserLogin;
 exports.validateMovieAndTheaterNames = validateMovieAndTheaterNames;
-exports.validateUserTicketHistory = validateUserTicketHistory;
