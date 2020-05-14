@@ -1,7 +1,11 @@
-
 body {
   margin: 0;
   font-family: Poppins;
-  background-color: #e2e8f0;
-
+  background-color: #fff;
+}
+.slick-prev:before {
+  background-color: #5a67d8;
+}
+.slick-next:before {
+  background-color: #5a67d8;
 }

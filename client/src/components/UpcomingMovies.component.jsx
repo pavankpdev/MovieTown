@@ -14,14 +14,14 @@ const UpcomingMovie = ({
   const [click, setClick] = useState(false);
 
   return (
-    <div className="mx-4 my-4 md:w-1/2 md:mx-0 md:my-2  lg:my-3 lg:mx-2 lg:w-1/4">
-      <div className="mx-6 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
+    <div className="lg:pl-0 pb-10 mt-12">
+      <div className="sm:mx-4 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-72 lg:mx-0 lg:shadow-2xl">
         <img
           className="h-64 w-full object-fill object-contain"
           src={image}
           alt={`${title} poster`}
         />
-        <div className="px-3 py-4 flex justify-between items-center lg:px-3">
+        <div className="px-3 py-4 flex justify-between items-center lg:px-0">
           <div>
             <div className="flex items-baseline">
               <h4 className="text-headingColor font-semibold text-lg w-24 truncate overflow-hidden lg:text-2xl lg:w-32">
@@ -44,7 +44,7 @@ const UpcomingMovie = ({
             id={id}
             onClick={() => setClick(click ? false : true)}
             type="button"
-            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor sm:text-tiny md:text-xs lg:text-xs lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
+            className="uppercase border-2 border-logoColor rounded px-2 py-2 text-xs tracking-wider font-semibold text-logoColor text-tiny lg:px-3 lg:py-2 hover:bg-logoColor hover:text-white focus:bg-logoColor focus:text-white"
           >
             {click ? "Not Interested" : "Interested"}{" "}
           </button>

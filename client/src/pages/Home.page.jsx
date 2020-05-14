@@ -68,9 +68,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <div className="mx-auto">
-          <SearchBar />
-        </div>
         <div>
           <PropularMoviesWrapper
             tranlateProperty={this.state.tranlateProperty}
@@ -82,11 +79,14 @@ class HomePage extends Component {
           />
         </div>
 
-        <div className="absolute trendingCard">
+        <div className="mx-auto md:hidden lg:hidden">
+          <SearchBar />
+        </div>
+        <div className="trendingCard">
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Trending Now
           </h2>
-          <div className="mt-10 mx-6 md:flex md:-mb-4 md:flex-wrap md:justify-center lg:mx-0 lg:flex lg:justify-center lg:items-center ">
+          <div className="mt-10 mx-6">
             <TrendingMoviesWrapper
               trendingMoviesData={this.state.trendingMovies}
               imageURL={`${this.TMDB_IMAGE_BASE_URL}/w400`}
@@ -94,45 +94,29 @@ class HomePage extends Component {
           </div>
         </div>
 
-        <div className="absolute nowPlayingCard">
+        <div className="nowPlayingCard">
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Now Playing In Theaters
           </h2>
-          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:mx-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
+          <div className="">
             <NowPlayingMoviesWrapper
               source={this.state.nowPlayingMovie}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
             />
           </div>
-          <center>
-            <button
-              type="button"
-              className="mt-4 px-6 bg-logoColor text-white text-xs font-semibold py-2 uppercase tracking-wider rounded-md hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
-            >
-              load more
-            </button>
-          </center>
         </div>
 
-        <div className="absolute upComingCard">
+        <div className=" upComingCard">
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Upcoming Movies
           </h2>
 
-          <div className="mt-8 md:mx-3 md:flex md:flex-wrap md:-mb-4 lg:mx-4 lg:flex lg:flex-wrap lg:-mb-4 lg:justify-center">
+          <div className="">
             <UpcomingMoviesWrapper
               source={this.state.upcomingMovies}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
             />
           </div>
-          <center>
-            <button
-              type="button"
-              className="mt-4 px-6 bg-logoColor text-white text-xs font-semibold py-2 uppercase tracking-wider rounded-md lg:ml-24 hover:bg-white hover:border-2 hover:border-logoColor hover:text-logoColor"
-            >
-              load more
-            </button>
-          </center>
         </div>
       </div>
     );

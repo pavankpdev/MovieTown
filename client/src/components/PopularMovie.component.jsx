@@ -3,7 +3,7 @@ import React from "react";
 const PopularMovieCard = ({ image, id }) => {
   return (
     <div className="card mt-6">
-      <div className="ml-3 relative shadow-2xl lg:mx-20">
+      <div className="relative shadow-2xl">
         <div
           id={id}
           className="absolute bg-black h-full mx-auto rounded-lg w-full opacity-25 cursor-pointer hover:opacity-50  lg:rounded-extendedcorner xl:h-pc xl:rounded-extendedcorner"
