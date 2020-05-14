@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 
 import { setUser, logoutUser } from "./redux/reducers/authReducer/auth.action";
 import { defaultAxiosHeader } from "./utils/axiosDefaults";
@@ -41,7 +40,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="antialiased">
-              <UnrestrictedHOC component={HomePage} path="/" exact />
+            <UnrestrictedHOC component={HomePage} path="/" exact />
             <UnrestrictedHOC component={MovieInfoPage} path="/movies" exact />
             <UnrestrictedHOC
               component={SearchMovies}

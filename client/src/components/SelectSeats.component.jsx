@@ -125,7 +125,7 @@ class SeatsComp extends Component {
         <div>
           <img
             src={`http://image.tmdb.org/t/p/original/${this.state.selectedMovie.backdrop_path}`}
-            alt="background image"
+            alt="backdrop_path"
             className="posterImage"
           />
         </div>

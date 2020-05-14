@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 class TheaterList extends Component {
   constructor() {
@@ -46,7 +44,7 @@ class TheaterList extends Component {
             </h6>
             <div className="mt-2 flex justify-start items-center">
               {this.props.facilities.map((facility) => (
-                <img src={facility} />
+                <img src={facility} alt={facility}/>
               ))}
             </div>
             <div className="mt-2">
