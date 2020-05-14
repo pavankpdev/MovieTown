@@ -9,12 +9,17 @@ const TrendingMovieCardWrapper = ({
   imageURL,
   ...props
 }) => {
-  const clickFuntion = e => {
+  const clickFuntion = (e) => {
     props.getMovieInfo(e.target.id);
   };
-  return trendingMoviesData.map(data => {
+  return trendingMoviesData.map((data) => {
+    const { genres, production_companies } = data;
+    const genre = genres.length === 0 ? "ACTION" : genres[0].name;
+    const prod =
+      production_companies.length === 0
+        ? "team work"
+        : production_companies[0].name;
     return (
-      
       <TrendingMovies
         id={data.id}
         key={data.id}
@@ -22,17 +27,17 @@ const TrendingMovieCardWrapper = ({
         title={data.title}
         rating={data.vote_average}
         lan={data.original_language}
-        genre={data.genres[0].name}
+        genre={genre}
         certificate={data.adult ? "A" : "UA"}
-        production={data.production_companies[0].name}
+        production={prod}
         clickFuntion={clickFuntion}
       />
     );
   });
 };
 
-const mapStateToProps = state => ({
-  selectedMovie: state.localMovie
+const mapStateToProps = (state) => ({
+  selectedMovie: state.localMovie,
 });
 
 export default connect(mapStateToProps, { getMovieInfo })(
