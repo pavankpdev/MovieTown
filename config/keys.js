@@ -7,7 +7,7 @@ module.exports = {
   HERE_API_KEY: "PvOxnZ3Ae4jMeUiiri_5rGIws-njLs-R2je4c82U09Y",
   MAP_QUEST_API_KEY: "i92m0BGtYEY5D7BORb2IvOAtzr6YohLi",
   TMDB_LANGUAGE: "en-US",
-  TMDB_REGION: "IN",
+  TMDB_REGION: "US",
   TMDB_NOW_PLAYING_URI: "now_playing?",
   TMDB_UPCOMING_MOVIES_URI: "upcoming?",
   TMDB_POPULAR_MOVIES_URI: "popular?",
