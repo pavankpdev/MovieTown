@@ -3,7 +3,6 @@ import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 
 import ProductionCompanies from "./Production.component";
-import CommentCompnent from "./Comments.component";
 import { useState } from "react";
 const MoviesInfoComponent = ({ comments, ...props }) => {
   const image = "http://image.tmdb.org/t/p/original";
@@ -223,18 +222,7 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
                   comment
                 </button>
               </div>
-            </div>
-            {comments.map((data) => (
-              <div>
-                <CommentCompnent
-                  key={`${data.user}`}
-                  comment={data.comments}
-                  avatar={data.avatar}
-                  name={data.user}
-                />
-              </div>
-            ))}
-
+            </div>         
             <div className="text-center my-6">
               <button className="uppercase text-sm font-semibold tracking-wider text-logoColor">
                 read more

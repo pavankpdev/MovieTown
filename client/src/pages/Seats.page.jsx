@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { getSeatsInfo } from "../redux/reducers/seatsReducer/seats.action";
 import { connect } from "react-redux";
 import SeatsComp from "../components/SelectSeats.component";

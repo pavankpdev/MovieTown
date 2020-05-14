@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import QRCode from "qrcode.react";
 class Ticket extends Component {
-  constructor() {
-    super();
-  }
+
 
   render() {
     const year = new Date().getFullYear();
