@@ -13,18 +13,18 @@ const TrendingMovies = ({
   id,
 }) => {
   return (
-    <div className=" sm:mt-4 md:w-1/2 md:mt-3 lg:w-1/3 lg:ml-0 lg:mt-0 xl:mt-0">
+    <div className="pl-2 pb-4 lg:pl-6 lg:pb-10">
       <img
-        className="w-full h-64 object-fill object-contain rounded-lg shadow-md md:w-10/12 lg:w-9/12 lg:h-9/12 lg:mx-auto"
+        className="w-full h-74 object-fill object-contain rounded-lg shadow-md lg:h-80"
         src={imageURL}
         alt="Trending"
       />
 
-      <div className="relative px-2 -mt-10">
-        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg md:w-10/12 lg:w-9/12 lg:mx-auto">
+      <div className="relative px-3 -mt-10 lg:-mr-3">
+        <div className="flex justify-between items-center bg-white p-4 shadow-lg rounded-lg md:w-10/12 lg:w-11/12 lg:mx-auto lg:shadow-2xl">
           <div>
             <div className="flex items-baseline">
-              <h4 className="text-headingColor font-semibold text-base w-20 truncate overflow-hidden lg:text-base lg:w-32">
+              <h4 className="text-headingColor font-semibold text-base w-32 truncate overflow-hidden lg:text-base lg:w-48">
                 {title}
               </h4>
               <i className="fas fa-heart fa-md text-red-600 ml-2 lg:text-base"></i>

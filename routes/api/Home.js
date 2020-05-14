@@ -48,8 +48,6 @@ router.get("/", async (req, res) => {
       popularMovies.data &&
       trendingMovies.data
     ) {
-      // reducing the surplus data
-      trendingMovies.data.results.length = 3;
 
       // function to fetching all the details of the specied movie with refering to movie id
       let fetchMoviesDetails = async source => {

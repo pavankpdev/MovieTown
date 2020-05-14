@@ -23,8 +23,8 @@ const NowPlayingMovies = ({
   );
 
   return (
-    <div className=" mx-4 my-4 md:w-1/2 md:mx-0 md:my-2 lg:my-3 lg:mx-2 lg:w-1/4">
-      <div className="mx-6 sm:mx-4 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-full lg:mx-3">
+    <div className="lg:pl-0 pb-10 mt-12">
+      <div className="sm:mx-4 bg-white rounded-lg  shadow-lg overflow-hidden lg:w-72 lg:mx-0 lg:shadow-2xl">
         <img
           className="h-64 w-full object-fill object-contain"
           src={image}
@@ -32,7 +32,7 @@ const NowPlayingMovies = ({
         />
         <div className="px-3 py-4 flex justify-between items-center lg:px-4">
           <div>
-            <h3 className="text-xl font-semibold text-headingColor w-32 truncate overflow-hidden ">
+            <h3 className="text-xl font-semibold text-headingColor w-32 truncate overflow-hidden lg:w-48">
               {title}
             </h3>
             <h5 className="text-sm text-textColor w-32 truncate ">
@@ -46,8 +46,8 @@ const NowPlayingMovies = ({
               {ratingsTotal > 0 ? stars : null}
               <span className="ml-2 text-xs font-bold uppercase text-logoColor">
                 {ratingsTotal > 0
-                  ? `${ratingsTotal} reviews`
-                  : " no reviews yet"}
+                  ? `${ratingsTotal} votes`
+                  : " no votes yet"}
               </span>
             </div>
           </div>

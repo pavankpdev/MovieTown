@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { logoutUser } from "../redux/reducers/authReducer/auth.action";
-
+import SearchBar from "./SearchBar.component";
 class Navbar extends Component {
   constructor() {
     super();
@@ -24,7 +24,7 @@ class Navbar extends Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div className="lg:-mx-6 bg-white">
+      <div className="lg:-mx-6 bg-white shadow-lg">
         <div className=" px-6 py-3 flex justify-between items-baseline shadow lg:px-8">
           {/* Logo container */}
           <div>
@@ -32,7 +32,9 @@ class Navbar extends Component {
               <Link to="/"> movie town</Link>
             </span>
           </div>
-
+          <div className="sm:hidden md:block lg:block xl:block">
+            <SearchBar />
+          </div>
           {/* Hamburger menu for smaller screen */}
           <div className="-mr-32 text-logoColor md:hidden lg:hidden xl:hidden">
             <button

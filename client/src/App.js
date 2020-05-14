@@ -41,9 +41,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="antialiased">
-            <div className="lg:mx-6 xl:mx-6">
               <UnrestrictedHOC component={HomePage} path="/" exact />
-            </div>
             <UnrestrictedHOC component={MovieInfoPage} path="/movies" exact />
             <UnrestrictedHOC
               component={SearchMovies}
