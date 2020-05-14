@@ -7,6 +7,7 @@ import UpcomingMovies from "../UpcomingMovies.component";
 
 const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
   const settings = {
+    arrows: true,
     centerMode: true,
   centerPadding: '60px',
   slidesToShow: 3,
@@ -14,7 +15,7 @@ const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
     {
       breakpoint: 768,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 3
@@ -23,7 +24,7 @@ const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 1
@@ -33,7 +34,7 @@ const UpPlayingMoviesWrapper = ({ source, image, ...props }) => {
   };
   return (
     <Slider {...settings}>
-      {source.slice(0, 6).map((data) => (
+      {source.map((data) => (
         <UpcomingMovies
           id={data.id}
           key={data.id}

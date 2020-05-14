@@ -21,16 +21,13 @@ const UpcomingMovie = ({
           src={image}
           alt={`${title} poster`}
         />
-        <div className="px-3 py-4 flex justify-between items-center lg:px-0">
+        <div className="px-3 py-4 flex justify-between items-center lg:px-4">
           <div>
-            <div className="flex items-baseline">
-              <h4 className="text-headingColor font-semibold text-lg w-24 truncate overflow-hidden lg:text-2xl lg:w-32">
+            <div className="">
+              <h4 className="text-headingColor font-semibold text-lg w-24 truncate overflow-hidden lg:w-48">
                 {title}
               </h4>
-              <i className="fas fa-thumbs-up fa-md text-logoColor ml-2 lg:text-md"></i>
-              <span className="text-sm text-headingColor ml-1 lg:text-md">
-                {interestTotal}
-              </span>
+
             </div>
             <h5 className="text-sm text-textColor w-32 truncate ">
               {production ? production : "Team Effort"}

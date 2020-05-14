@@ -32,7 +32,7 @@ const NowPlayingMovies = ({
         />
         <div className="px-3 py-4 flex justify-between items-center lg:px-4">
           <div>
-            <h3 className="text-xl font-semibold text-headingColor w-32 truncate overflow-hidden ">
+            <h3 className="text-xl font-semibold text-headingColor w-32 truncate overflow-hidden lg:w-48">
               {title}
             </h3>
             <h5 className="text-sm text-textColor w-32 truncate ">

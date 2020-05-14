@@ -12,6 +12,7 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
     props.getMovieInfo(e.target.id);
   };
   const settings = {
+    arrows: true,
     centerMode: true,
   centerPadding: '60px',
   slidesToShow: 3,
@@ -19,7 +20,7 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
     {
       breakpoint: 768,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 3
@@ -28,7 +29,7 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
+        arrows: true,
         centerMode: true,
         centerPadding: '40px',
         slidesToShow: 1
@@ -38,7 +39,7 @@ const NowPlayingMoviesWrapper = ({ source, image, ...props }) => {
   };
   return (
     <Slider {...settings}>
-      {source.slice(0, 6).map((data) => (
+      {source.map((data) => (
         <NowPlayingMovies
           id={data.id}
           key={data.id}
