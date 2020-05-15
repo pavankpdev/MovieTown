@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 
 import ProductionCompanies from "./Production.component";
 import { useState } from "react";
-const MoviesInfoComponent = ({ comments, ...props }) => {
+const MoviesInfoComponent = ({ ...props }) => {
   const image = "http://image.tmdb.org/t/p/original";
-  // let { backdrop_path, poster_path } = props.props;
-  // backdrop_path ? backdrop_path : "../asset/backdrop.png";
-  // poster_path ? poster_path : "../asset/poster.png";
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -189,45 +186,6 @@ const MoviesInfoComponent = ({ comments, ...props }) => {
                 />
               </div>
             ))}
-          </div>
-        </div>
-        {/* Comments */}
-        <div>
-          <div className="mt-4 absolute bg-white w-full shadow-lg comments">
-            <div className="ml-4 mt-4 md:mt-8">
-              <h3 className="text-headingColor font-bold text-2xl tracking-wider">
-                Comments
-              </h3>
-            </div>
-            <div>
-              <div className="m-4">
-                <img
-                  className="rounded-full shadow-lg"
-                  src="https://randomuser.me/api/portraits/med/women/75.jpg"
-                  alt="avatar"
-                />
-              </div>
-              <div className="mx-6">
-                <textarea
-                  name="typeComment"
-                  id="typeComment"
-                  rows="5"
-                  placeholder="Type your comments here. . . ."
-                  className="border border-headingColor w-full rounded-lg text-sm"
-                ></textarea>
-                <button
-                  type="button"
-                  className="uppercase text-xs bg-logoColor text-white font-semibold tracking-wider px-3 py-2 rounded float-right shadow-lg hover:bg-transparent hover:border-2 hover:border-logoColor hover:text-logoColor focus:bg-transparent focus:border-2 focus:border-logoColor focus:text-logoColor"
-                >
-                  comment
-                </button>
-              </div>
-            </div>         
-            <div className="text-center my-6">
-              <button className="uppercase text-sm font-semibold tracking-wider text-logoColor">
-                read more
-              </button>
-            </div>
           </div>
         </div>
       </div>

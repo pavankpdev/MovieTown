@@ -13,41 +13,20 @@ class SelectTheater extends Component {
       sourceState: "invalid_key",
       clicked: "",
       filterbtn: false,
+      time: [],
+      facilities: [],
+      screens: [],
       price: "",
-      filters: [],
       loading: false,
+      theaters: [],
     };
     this.dateButtonClick = this.dateButtonClick.bind(this);
     this.setSource = this.setSource.bind(this);
-    this.onChangePrice = this.onChangePrice.bind(this);
-    this.setFilter = this.setFilter.bind(this);
-    this.saveFilter = this.saveFilter.bind(this);
-    this.setCustomFilters = this.setCustomFilters.bind(this);
-  }
-  onChangePrice(e) {
-    e.preventDefault();
-    this.setState({ [e.target.name]: [e.target.value] });
   }
   dateButtonClick(e) {
     this.setState({ clicked: Number(e.target.id) });
   }
-  setFilter() {
-    this.setState({
-      filterbtn: this.state.filterbtn ? false : true,
-      loading: false,
-    });
-  }
-  setCustomFilters(e) {
-    this.state.filters.includes(e.target.id)
-      ? this.state.filters.splice(this.state.filters.indexOf(e.target.id), 1)
-      : this.setState({ filters: [...this.state.filters, e.target.id] });
-  }
-  saveFilter() {
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ filterbtn: false, loading: false });
-    }, 4000);
-  }
+
   setSource() {
     setTimeout(() => {
       this.setState({
@@ -61,258 +40,19 @@ class SelectTheater extends Component {
 
   componentDidMount() {
     this.setSource();
-    this.setState({ clicked: this.props.currentDate });
+    this.setState({
+      clicked: this.props.currentDate,
+    });
   }
-
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this.setState({ theaters: nextProps.theaterlist.theaterDB });
+    }
+  }
   render() {
     const image = "https://image.tmdb.org/t/p/original";
-
     return (
       <div>
-        {/* filter model */}
-        <div
-          className={this.state.filterbtn ? "panel w-full shadow-xl" : "hidden"}
-        >
-          <h1 className="text-headingColor font-semibold text-lg tracking-widest">
-            Filters
-          </h1>
-          <div className="bg-white w-full  p-4">
-            {/* time */}
-            <div>
-              <h1 className="text-headingColor font-semibold text-sm tracking-widest">
-                Time:
-                <span className="text-gray-500 text-tiny uppercase tracking-wider">
-                  (you can select multiple options)
-                </span>
-              </h1>
-              <div className="text-teal-400 text-xs flex items-center mt-2">
-                <button
-                  onClick={this.setCustomFilters}
-                  id="09:00"
-                  className={
-                    this.state.filters.includes("09:00")
-                      ? "mr-1 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mr-1 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  09:00
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="12:00"
-                  className={
-                    this.state.filters.includes("12:00")
-                      ? "mr-1 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mr-1 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  12:00
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="16:00"
-                  className={
-                    this.state.filters.includes("16:00")
-                      ? "mr-1 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mr-1 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  16:00
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="22:00"
-                  className={
-                    this.state.filters.includes("22:00")
-                      ? "mr-1 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mr-1 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  22:00
-                </button>
-              </div>
-            </div>
-            {/* facilities */}
-            <div className="mt-3">
-              <h1 className="text-headingColor font-semibold text-sm tracking-widest">
-                Facilities:{" "}
-                <span className="text-gray-500 text-tiny uppercase tracking-wider">
-                  (you can select multiple options)
-                </span>
-              </h1>
-              <div className="text-teal-400 text-xs flex flex-wrap mb-3 mt-2">
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Dolby"
-                  className={
-                    this.state.filters.includes("Dolby")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 rounded-extendedcorner font-semibold text-white md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded-extendedcorner font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Dolby
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Wheelchair"
-                  className={
-                    this.state.filters.includes("Wheelchair")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 rounded-extendedcorner font-semibold text-white md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded-extendedcorner font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Wheelchair
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Recliner Seats"
-                  className={
-                    this.state.filters.includes("Recliner Seats")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 rounded-extendedcorner font-semibold text-white md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded-extendedcorner font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Recliner Seats
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Food and Beverages"
-                  className={
-                    this.state.filters.includes("Food and Beverages")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 rounded-extendedcorner font-semibold text-white md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded-extendedcorner font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Food and Beverages
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Wi-Fi"
-                  className={
-                    this.state.filters.includes("Wi-Fi")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 rounded-extendedcorner font-semibold text-white md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded-extendedcorner font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Wi-Fi
-                </button>
-              </div>
-            </div>
-            {/* Screens */}
-            <div className="mt-3">
-              <h1 className="text-headingColor font-semibold text-sm tracking-widest">
-                Screens:{" "}
-                <span className="text-gray-500 text-tiny uppercase tracking-wider">
-                  (you can select multiple options)
-                </span>
-              </h1>
-              <div className="text-teal-400 text-xs flex flex-wrap mb-3 mt-2">
-                <button
-                  onClick={this.setCustomFilters}
-                  id="Classic"
-                  className={
-                    this.state.filters.includes("Classic")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  Classic
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="INOX"
-                  className={
-                    this.state.filters.includes("INOX")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  INOX
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="PVR"
-                  className={
-                    this.state.filters.includes("PVR")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  PVR
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="IMAX"
-                  className={
-                    this.state.filters.includes("IMAX")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  IMAX
-                </button>
-                <button
-                  onClick={this.setCustomFilters}
-                  id="4DX"
-                  className={
-                    this.state.filters.includes("4DX")
-                      ? "mt-2 mr-2 px-2 py-1 border bg-teal-400 text-white rounded font-semibold md:px-3"
-                      : "mt-2 mr-2 px-2 py-1 border border-teal-400 rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-                  }
-                >
-                  4DX
-                </button>
-              </div>
-            </div>
-            {/* Screens */}
-            <div className="mt-3">
-              <h1 className="text-headingColor font-semibold text-sm tracking-widest">
-                Price: <span>{this.state.price}</span>
-              </h1>
-              <div className="">
-                <input
-                  type="range"
-                  name="price"
-                  id="price"
-                  onChange={this.onChangePrice}
-                  min="100"
-                  max="300"
-                  step="50"
-                />
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="text-teal-400 text-xs flex items-center mt-2">
-              <button
-                onClick={this.setFilter}
-                className="mr-1 px-3 py-2 text-gray-900 font-semibold md:px-3  focus:outline-none"
-              >
-                Close
-              </button>
-              <button
-                onClick={this.saveFilter}
-                className="mr-1 px-3 py-2 text-white bg-logoColor rounded font-semibold md:px-3 hover:boder-2 focus:bg-teal-400 focus:text-white focus:outline-none"
-              >
-                Save{" "}
-              </button>
-              <span
-                className={
-                  this.state.loading
-                    ? "text-xs text-teal-500 font-semibold uppercase tracking-wider"
-                    : "hidden   "
-                }
-              >
-                applying filter
-                <BeatLoader
-                  size={8}
-                  color={"#38b2ac"}
-                  loading={this.state.loading}
-                />
-              </span>
-            </div>
-          </div>
-        </div>
         <div
           className={
             this.state.toggle
@@ -607,28 +347,22 @@ class SelectTheater extends Component {
                   <h3 className="font-semibold text-xs uppercase tracking-wide text-gray-500 md:text-sm lg:text-sm xl:text-sm">
                     Select a theater from the list
                   </h3>
-                  <button
-                    className="text-xs font-semibold uppercase text-gray-500 border border-gray-500 px-2 py-1 rounded tracking-wider md:text-sm lg:mr-4 lg:text-sm xl:text-sm"
-                    onClick={this.setFilter}
-                  >
-                    Filter <i className="fas fa-filter"></i>
-                  </button>
                 </div>
               </div>
 
               {/* Theaters */}
-              <div className="h-3/6 overflow-x-hidden overflow-y-auto">
-                {this.props.theaterlist.theaterDB !== undefined
-                  ? this.props.theaterlist.theaterDB.map((theater) => (
+              <div className="h-3/6 overflow-x-hidden overflow-y-auto lg:mx-5">
+                {this.state.theaters !== undefined
+                  ? this.state.theaters.map((theater) => (
                       <TheaterList
                         key={Math.random()}
                         id={theater.theater_id}
                         name={theater.theater_name}
                         location={theater.location}
-                        time={theater.movies[0].time}
+                        time={theater.time}
                         facilities={theater.facilities}
-                        price={theater.movies[0].price}
-                        type={theater.type}
+                        price={theater.price}
+                        type={theater.type[0]}
                         date={this.state.clicked}
                         month={this.props.month}
                       />

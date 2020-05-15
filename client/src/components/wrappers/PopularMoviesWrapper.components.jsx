@@ -47,7 +47,7 @@ const PropularMoviesWrapper = ({
       <div className="mt-5">
         <Slider {...settings}>
           {list.map((data) => (
-            <div className="pl-2" key={Math.random()}>
+            <div className="pl-2 pb-10 " key={Math.random()}>
               <div className="relative ">
                 <Link to="/movies">
                   {" "}
@@ -58,10 +58,10 @@ const PropularMoviesWrapper = ({
                   ></div>
                 </Link>
                 <img
-                  className=" w-full h-56 md:h-64 lg:h-74 rounded-lg"
+                  className=" w-full h-56 md:h-64 lg:h-74 rounded-lg shadow-xl"
                   src={
                     data.poster_path
-                      ? `${image}${data.poster_path}`
+                      ? `${image}${data.backdrop_path}`
                       : "https://i.ibb.co/pvBcssg/backdrop.png"
                   }
                   alt=""

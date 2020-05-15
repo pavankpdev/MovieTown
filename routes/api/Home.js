@@ -13,13 +13,13 @@ const {
 } = require("../../config/keys");
 
 const API_QUERY = `api_key=${TMDB_API_KEY}&language=${TMDB_LANGUAGE}&page=1&region=${TMDB_REGION}`;
-let nowPlayingMoviesDataStore = {};
-let upcomingMoviesDataStore = {};
 
 // @Route   GET /
 // @des     EXTERNAL_API_CALL gets movies information as a json format
 // @access  PUBLIC
 router.get("/", async (req, res) => {
+  console.log("server hit");
+  
   try {
     // GET request to fetch all the nowPlaying movie details from TMDB Api with axios
     const nowplayingmovies = await axios.get(
