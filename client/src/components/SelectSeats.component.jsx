@@ -56,6 +56,26 @@ class SeatsComp extends Component {
       });
       return;
     }
+    if (this.state.selectedSeats.length - 1 === 6) {
+      return swal(
+        <div>
+          <center>
+            <img
+              src="https://i.ibb.co/s5dHx0f/fogg-page-under-construction-1.png"
+              alt="error"
+              className="w-9/12 lg:w-11/12"
+            />
+            <h2 className="mt-5 text-headingColor text-lg font-bold lg:text-2xl">
+              Seat limit reached!
+            </h2>
+            <h4 className="text-gray-700 text-xs font-semibold lg:text-sm">
+              You can only select 6 seats at a time...
+            </h4>
+          </center>
+        </div>
+      );
+    }
+
     this.setState({
       selectedSeats: [...this.state.selectedSeats, `${e.target.id}`],
       amount: price,
@@ -110,7 +130,7 @@ class SeatsComp extends Component {
         name: this.props.user.fullname,
         email: this.props.user.email,
       },
-      
+
       theme: {
         color: "#5a67d8",
       },

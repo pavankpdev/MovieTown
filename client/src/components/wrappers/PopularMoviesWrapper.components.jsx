@@ -53,12 +53,12 @@ const PropularMoviesWrapper = ({
                   {" "}
                   <div
                     id={data.id}
-                    className=" absolute bg-black w-full h-56 opacity-25 rounded-lg cursor-pointer md:h-64 lg:h-74"
+                    className=" absolute bg-black w-full h-48 opacity-25 rounded-lg cursor-pointer md:h-64 lg:h-74"
                     onClick={clickFuntion}
                   ></div>
                 </Link>
                 <img
-                  className=" w-full h-56 md:h-64 lg:h-74 rounded-lg shadow-xl"
+                  className=" w-full h-48 md:h-64 lg:h-74 rounded-lg shadow-xl"
                   src={
                     data.poster_path
                       ? `${image}${data.backdrop_path}`
