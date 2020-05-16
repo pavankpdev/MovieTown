@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import SearchedMovieCardWrapper from "../components/wrappers/SearchedMovieCardWrapper.component";
-import SearchBar from "../components/SearchBar.component";
 class SearchMovies extends Component {
   constructor() {
     super();
