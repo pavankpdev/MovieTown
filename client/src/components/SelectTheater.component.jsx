@@ -1,6 +1,5 @@
 import React from "react";
 import ReactPlayer from "react-player";
-import BeatLoader from "react-spinners/BeatLoader";
 
 import TheaterList from "./TheaterList.component";
 import "./styles/SelectTheater.styles.css";
@@ -12,12 +11,6 @@ class SelectTheater extends Component {
       toggle: false,
       sourceState: "invalid_key",
       clicked: "",
-      filterbtn: false,
-      time: [],
-      facilities: [],
-      screens: [],
-      price: "",
-      loading: false,
       theaters: [],
     };
     this.dateButtonClick = this.dateButtonClick.bind(this);

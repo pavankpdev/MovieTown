@@ -25,9 +25,6 @@ class SearchMovies extends Component {
   render() {
     return (
       <div>
-        <div className="mx-auto">
-          <SearchBar />
-        </div>
         <div className="mt-6 text-xl text-teal-500 font-semibold tracking-wider lg:text-2xl">
           <center>
             <h2>{`We recieved total ${this.state.searchedMovies.length} results`}</h2>
