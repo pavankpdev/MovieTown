@@ -31,8 +31,13 @@ class TheaterList extends Component {
   render() {
     return (
       <div className="mx-4 mt-4">
-        <div className="text-xs tracking-wide text-teal-500 font-semibold lg:text-sm ">
-          2km Away
+        <div className="flex items-center">
+          <span className="text-xs tracking-wide text-white bg-teal-400 rounded-extendedcorner px-2 font-semibold lg:text-sm ">
+            {this.props.distance} km
+          </span>
+          <div className=" text-xs tracking-wide text-teal-500 font-semibold lg:text-sm ">
+          /{this.props.travel}min away
+          </div>
         </div>
         <div className="flex items-center justify-between">
           <div>
@@ -44,7 +49,7 @@ class TheaterList extends Component {
             </h6>
             <div className="mt-2 flex justify-start items-center">
               {this.props.facilities.map((facility) => (
-                <img src={facility} alt={facility}/>
+                <img src={facility} alt={facility} />
               ))}
             </div>
             <div className="mt-2">
@@ -72,6 +77,7 @@ class TheaterList extends Component {
               </button>
             </div>
           </div>
+
           <div className="font-semibold text-lg lg:text-2xl">
             ₹{this.props.price}
           </div>

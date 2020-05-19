@@ -4,15 +4,9 @@ class Ticket extends Component {
 
 
   render() {
-    const year = new Date().getFullYear();
-    const comDate = new Date();
-    const retDate = new Date(`${this.props.data.date} ${year}`);
-    const result = retDate >= comDate;
     return (
       <div
-        className={
-          result ? "valid mt-3 lg:w-4/12 lg:mr-2" : "opacity-50 lg:w-4/12 mt-3 lg:mr-2"
-        }
+        className="valid mt-3 lg:w-4/12 lg:mr-2"
       >
         <div
           className="w-full bg-white border-l-4 rounded-md shadow-lg flex justify-around items-center py-2 lg:w-full"
@@ -26,15 +20,6 @@ class Ticket extends Component {
             />
           </div>
           <div className="">
-            <span
-              className={
-                result
-                  ? "uppercase text-tiny text-white bg-teal-500 rounded-extendedcorner px-3 py-1 tracking-widest"
-                  : "uppercase text-tiny text-white bg-red-500 rounded-extendedcorner px-3 py-1 tracking-widest"
-              }
-            >
-              {result ? "valid" : "Expired"}
-            </span>
             <h3 className="text-lg font-bold text-headingColor lg:text-2xl">
               {this.props.data.movie_name}
             </h3>

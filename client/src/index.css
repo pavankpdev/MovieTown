@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Poppins;
   background-color: #fff;
+  overflow-x: hidden;
 }
 .slick-prev:before {
   background-color: #5a67d8;

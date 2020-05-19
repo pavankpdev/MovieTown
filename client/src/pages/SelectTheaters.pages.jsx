@@ -13,15 +13,34 @@ class SelectTheater extends Component {
   }
 
   //   fetching theater details from theater API and selected movie from localStorage
-  async componentDidMount() {
+  componentDidMount() {
     try {
-      const theaters = await axios.get("/movies/booktickets");
-      if (!theaters.data) return console.log("error fetching the data");
+      this.setState(
+        {
+          selectedMovie: JSON.parse(localStorage.selectedMovie),
+        },
+        () => {}
+      );
+      let userloc = "";
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position.coords);
 
-      this.setState({
-        theaters: theaters.data.theatersInfo,
-        selectedMovie: JSON.parse(localStorage.selectedMovie),
-      });
+          userloc = `${position.coords.latitude},${position.coords.longitude}`;
+        });
+      } else {
+        console.error("Geolocation is not supported by this browser!");
+      }
+
+      setTimeout(async () => {
+        const theaters = await axios.get(`/movies/theaters/${userloc}`);
+        if (!theaters.data) return console.log("error fetching the data");
+
+        this.setState({
+          theaters: theaters.data,
+        });
+        console.log("state", this.state.theaters);
+      }, 1000);
     } catch (error) {
       alert(error);
     }

@@ -18,4 +18,9 @@ module.exports = {
   TMDB_IMAGE_BASE_URL: "http://image.tmdb.org/t/p/",
   TMDB_POSTER_WIDTH: "w200",
   THEATER_API_BASE_URL: "https://api.jsonbin.io/b/5e733e9bb325b3162e3a869b/4",
+  GOOGLE_PLACES_URL:
+    "https://maps.googleapis.com/maps/api/place/nearbysearch/json?",
+  GOOGLE_PLACES_API: "AIzaSyCWJ4KBE3HOgunq1mUpDwtH3ZoNWNJWljA",
+  ROUTE_API: "http://www.mapquestapi.com/directions/v2/route",
+  MAP_QUEST_URL: "http://www.mapquestapi.com/directions/v2/route?",
 };

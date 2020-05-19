@@ -25,13 +25,13 @@
 }
 @media (min-width: 1024px) {
   .trendingCard {
-    margin-top: 100px;
+    margin-top: 50px;
   }
   .nowPlayingCard {
-    margin-top: 90px;
+    margin-top: 60px;
   }
   .upComingCard {
-    margin-top: 90px;
+    margin-top: 60px;
   }
   
 }

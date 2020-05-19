@@ -98,7 +98,7 @@ class HomePage extends Component {
           <h2 className="ml-4 text-2xl text-headingColor font-bold content-center lg:text-3xl">
             Now Playing In Theaters
           </h2>
-          <div className="">
+          <div className="lg:mx-6">
             <NowPlayingMoviesWrapper
               source={this.state.nowPlayingMovie}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}
@@ -111,7 +111,7 @@ class HomePage extends Component {
             Upcoming Movies
           </h2>
 
-          <div className="">
+          <div className="lg:mx-6">
             <UpcomingMoviesWrapper
               source={this.state.upcomingMovies}
               image={`${this.TMDB_IMAGE_BASE_URL}${this.TMDB_IMAGE_WIDTH}`}

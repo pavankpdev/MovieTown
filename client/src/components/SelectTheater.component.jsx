@@ -39,8 +39,9 @@ class SelectTheater extends Component {
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps) {
-      this.setState({ theaters: nextProps.theaterlist.theaterDB });
+      this.setState({ theaters: nextProps.theaterlist });
     }
+    console.log(nextProps);
   }
   render() {
     const image = "https://image.tmdb.org/t/p/original";
@@ -345,22 +346,26 @@ class SelectTheater extends Component {
 
               {/* Theaters */}
               <div className="h-3/6 overflow-x-hidden overflow-y-auto lg:mx-5">
-                {this.state.theaters !== undefined
-                  ? this.state.theaters.map((theater) => (
-                      <TheaterList
-                        key={Math.random()}
-                        id={theater.theater_id}
-                        name={theater.theater_name}
-                        location={theater.location}
-                        time={theater.time}
-                        facilities={theater.facilities}
-                        price={theater.price}
-                        type={theater.type[0]}
-                        date={this.state.clicked}
-                        month={this.props.month}
-                      />
-                    ))
-                  : null}
+                {this.state.theaters !== undefined ? (
+                  this.state.theaters.map((theater) => (
+                    <TheaterList
+                      key={Math.random()}
+                      id={theater.theater_id}
+                      name={theater.theater_name}
+                      location={theater.location}
+                      time={theater.time}
+                      facilities={theater.facilities}
+                      price={theater.price}
+                      type={theater.type[0]}
+                      date={this.state.clicked}
+                      month={this.props.month}
+                      travel={theater.travel_time}
+                      distance={theater.distance}
+                    />
+                  ))
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
           </div>
