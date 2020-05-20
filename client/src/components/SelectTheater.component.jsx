@@ -1,5 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import PulseLoader from "react-spinners/PulseLoader";
 
 import TheaterList from "./TheaterList.component";
 import "./styles/SelectTheater.styles.css";
@@ -343,30 +344,42 @@ class SelectTheater extends Component {
                   </h3>
                 </div>
               </div>
-
               {/* Theaters */}
-              <div className="h-3/6 overflow-x-hidden overflow-y-auto lg:mx-5">
-                {this.state.theaters !== undefined ? (
-                  this.state.theaters.map((theater) => (
-                    <TheaterList
-                      key={Math.random()}
-                      id={theater.theater_id}
-                      name={theater.theater_name}
-                      location={theater.location}
-                      time={theater.time}
-                      facilities={theater.facilities}
-                      price={theater.price}
-                      type={theater.type[0]}
-                      date={this.state.clicked}
-                      month={this.props.month}
-                      travel={theater.travel_time}
-                      distance={theater.distance}
+              {this.state.theaters.length === 0 ? (
+                <div>
+                  <center>
+                    <PulseLoader
+                      size={10}
+                      margin={3}
+                      color={"#5a67d8"}
+                      loading={this.state.theaters.length === 0}
                     />
-                  ))
-                ) : (
-                  <div></div>
-                )}
-              </div>
+                  </center>
+                </div>
+              ) : (
+                <div className="h-3/6 overflow-x-hidden overflow-y-auto lg:mx-5">
+                  {this.state.theaters !== undefined ? (
+                    this.state.theaters.map((theater) => (
+                      <TheaterList
+                        key={Math.random()}
+                        id={theater.theater_id}
+                        name={theater.theater_name}
+                        location={theater.location}
+                        time={theater.time}
+                        facilities={theater.facilities}
+                        price={theater.price}
+                        type={theater.type[0]}
+                        date={this.state.clicked}
+                        month={this.props.month}
+                        travel={theater.travel_time}
+                        distance={theater.distance}
+                      />
+                    ))
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

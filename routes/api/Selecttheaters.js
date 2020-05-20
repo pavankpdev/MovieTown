@@ -7,19 +7,23 @@ const {
   GOOGLE_PLACES_API,
   MAP_QUEST_API_KEY,
   MAP_QUEST_URL,
+  MAP_QUEST_GEOCODE_URL,
 } = require("../../config/keys");
 
 // @Route GET /movies/theaters
 // @des EXTERNAL_API_CALL to get the user current location and generate a list of real time theater data based on user location
 //      and finding the shortest path using Dijkstra's algorithm.
 // @access PUBLIC
-router.get("/:userLocation", async (req, res) => {
+router.get("/:zip", async (req, res) => {
   try {
-    console.log(req.params.userLocation);
-
-    // User's Current Location
-    const userLocation = encodeURI(req.params.userLocation);
-
+    // User's Current zipcode
+    const userzip = encodeURI(req.params.zip);
+    //Geocode the zipcode with mapquest geocode api to get the users lat/lng
+    const geoCode = await axios.get(
+      `${MAP_QUEST_GEOCODE_URL}key=${MAP_QUEST_API_KEY}&location=${userzip}`
+    );
+    //store the lat/lng of the user from mapquest api
+    const userLocation = `${geoCode.data.results[0].locations[0].latLng.lat},${geoCode.data.results[0].locations[0].latLng.lng}`;
     // Object Template to manipulate later
     let template = await axios.get(`${THEATER_API_BASE_URL}`, {
       headers: {
@@ -28,15 +32,14 @@ router.get("/:userLocation", async (req, res) => {
       },
     });
 
-    // reduce the array to only 6 elements
+    // reduce the array to only 8 elements
     template.data.theaterDB.length = 8;
 
     // GET request to Google places Api
     const places = await axios.get(
       `${GOOGLE_PLACES_URL}radius=10000&keyword=movie&type=cinema%20theater&location=${userLocation}&key=${GOOGLE_PLACES_API}`
     );
-
-    // reduce the array to only 6 elements
+    // reduce the array to only 8 elements
     places.data.results.length = 8;
 
     // looping thorugh and modifing the template

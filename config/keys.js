@@ -23,4 +23,5 @@ module.exports = {
   GOOGLE_PLACES_API: "AIzaSyCWJ4KBE3HOgunq1mUpDwtH3ZoNWNJWljA",
   ROUTE_API: "http://www.mapquestapi.com/directions/v2/route",
   MAP_QUEST_URL: "http://www.mapquestapi.com/directions/v2/route?",
+  MAP_QUEST_GEOCODE_URL: "http://www.mapquestapi.com/geocoding/v1/address?",
 };
