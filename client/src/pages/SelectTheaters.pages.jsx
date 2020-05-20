@@ -19,7 +19,7 @@ class SelectTheater extends Component {
   }
 
   setZipCode(e) {
-    this.setState({ zip: e.target.value });
+    this.setState({ zip: e.target.value }, () => console.log(this.state.zip));
   }
   setTheater(data) {
     console.log(data);
