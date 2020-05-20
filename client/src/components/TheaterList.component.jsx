@@ -31,14 +31,10 @@ class TheaterList extends Component {
   render() {
     return (
       <div className="mx-4 mt-4">
-        <div className="flex items-center">
-          <span className="text-xs tracking-wide text-white bg-teal-400 rounded-extendedcorner px-2 font-semibold lg:text-sm ">
-            {this.props.distance} km
-          </span>
-          <div className=" text-xs tracking-wide text-teal-500 font-semibold lg:text-sm ">
-          /{this.props.travel}min away
-          </div>
-        </div>
+        <span className="text-xs tracking-wide text-white bg-teal-400 rounded-extendedcorner px-2 font-semibold lg:text-sm ">
+          {this.props.distance} km away
+        </span>
+
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-semibold text-lg lg:text-2xl">

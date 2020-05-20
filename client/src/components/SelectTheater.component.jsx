@@ -358,7 +358,7 @@ class SelectTheater extends Component {
                 </div>
               ) : (
                 <div className="h-3/6 overflow-x-hidden overflow-y-auto lg:mx-5">
-                  {this.state.theaters !== undefined ? (
+                  {this.state.theaters.length !== 0 ? (
                     this.state.theaters.map((theater) => (
                       <TheaterList
                         key={Math.random()}
