@@ -51,6 +51,8 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "http://movietown.herokuapp.com/",
+
   "proxy": "http://localhost:4000",
   "presets": [
     "@babel/preset-react",

@@ -5,6 +5,7 @@ import movieInfoReducer from "./movieInfoReducer/movieInfo.reducer";
 import allMoviesReducer from "./allMoviesReducer/allMovies.reducer";
 import searchMovieReducer from "./searchMoviesReducer/searchMovies.reducer";
 import getSeatInfoReducer from "./seatsReducer/seats.reducer";
+import getTheatersReducer from "./selectTheater/selectTheater.reducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   localMovie: movieInfoReducer,
   searchedMovies: searchMovieReducer,
   getSeatInfo: getSeatInfoReducer,
+  theaters: getTheatersReducer,
 });

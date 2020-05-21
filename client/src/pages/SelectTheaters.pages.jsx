@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { getTheaters } from "../redux/reducers/selectTheater/selectTheater.action";
 import swal from "@sweetalert/with-react";
 
 import SelectTheaterComp from "../components/SelectTheater.component";
@@ -83,15 +84,19 @@ class SelectTheater extends Component {
               </div>
             );
           }
-          axios
-            .get(`/movies/theaters/${this.state.zip}`)
-            .then((data) => this.setTheater(data))
-            .catch((err) => alert(err));
+          this.props.getTheaters(this.state.zip);
+
           break;
         default:
           swal("Something went wrong!");
       }
     });
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps) {
+      this.setState({ theaters: nextProps.theatersRedux });
+    }
   }
 
   render() {
@@ -141,4 +146,8 @@ class SelectTheater extends Component {
     );
   }
 }
-export default SelectTheater;
+const mapStateToProps = (state) => ({
+  theatersRedux: state.theaters,
+});
+
+export default connect(mapStateToProps, { getTheaters })(SelectTheater);

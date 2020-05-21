@@ -39,8 +39,8 @@ class SelectTheater extends Component {
     });
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps) {
-      this.setState({ theaters: nextProps.theaterlist });
+    if (nextProps.theaterlist.length !== 0) {
+      this.setState({ theaters: nextProps.theaterlist.theaters });
     }
     console.log(nextProps);
   }

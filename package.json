@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/pavankpdev/MovieTown/issues"
   },
-  "homepage": "http://movietown.herokuapp.com/",
+  "homepage": "https://github.com/pavankpdev/MovieTown#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.0",
     "axios": "^0.19.2",
