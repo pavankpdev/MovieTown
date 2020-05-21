@@ -18,12 +18,15 @@ router.get("/:zip", async (req, res) => {
   try {
     // User's Current zipcode
     const userzip = encodeURI(req.params.zip);
+    console.log(userzip);
     //Geocode the zipcode with mapquest geocode api to get the users lat/lng
     const geoCode = await axios.get(
       `${MAP_QUEST_GEOCODE_URL}key=${MAP_QUEST_API_KEY}&location=${userzip}`
     );
+    console.log(geoCode);
     //store the lat/lng of the user from mapquest api
     const userLocation = `${geoCode.data.results[0].locations[0].latLng.lat},${geoCode.data.results[0].locations[0].latLng.lng}`;
+    console.log(userLocation);
     // Object Template to manipulate later
     let template = await axios.get(`${THEATER_API_BASE_URL}`, {
       headers: {
@@ -41,7 +44,7 @@ router.get("/:zip", async (req, res) => {
     );
     // reduce the array to only 8 elements
     places.data.results.length = 8;
-
+    console.log(places);
     // looping thorugh and modifing the template
     for (let i = 0; i < 6; i++) {
       template.data.theaterDB[i]["theater_name"] = places.data.results[i].name;
@@ -67,7 +70,7 @@ router.get("/:zip", async (req, res) => {
     });
     // awaing the promises
     const upDatedTheaterObject = await Promise.all(fetchDistances);
-
+    console.log(upDatedTheaterObject);
     // return to client
     res.json(upDatedTheaterObject);
   } catch (error) {
