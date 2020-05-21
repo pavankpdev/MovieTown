@@ -71,7 +71,7 @@ router.get("/:zip", async (req, res) => {
     // return to client
     res.json(upDatedTheaterObject);
   } catch (error) {
-    res.json({ request_error: error.message });
+    res.json({ request_error: `select theater BE ${error.message}` });
   }
 });
 
