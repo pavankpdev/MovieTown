@@ -23,7 +23,7 @@ router.get("/:zip", async (req, res) => {
     const geoCode = await axios.get(
       `${MAP_QUEST_GEOCODE_URL}key=${MAP_QUEST_API_KEY}&location=${userzip}`
     );
-    console.log(geoCode);
+    console.log(geoCode.data);
     //store the lat/lng of the user from mapquest api
     const userLocation = `${geoCode.data.results[0].locations[0].latLng.lat},${geoCode.data.results[0].locations[0].latLng.lng}`;
     console.log(userLocation);
@@ -44,7 +44,7 @@ router.get("/:zip", async (req, res) => {
     );
     // reduce the array to only 8 elements
     places.data.results.length = 8;
-    console.log(places);
+    console.log(places.data);
     // looping thorugh and modifing the template
     for (let i = 0; i < 6; i++) {
       template.data.theaterDB[i]["theater_name"] = places.data.results[i].name;
