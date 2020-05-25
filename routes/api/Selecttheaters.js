@@ -36,16 +36,16 @@ router.get("/:zip", async (req, res) => {
     });
 
     // reduce the array to only 8 elements
-    template.data.theaterDB.length = 8;
+    template.data.theaterDB.length = 9;
 
     // GET request to Google places Api
     const places = await axios.get(
       `${GOOGLE_PLACES_URL}radius=10000&keyword=movie&type=cinema%20theater&location=${userLocation}&key=${GOOGLE_PLACES_API}`
     );
     // reduce the array to only 8 elements
-    places.data.results.length = 8;
+    places.data.results.length = 9;
     console.log(places.data);
-    // looping thorugh and modifing the template
+    // looping though and modifing the template
     for (let i = 0; i < 6; i++) {
       template.data.theaterDB[i]["theater_name"] = places.data.results[i].name;
       template.data.theaterDB[i]["location"] = places.data.results[i].vicinity;

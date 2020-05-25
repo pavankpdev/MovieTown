@@ -96,6 +96,7 @@ class SelectTheater extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps) {
       this.setState({ theaters: nextProps.theatersRedux });
+      localStorage.setItem("theaters", JSON.stringify(nextProps.theatersRedux));
     }
   }
 

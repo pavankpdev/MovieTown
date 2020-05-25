@@ -11,6 +11,7 @@ class Seats extends Component {
       seats: [],
       user: [],
       isAuth: false,
+      theaters: [],
     };
     this.onClickSignIn = this.onClickSignIn.bind(this);
   }
@@ -26,6 +27,7 @@ class Seats extends Component {
         seats: nextProps.seatInfoRedux.seats,
         user: nextProps.userRedux.user,
         isAuth: nextProps.userRedux.isAuthenticated,
+        theaters: nextProps.theaterRedux,
       });
     }
   }
@@ -51,7 +53,12 @@ class Seats extends Component {
           </center>
         </div>
         <div className={this.state.isAuth ? "bg-white" : "hidden"}>
-          <SeatsComp seats={this.state.seats} user={this.state.user} />;
+          <SeatsComp
+            seats={this.state.seats}
+            user={this.state.user}
+            theaterList={this.state.theaters}
+          />
+          ;
         </div>
       </>
     );
@@ -61,5 +68,6 @@ class Seats extends Component {
 const mapStateToProps = (state) => ({
   seatInfoRedux: state.getSeatInfo.seatsInfo,
   userRedux: state.auth,
+  theaterRedux: state.theaters,
 });
 export default connect(mapStateToProps, { getSeatsInfo })(withRouter(Seats));

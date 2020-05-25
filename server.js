@@ -11,6 +11,7 @@ const search = require("./routes/api/SearchMovie");
 const theaters = require("./routes/api/Selecttheaters");
 const checkout = require("./routes/api/Checkout");
 const TicketHistory = require("./routes/api/TicketHistory");
+const Dijkstra = require("./routes/api/Dijkstra");
 const { DB_CONNECTION_STRING } = require("./config/keys");
 
 const app = express();
@@ -37,6 +38,7 @@ app.use("/movies/booktickets", seats);
 app.use("/movies/search", search);
 app.use("/movies/checkout", checkout);
 app.use("/users/mytickets", TicketHistory);
+app.use("/path", Dijkstra);
 app.use(passport.initialize());
 
 // Passport Config

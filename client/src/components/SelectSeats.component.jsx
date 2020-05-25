@@ -1,7 +1,9 @@
 import React from "react";
 import { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import swal from "@sweetalert/with-react";
+import axios from "axios";
 import { Success_payment } from "../function/Success_payment";
 
 import MobileScreen from "../asset/Line 2.svg";
@@ -17,23 +19,30 @@ class SeatsComp extends Component {
       seats: [["wx"], ["xw"]],
       selectedSeats: ["xyz"],
       amount: 0,
+      path: [],
     };
     this.recordIds = this.recordIds.bind(this);
     this.launchRazorPay = this.launchRazorPay.bind(this);
   }
   componentDidMount() {
-    if (!localStorage.selectedMovie && !localStorage.theaterDetails) {
-      swal(
-        <div>
-          <h1>Hello world!</h1>
-          <p>This is now rendered with JSX!</p>
-        </div>
-      );
-    }
     this.setState({
       selectedMovie: JSON.parse(localStorage.selectedMovie),
       theaterDetails: JSON.parse(localStorage.theaterDetails),
     });
+    const theaterList = JSON.parse(localStorage.theaters);
+    // this.props.userRedux.user.fullname,
+    //     theaterList.theaters,
+    //     JSON.parse(localStorage.theaterDetails).name
+    axios
+      .post("/path", {
+        data: {
+          user: this.props.userRedux.user.fullname,
+          theaters: theaterList.theaters,
+          destination: JSON.parse(localStorage.theaterDetails).name,
+        },
+      })
+      .then((data) => console.log(data.data))
+      .catch((err) => alert(err));
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps) {
@@ -295,4 +304,8 @@ class SeatsComp extends Component {
   }
 }
 
-export default withRouter(SeatsComp);
+const mapStateToProps = (state) => ({
+  userRedux: state.auth,
+});
+
+export default connect(mapStateToProps, null)(withRouter(SeatsComp));
