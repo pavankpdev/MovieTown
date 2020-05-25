@@ -5,10 +5,12 @@ import { withRouter } from "react-router-dom";
 import swal from "@sweetalert/with-react";
 import axios from "axios";
 import { Success_payment } from "../function/Success_payment";
+import PulseLoader from "react-spinners/PulseLoader";
 
 import MobileScreen from "../asset/Line 2.svg";
 import PcScreen from "../asset/Path 17.svg";
 import "./styles/SelectSeats.styles.css";
+import "./styles/timeline.css";
 class SeatsComp extends Component {
   constructor() {
     super();
@@ -19,7 +21,7 @@ class SeatsComp extends Component {
       seats: [["wx"], ["xw"]],
       selectedSeats: ["xyz"],
       amount: 0,
-      path: [],
+      path: { distance: 0, path: [] },
     };
     this.recordIds = this.recordIds.bind(this);
     this.launchRazorPay = this.launchRazorPay.bind(this);
@@ -29,7 +31,7 @@ class SeatsComp extends Component {
       selectedMovie: JSON.parse(localStorage.selectedMovie),
       theaterDetails: JSON.parse(localStorage.theaterDetails),
     });
-    const theaterList = JSON.parse(localStorage.theaters);
+    let theaterList = JSON.parse(localStorage.theaters);
     // this.props.userRedux.user.fullname,
     //     theaterList.theaters,
     //     JSON.parse(localStorage.theaterDetails).name
@@ -41,11 +43,12 @@ class SeatsComp extends Component {
           destination: JSON.parse(localStorage.theaterDetails).name,
         },
       })
-      .then((data) => console.log(data.data))
+      .then((data) => this.setState({ path: data.data }))
       .catch((err) => alert(err));
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps) {
+      console.log(nextProps);
       this.setState({
         seats: nextProps.seats,
       });
@@ -171,8 +174,63 @@ class SeatsComp extends Component {
             {this.state.theaterDetails.time} | {this.state.theaterDetails.type}{" "}
           </span>
         </div>
+        {/*  shortest path*/}
+        <div className={"mt-3 shadow-xl py-8 mx-4 neupormism"}>
+          <h2 className={"ml-4 text-base text-logoColor font-semibold"}>
+            Shortest path to reach{" "}
+            <span className={"font-bold"}>
+              {this.state.theaterDetails.name}
+            </span>
+          </h2>
+          <h2 className={"ml-4 text-base text-headingColor font-semibold"}>
+            Total distance :{" "}
+            <span
+              className={
+                "bg-teal-500 text-white px-2 text-sm rounded-extendedcorner lg:text-base"
+              }
+            >
+              {this.state.path.distance} km
+            </span>
+          </h2>
+          <div className="mt-8">
+            <center>
+              <ul className={"leaders "}>
+                <li className={"inline ml-3"}>
+                  <i className="fa fa-user fa-lg text-logoColor"></i>
+                  <span
+                    className={
+                      "ml-2 text-xs text-headingColor font-semibold uppercase tracking-wider w-2/5 truncate lg:text-base"
+                    }
+                  >
+                    {this.props.userRedux.user.fullname}{" "}
+                    <PulseLoader
+                      size={6}
+                      margin={2}
+                      color={"#5a67d8"}
+                      loading={this.state.path.path.length === 0}
+                    />
+                  </span>
+                </li>
+                {this.state.path.path.map((data) => (
+                  <>
+                    <li className={"inline ml-1 text-gray-500"}> -----> </li>
+                    <li className={"inline "}>
+                      <span
+                        className={
+                          "ml-1 text-xs text-headingColor font-semibold uppercase tracking-wider w-2/5 truncate lg:text-base"
+                        }
+                      >
+                        {data}
+                      </span>
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </center>
+          </div>
+        </div>
         {/* Ticket legends */}
-        <div className="mt-5 flex justify-around items-center lg:mt-10">
+        <div className="mt-24 flex justify-around items-center lg:24">
           {/* selected */}
           <div className="text-logoColor flex justify-center items-center lg:text-2xl">
             <i className="fas fa-square fa-lg"></i>

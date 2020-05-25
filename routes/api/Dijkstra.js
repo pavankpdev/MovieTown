@@ -89,7 +89,7 @@ router.post("/", (req, res) => {
       distance: distances[endNode],
       path: shortestPath,
     };
-
+    results.path.shift();
     return res.send(results);
   };
   // function to generate graph using the client value to feed to dijkstra algorithm

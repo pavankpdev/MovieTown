@@ -33,7 +33,12 @@ input[disabled] {
   height: 20px;
   position: relative;
 }
-
+.neupormism{
+  border-radius: 25px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow:  12px 12px 24px #bfbfbf,
+  -12px -12px 24px #ffffff;
+}
 @media (min-width: 300px) {
   .select-seat_backdropImage {
     height: 25rem;
@@ -88,5 +93,10 @@ input[disabled] {
     height: 30px;
     position: relative;
   }
+  .neupormism {
+    border-radius: 25px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow:  12px 12px 24px #bfbfbf,
+    -12px -12px 24px #ffffff;  }
   
 }

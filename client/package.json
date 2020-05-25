@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
+    "node-sass": "^4.14.1",
     "postcss-cli": "^7.1.0",
     "qrcode.react": "^1.0.0",
     "razorpay": "^2.0.6",
@@ -52,7 +53,6 @@
     ]
   },
   "homepage": "http://movietown.herokuapp.com/",
-
   "proxy": "http://localhost:4000",
   "presets": [
     "@babel/preset-react",

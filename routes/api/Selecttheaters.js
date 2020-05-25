@@ -18,15 +18,12 @@ router.get("/:zip", async (req, res) => {
   try {
     // User's Current zipcode
     const userzip = encodeURI(req.params.zip);
-    console.log(userzip);
     //Geocode the zipcode with mapquest geocode api to get the users lat/lng
     const geoCode = await axios.get(
       `${MAP_QUEST_GEOCODE_URL}key=${MAP_QUEST_API_KEY}&location=${userzip}`
     );
-    console.log(geoCode.data);
     //store the lat/lng of the user from mapquest api
     const userLocation = `${geoCode.data.results[0].locations[0].latLng.lat},${geoCode.data.results[0].locations[0].latLng.lng}`;
-    console.log(userLocation);
     // Object Template to manipulate later
     let template = await axios.get(`${THEATER_API_BASE_URL}`, {
       headers: {
@@ -40,13 +37,12 @@ router.get("/:zip", async (req, res) => {
 
     // GET request to Google places Api
     const places = await axios.get(
-      `${GOOGLE_PLACES_URL}radius=10000&keyword=movie&type=cinema%20theater&location=${userLocation}&key=${GOOGLE_PLACES_API}`
+      `${GOOGLE_PLACES_URL}radius=3000&keyword=movie&type=cinema%20theater&location=${userLocation}&key=${GOOGLE_PLACES_API}`
     );
     // reduce the array to only 8 elements
     places.data.results.length = 9;
-    console.log(places.data);
     // looping though and modifing the template
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 9; i++) {
       template.data.theaterDB[i]["theater_name"] = places.data.results[i].name;
       template.data.theaterDB[i]["location"] = places.data.results[i].vicinity;
       template.data.theaterDB[i]["ratings"] = places.data.results[i].rating;
@@ -64,13 +60,13 @@ router.get("/:zip", async (req, res) => {
       const result = await axios.get(
         `${MAP_QUEST_URL}key=${MAP_QUEST_API_KEY}&from=${userLocation}&to=${data.geometry}&unit=k`
       );
-      data["distance"] = Math.ceil(result.data.route.distance);
+      data["distance"] = Math.ceil(Number(result.data.route.distance));
       data["travel_time"] = Math.floor(result.data.route.time / 60);
+      isNaN(data.distance) ? (data.distance = 5) : data.distance;
       return data;
     });
     // awaing the promises
     const upDatedTheaterObject = await Promise.all(fetchDistances);
-    console.log(upDatedTheaterObject);
     // return to client
     res.json(upDatedTheaterObject);
   } catch (error) {
