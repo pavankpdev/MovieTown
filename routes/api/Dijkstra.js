@@ -2,8 +2,9 @@ const router = require("express").Router();
 const axios = require("axios");
 const { MAP_QUEST_API_KEY, MAP_QUEST_URL } = require("../../config/keys");
 router.post("/", (req, res) => {
-  //  get the body of the data
+  //  get the data from the client
   let body = req.body.data;
+
   // function to get distance between individual theaters
   const getDistance = async (loc1, loc2) => {
     const location = await axios.get(
@@ -12,10 +13,12 @@ router.post("/", (req, res) => {
     //return the distance in kilometers
     return Math.ceil(location.data.route.distance);
   };
+
   // function to calculate shortest distance between nodes
   let shortestDistanceNode = (distances, visited) => {
+    // create a default value for shortest
     let shortest = null;
-
+    // for each node in the distances object
     for (let node in distances) {
       let currentIsShortest =
         shortest === null || distances[node] < distances[shortest];
@@ -32,7 +35,7 @@ router.post("/", (req, res) => {
     let distances = {};
     distances[endNode] = "Infinity";
     distances = Object.assign(distances, graph[startNode]);
-
+    console.log(distances);
     // track paths
     let parents = { endNode: null };
     for (let child in graph[startNode]) {
@@ -92,6 +95,7 @@ router.post("/", (req, res) => {
     results.path.shift();
     return res.send(results);
   };
+
   // function to generate graph using the client value to feed to dijkstra algorithm
   async function generateGraph(user, theaters, destination) {
     const graph = {

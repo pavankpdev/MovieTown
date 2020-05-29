@@ -66,7 +66,11 @@ router.get("/:zip", async (req, res) => {
       return data;
     });
     // awaing the promises
-    const upDatedTheaterObject = await Promise.all(fetchDistances);
+    let upDatedTheaterObject = await Promise.all(fetchDistances);
+
+    upDatedTheaterObject = upDatedTheaterObject.sort(
+      (a, b) => a.distance - b.distance
+    );
     // return to client
     res.json(upDatedTheaterObject);
   } catch (error) {
