@@ -34,7 +34,8 @@ input[disabled] {
   position: relative;
 }
 .neupormism{
-  border-radius: 25px;
+  border-radius: 10px;
+  border-left: 4px solid #5a67d8;
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
   box-shadow:  12px 12px 24px #bfbfbf,
   -12px -12px 24px #ffffff;
@@ -94,7 +95,7 @@ input[disabled] {
     position: relative;
   }
   .neupormism {
-    border-radius: 25px;
+    border-left: 5px solid #5a67d8;
     background: linear-gradient(145deg, #ffffff, #e6e6e6);
     box-shadow:  12px 12px 24px #bfbfbf,
     -12px -12px 24px #ffffff;  }
