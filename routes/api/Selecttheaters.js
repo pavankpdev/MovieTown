@@ -39,20 +39,76 @@ router.get("/:zip", async (req, res) => {
     const places = await axios.get(
       `${GOOGLE_PLACES_URL}radius=3000&keyword=movie&type=cinema%20theater&location=${userLocation}&key=${GOOGLE_PLACES_API}`
     );
-    // reduce the array to only 8 elements
-    places.data.results.length = 9;
-    // looping though and modifing the template
-    for (let i = 0; i < 9; i++) {
-      template.data.theaterDB[i]["theater_name"] = places.data.results[i].name;
-      template.data.theaterDB[i]["location"] = places.data.results[i].vicinity;
-      template.data.theaterDB[i]["ratings"] = places.data.results[i].rating;
-      template.data.theaterDB[i]["total_votes"] =
-        places.data.results[i].user_ratings_total;
-      template.data.theaterDB[i][
-        "geometry"
-      ] = `${places.data.results[i].geometry.location.lat},${places.data.results[i].geometry.location.lng}`;
-      template.data.theaterDB[i]["distance"] = 0;
-      template.data.theaterDB[i]["travel_time"] = "";
+    // // reduce the array to only 8 elements
+    // places.data.results.length = 9;
+
+    if (places.data.results.length > 0) {
+      // reduce the array to only 8 elements
+      places.data.results.length = 9;
+      // looping though and modifing the template
+      for (let i = 0; i < 9; i++) {
+        template.data.theaterDB[i]["theater_name"] =
+          places.data.results[i].name;
+        template.data.theaterDB[i]["location"] =
+          places.data.results[i].vicinity;
+        template.data.theaterDB[i]["ratings"] = places.data.results[i].rating;
+        template.data.theaterDB[i]["total_votes"] =
+          places.data.results[i].user_ratings_total;
+        template.data.theaterDB[i][
+          "geometry"
+        ] = `${places.data.results[i].geometry.location.lat},${places.data.results[i].geometry.location.lng}`;
+        template.data.theaterDB[i]["distance"] = 0;
+        template.data.theaterDB[i]["travel_time"] = "";
+      }
+    }
+
+    if (places.data.results.length === 0) {
+      console.log("no results");
+      const rollBackGeoCodes = [
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.97595774,77.51170939",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.98591487,77.53339422",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.99910802,77.54234216",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.96584764,77.56129936",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.9776008,77.5590622",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.9876055,77.53920854",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.9712784,77.55087179",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.96711041,77.50553474",
+        },
+        {
+          user_ratings_total: Math.random() + 1 * 10,
+          geometry: "12.96466571,77.55542063",
+        },
+      ];
+      for (let i = 0; i < 9; i++) {
+        template.data.theaterDB[i]["total_votes"] =
+          rollBackGeoCodes[i].user_ratings_total;
+        template.data.theaterDB[i]["geometry"] = rollBackGeoCodes[i].geometry;
+        template.data.theaterDB[i]["distance"] = 0;
+        template.data.theaterDB[i]["travel_time"] = "";
+      }
     }
 
     // map through the updated theater array and add distance and travel time between user and every individual theaters
