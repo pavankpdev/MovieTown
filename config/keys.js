@@ -1,6 +1,6 @@
 module.exports = {
   DB_CONNECTION_STRING:
-    "ADD_YOUR_DB_STRING",
+    "mongodb+srv://guest:guest@movietown.r5es8.mongodb.net/movietown?retryWrites=true&w=majority",
   BCRYPT_SALT: 10,
   JWT_PRIVATE_KEY: "MOVIE_TOWN_JWT_PRIVATE_KEY",
   TMDB_API_KEY: "a248d933920cd6d6527467220f28a930",
