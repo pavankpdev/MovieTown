@@ -34,7 +34,7 @@
     "lodash": "^4.17.19",
     "mongoose": "^5.9.3",
     "mongoose-type-phone": "^1.0.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
